@@ -1,0 +1,7 @@
+{
+  "name": "eslint-plugin-no-global-effects",
+  "version": "1.0.0",
+  "description": "ESLint rules to prevent global side effects in design system components",
+  "main": "index.js",
+  "type": "commonjs"
+}

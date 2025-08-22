@@ -1,0 +1,21 @@
+.noqsdn0 {
+  width: 280px;
+  background-color: var(--_2o5pan1);
+  border-right: 1px solid var(--_2o5panm);
+  padding: var(--mkppdnx);
+  overflow-y: auto;
+}
+@media (max-width: 768px) {
+  .noqsdn0 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: var(--mkppdn1i);
+    transform: translateX(0);
+    transition: transform 0.2s ease-in-out;
+  }
+  .noqsdn1 {
+    transform: translateX(-100%);
+  }
+}

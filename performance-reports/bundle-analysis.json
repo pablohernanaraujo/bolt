@@ -1,0 +1,66 @@
+{
+  "timestamp": "2025-08-20T01:55:22.974Z",
+  "bundles": [],
+  "dependencies": [
+    {
+      "name": "@vanilla-extract/css",
+      "version": "^1.17.4",
+      "size": 0,
+      "type": "dependency"
+    },
+    {
+      "name": "@vanilla-extract/recipes",
+      "version": "^0.5.7",
+      "size": 0,
+      "type": "dependency"
+    },
+    {
+      "name": "clsx",
+      "version": "^2.1.1",
+      "size": 0,
+      "type": "dependency"
+    },
+    {
+      "name": "lucide-react",
+      "version": "^0.539.0",
+      "size": 0,
+      "type": "dependency"
+    },
+    {
+      "name": "next",
+      "version": "15.4.6",
+      "size": 0,
+      "type": "dependency"
+    },
+    {
+      "name": "react",
+      "version": "19.1.0",
+      "size": 0,
+      "type": "dependency"
+    },
+    {
+      "name": "react-aria-components",
+      "version": "^1.11.0",
+      "size": 0,
+      "type": "dependency"
+    },
+    {
+      "name": "react-dom",
+      "version": "19.1.0",
+      "size": 0,
+      "type": "dependency"
+    }
+  ],
+  "duplicates": [],
+  "opportunities": [],
+  "treeshaking": {
+    "optimized": [],
+    "potential": [],
+    "issues": []
+  },
+  "summary": {
+    "totalSize": 0,
+    "jsSize": 0,
+    "cssSize": 0
+  }
+}

@@ -1,0 +1,670 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Documentation/Server-Side Theming" />
+
+# Server-Side Theming Guide
+
+Implementación completa de theming server-side para eliminar el flash de tema incorrecto y maximizar performance.
+
+## Filosofía: Zero-Flash Theming
+
+### Problemas del Theming Cliente
+
+❌ **Flash of Wrong Theme (FOWT)**
+❌ **Hydration mismatches**  
+❌ **JavaScript required for basic theming**
+❌ **CLS (Cumulative Layout Shift)**
+
+### Solución Server-Side
+
+✅ **Tema correcto desde el primer render**
+✅ **Zero JavaScript para tema base**
+✅ **Progressive enhancement para toggle**
+✅ **SEO-friendly theme attributes**
+
+## Arquitectura de Theming
+
+### 1. Detección de Tema en el Servidor
+
+```typescript
+// theme/server-theme.ts
+import { cookies, headers } from 'next/headers';
+
+export async function getServerTheme(): Promise<'light' | 'dark'> {
+  try {
+    // 1. Cookie explícito del usuario (prioridad máxima)
+    const cookieStore = await cookies();
+    const themeCookie = cookieStore.get('theme')?.value;
+    
+    if (themeCookie === 'dark' || themeCookie === 'light') {
+      return themeCookie;
+    }
+
+    // 2. Client Hints header (navegadores modernos)
+    const headersList = await headers();
+    const colorSchemeHint = headersList.get('sec-ch-prefers-color-scheme');
+    
+    if (colorSchemeHint === 'dark') {
+      return 'dark';
+    }
+
+    // 3. Heurística basada en timezone (nighttime = dark)
+    const timezone = headersList.get('x-timezone') || 'UTC';
+    const now = new Date();
+    const hour = parseInt(now.toLocaleTimeString('en-US', {
+      timeZone: timezone,
+      hour12: false,
+    }).split(':')[0]);
+    
+    // 18:00-06:00 = night time
+    if (hour >= 18 || hour < 6) {
+      return 'dark';
+    }
+
+    // 4. Default fallback
+    return 'light';
+  } catch (error) {
+    console.warn('Server theme detection failed:', error);
+    return 'light';
+  }
+}
+```
+
+### 2. CSS Theme Contract con Vanilla Extract
+
+```typescript
+// tokens/theme-contract.ts
+import { createGlobalTheme, createThemeContract } from '@vanilla-extract/css';
+
+// Theme contract define las variables CSS disponibles
+export const themeContract = createThemeContract({
+  color: {
+    background: null,
+    foreground: null,
+    primary: null,
+    secondary: null,
+    accent: null,
+    muted: null,
+    border: null,
+  },
+  spacing: {
+    xs: null,
+    sm: null,
+    md: null,
+    lg: null,
+    xl: null,
+  },
+  typography: {
+    fontFamily: null,
+    fontSize: {
+      sm: null,
+      base: null,
+      lg: null,
+      xl: null,
+    },
+  },
+});
+```
+
+### 3. Temas Light y Dark
+
+```typescript
+// tokens/themes/light-theme.ts
+import { createTheme } from '@vanilla-extract/css';
+import { themeContract } from '../theme-contract';
+
+export const lightTheme = createTheme(themeContract, {
+  color: {
+    background: '#ffffff',
+    foreground: '#0f0f0f',
+    primary: '#2563eb',
+    secondary: '#64748b',
+    accent: '#f59e0b',
+    muted: '#f1f5f9',
+    border: '#e2e8f0',
+  },
+  spacing: {
+    xs: '0.25rem',
+    sm: '0.5rem',
+    md: '1rem',
+    lg: '1.5rem',
+    xl: '2rem',
+  },
+  typography: {
+    fontFamily: 'Inter, system-ui, sans-serif',
+    fontSize: {
+      sm: '0.875rem',
+      base: '1rem',
+      lg: '1.125rem',
+      xl: '1.25rem',
+    },
+  },
+});
+```
+
+```typescript
+// tokens/themes/dark-theme.ts
+import { createTheme } from '@vanilla-extract/css';
+import { themeContract } from '../theme-contract';
+
+export const darkTheme = createTheme(themeContract, {
+  color: {
+    background: '#0f0f0f',
+    foreground: '#ffffff',
+    primary: '#3b82f6',
+    secondary: '#94a3b8',
+    accent: '#fbbf24',
+    muted: '#1e293b',
+    border: '#374151',
+  },
+  spacing: {
+    xs: '0.25rem',
+    sm: '0.5rem',
+    md: '1rem',
+    lg: '1.5rem',
+    xl: '2rem',
+  },
+  typography: {
+    fontFamily: 'Inter, system-ui, sans-serif',
+    fontSize: {
+      sm: '0.875rem',
+      base: '1rem',
+      lg: '1.125rem',
+      xl: '1.25rem',
+    },
+  },
+});
+```
+
+### 4. Theme Utilities
+
+```typescript
+// theme/theme-utils.ts
+import { lightTheme, darkTheme } from '@/tokens/themes';
+
+export function getThemeClassName(theme: 'light' | 'dark'): string {
+  return theme === 'dark' ? darkTheme : lightTheme;
+}
+
+export function getThemeDataAttributes(theme: 'light' | 'dark'): Record<string, string> {
+  return {
+    'data-theme': theme,
+  };
+}
+
+export function getThemeColorScheme(theme: 'light' | 'dark'): string {
+  return theme === 'dark' ? 'dark' : 'light';
+}
+```
+
+## Integración en Root Layout
+
+### Layout con Server Theme Detection
+
+```typescript
+// app/layout.tsx
+import type { Metadata } from 'next';
+import { type ReactNode, type ReactElement } from 'react';
+
+// CSS imports
+import '@/tokens/css-variables.css';
+import '@/tokens/reset.css';
+import './globals.css';
+
+import { 
+  getServerTheme, 
+  getThemeClassName, 
+  getThemeDataAttributes,
+  getThemeColorScheme
+} from '@/theme/server-theme';
+
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}): Promise<ReactElement> {
+  // Server-side theme detection
+  const serverTheme = await getServerTheme();
+  const themeClassName = getThemeClassName(serverTheme);
+  const themeDataAttributes = getThemeDataAttributes(serverTheme);
+  const colorScheme = getThemeColorScheme(serverTheme);
+
+  return (
+    <html 
+      className={themeClassName}
+      {...themeDataAttributes}
+      style={{ colorScheme }}
+    >
+      <head>
+        {/* Prevent FOUC with CSS custom properties */}
+        <meta name="color-scheme" content="light dark" />
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            :root {
+              color-scheme: ${colorScheme};
+            }
+          `
+        }} />
+      </head>
+      <body>
+        <ServerLayout serverTheme={serverTheme}>
+          {children}
+        </ServerLayout>
+      </body>
+    </html>
+  );
+}
+```
+
+## Progressive Enhancement del Theme Toggle
+
+### 1. Base Funcional (Sin JavaScript)
+
+```typescript
+// components/ThemeToggleBase.tsx (Server Component)
+import { getServerTheme } from '@/theme/server-theme';
+import { Button } from '@tu-org/design-system';
+
+export async function ThemeToggleBase(): Promise<ReactElement> {
+  const currentTheme = await getServerTheme();
+  const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+  const icon = currentTheme === 'light' ? '🌙' : '☀️';
+  const label = currentTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+
+  return (
+    <form action="/api/theme" method="POST">
+      <input type="hidden" name="theme" value={nextTheme} />
+      <Button 
+        type="submit" 
+        variant="ghost"
+        aria-label={`Switch to ${nextTheme} mode`}
+      >
+        <span role="img" aria-hidden="true">{icon}</span>
+        {label}
+      </Button>
+    </form>
+  );
+}
+```
+
+### 2. Server Action para Theme Persistence
+
+```typescript
+// app/api/theme/route.ts
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
+export async function POST(request: Request) {
+  const formData = await request.formData();
+  const theme = formData.get('theme') as string;
+  
+  if (theme === 'light' || theme === 'dark') {
+    const cookieStore = await cookies();
+    
+    // Set theme cookie with appropriate settings
+    cookieStore.set('theme', theme, {
+      maxAge: 60 * 60 * 24 * 365, // 1 year
+      httpOnly: false, // Accessible to client-side JS
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+    });
+  }
+
+  // Redirect back to referring page or home
+  const referer = request.headers.get('referer') || '/';
+  redirect(referer);
+}
+```
+
+### 3. Enhanced Client Toggle (Opcional)
+
+```typescript
+// components/ThemeToggleEnhanced.tsx
+'use client';
+
+import { useState, useTransition, type ReactElement } from 'react';
+import { Button } from '@tu-org/design-system';
+
+interface ThemeToggleEnhancedProps {
+  initialTheme: 'light' | 'dark';
+}
+
+export function ThemeToggleEnhanced({ 
+  initialTheme 
+}: ThemeToggleEnhancedProps): ReactElement {
+  const [theme, setTheme] = useState(initialTheme);
+  const [isPending, startTransition] = useTransition();
+
+  const toggleTheme = () => {
+    startTransition(async () => {
+      const newTheme = theme === 'light' ? 'dark' : 'light';
+      
+      // Optimistic UI update
+      setTheme(newTheme);
+      
+      // Update DOM immediately for smooth transition
+      document.documentElement.setAttribute('data-theme', newTheme);
+      document.documentElement.className = getThemeClassName(newTheme);
+      document.documentElement.style.colorScheme = newTheme;
+      
+      // Persist on server
+      try {
+        await fetch('/api/theme', {
+          method: 'POST',
+          body: new FormData([['theme', newTheme]]),
+        });
+      } catch (error) {
+        // Revert on error
+        setTheme(theme);
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.className = getThemeClassName(theme);
+        console.error('Failed to update theme:', error);
+      }
+    });
+  };
+
+  const icon = theme === 'light' ? '🌙' : '☀️';
+  const label = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+
+  return (
+    <Button 
+      onClick={toggleTheme}
+      variant="ghost"
+      disabled={isPending}
+      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+    >
+      <span role="img" aria-hidden="true">{icon}</span>
+      {label}
+      {isPending && <span>...</span>}
+    </Button>
+  );
+}
+```
+
+## Componentes Aware del Tema
+
+### 1. Componentes que Adaptan al Tema
+
+```typescript
+// components/Logo.tsx
+import { getServerTheme } from '@/theme/server-theme';
+
+export async function Logo(): Promise<ReactElement> {
+  const theme = await getServerTheme();
+  
+  return (
+    <img 
+      src={theme === 'light' ? '/logo-light.svg' : '/logo-dark.svg'}
+      alt="Company Logo"
+      className="logo"
+    />
+  );
+}
+```
+
+### 2. Conditional Styling Based on Theme
+
+```typescript
+// components/HeroSection.css.ts
+import { style } from '@vanilla-extract/css';
+import { themeContract } from '@/tokens/theme-contract';
+
+export const heroSection = style({
+  background: `linear-gradient(135deg, ${themeContract.color.primary}, ${themeContract.color.accent})`,
+  color: themeContract.color.foreground,
+  padding: themeContract.spacing.xl,
+  borderRadius: '8px',
+  
+  // Theme-specific variations
+  selectors: {
+    '[data-theme="light"] &': {
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    },
+    '[data-theme="dark"] &': {
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
+    },
+  },
+});
+```
+
+## RTL Support Integration
+
+### Combined Theme + Direction Detection
+
+```typescript
+// theme/rtl-detection.ts
+export function getTextDirectionAttributes(
+  locale: string,
+  direction: 'ltr' | 'rtl'
+): Record<string, string> {
+  return {
+    lang: locale,
+    dir: direction,
+  };
+}
+
+// In layout.tsx
+const textDirectionAttributes = getTextDirectionAttributes(
+  localeInfo.locale,
+  localeInfo.direction
+);
+
+return (
+  <html 
+    className={themeClassName}
+    {...themeDataAttributes}
+    {...textDirectionAttributes}
+  >
+    {/* ... */}
+  </html>
+);
+```
+
+## Advanced Theme Features
+
+### 1. Multiple Theme Variants
+
+```typescript
+// tokens/themes/index.ts
+export const themeVariants = {
+  light: lightTheme,
+  dark: darkTheme,
+  'high-contrast': highContrastTheme,
+  'reduced-motion': reducedMotionTheme,
+} as const;
+
+export type ThemeVariant = keyof typeof themeVariants;
+
+// Enhanced theme detection
+export async function getServerTheme(): Promise<ThemeVariant> {
+  const cookieStore = await cookies();
+  const headersList = await headers();
+  
+  // Check for accessibility preferences
+  const prefersReducedMotion = headersList.get('sec-ch-prefers-reduced-motion');
+  const prefersHighContrast = headersList.get('sec-ch-prefers-contrast');
+  
+  if (prefersHighContrast === 'more') {
+    return 'high-contrast';
+  }
+  
+  if (prefersReducedMotion === 'reduce') {
+    return 'reduced-motion';
+  }
+  
+  // Standard light/dark detection...
+  return 'light';
+}
+```
+
+### 2. System Theme Sync
+
+```typescript
+// components/SystemThemeSync.tsx
+'use client';
+
+import { useEffect } from 'react';
+
+export function SystemThemeSync(): null {
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      // Only sync if user hasn't set explicit preference
+      const hasExplicitTheme = document.cookie.includes('theme=');
+      
+      if (!hasExplicitTheme) {
+        const newTheme = e.matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        document.documentElement.className = getThemeClassName(newTheme);
+      }
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+  
+  return null;
+}
+```
+
+## Testing Theme Integration
+
+### Server-Side Theme Testing
+
+```typescript
+// __tests__/theme.test.tsx
+import { renderServer } from '@tu-org/design-system/test-utils';
+import { getServerTheme, getThemeClassName } from '@/theme/server-theme';
+
+describe('Server Theme Detection', () => {
+  it('should detect theme from cookies', async () => {
+    const theme = await getServerTheme();
+    expect(theme).toBe('light');
+  });
+
+  it('should apply correct theme class', () => {
+    const className = getThemeClassName('dark');
+    expect(className).toContain('dark');
+  });
+
+  it('should render with correct theme attributes', () => {
+    const { serverHTML } = renderServer(
+      <div data-theme="dark">
+        <Button>Test</Button>
+      </div>
+    );
+    
+    expect(serverHTML).toContain('data-theme="dark"');
+  });
+});
+```
+
+## Performance Considerations
+
+### 1. Theme CSS Optimization
+
+```typescript
+// Build-time theme optimization
+// next.config.ts
+const nextConfig = {
+  experimental: {
+    optimizeCss: true,
+  },
+  
+  // Preload critical theme CSS
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Link',
+            value: '</styles/themes.css>; rel=preload; as=style',
+          },
+        ],
+      },
+    ];
+  },
+};
+```
+
+### 2. Critical CSS Inlining
+
+```typescript
+// app/layout.tsx
+export default async function RootLayout({ children }) {
+  const serverTheme = await getServerTheme();
+  
+  return (
+    <html>
+      <head>
+        {/* Inline critical theme CSS */}
+        <style dangerouslySetInnerHTML={{
+          __html: getCriticalThemeCSS(serverTheme)
+        }} />
+      </head>
+      <body className={getThemeClassName(serverTheme)}>
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+
+## Migración desde Client Theming
+
+### Before (Client-Side)
+
+```typescript
+// ❌ Client-side theming problems
+'use client';
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState('light');
+  
+  useEffect(() => {
+    // FOUC: Flash of wrong theme
+    const saved = localStorage.getItem('theme');
+    setTheme(saved || 'light');
+  }, []);
+  
+  return (
+    <div data-theme={theme}>
+      {children}
+    </div>
+  );
+}
+```
+
+### After (Server-Side)
+
+```typescript
+// ✅ Server-side theming benefits
+export default async function Layout({ children }) {
+  const serverTheme = await getServerTheme(); // No FOUC
+  
+  return (
+    <html data-theme={serverTheme}>
+      <body className={getThemeClassName(serverTheme)}>
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+
+## Próximos Pasos
+
+- ⚡ [Performance](/?path=/docs/documentation-performance--docs) - Optimizaciones y deferred hydration
+- 📱 [Import Patterns](/?path=/docs/documentation-import-patterns--docs) - Tree-shaking y bundle optimization
+- 🧪 [Testing](/?path=/docs/documentation-testing--docs) - Testing strategies para theming
+- 🚀 [Migration](/?path=/docs/documentation-migration--docs) - Migrar de client a server theming
+
+## Referencias
+
+- [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*)
+- [Client Hints](https://developer.mozilla.org/en-US/docs/Web/HTTP/Client_hints)
+- [Vanilla Extract Themes](https://vanilla-extract.style/documentation/api/create-theme/)
+- [Next.js Cookies & Headers](https://nextjs.org/docs/app/api-reference/functions/cookies)

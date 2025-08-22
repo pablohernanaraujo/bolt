@@ -1,0 +1,111 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Documentation/Introduction" />
+
+# Design System
+
+Un sistema de diseño completo construido con **Next.js 15**, **React Aria Components**, y **vanilla-extract**.
+
+## 🚀 Características
+
+- **Componentes Accesibles**: Construidos con React Aria Components para máxima accesibilidad
+- **Zero-Runtime CSS**: Estilos compilados con vanilla-extract para mejor performance
+- **Temas Dinámicos**: Soporte completo para light/dark mode sin JavaScript
+- **TypeScript**: Completamente tipado para mejor DX
+- **Design Tokens**: Sistema centralizado de tokens de diseño
+
+## 📦 Qué Incluye
+
+### Foundations
+
+- **Design Tokens**: Colores, tipografía, espaciado, border radius
+- **Temas**: Light y dark themes automáticos
+- **Iconos**: Basado en Lucide React con tamaños predefinidos
+
+### Componentes
+
+- **Button**: Múltiples variantes, tamaños y estados
+- **Icon**: Sistema de iconos con tamaños consistentes
+- _Más componentes en desarrollo..._
+
+## 🛠️ Tecnologías
+
+- **Framework**: Next.js 15 con App Router
+- **Styling**: vanilla-extract para zero-runtime CSS
+- **Components**: React Aria Components para accesibilidad
+- **Icons**: Lucide React
+- **Typography**: Roboto font family
+- **Documentation**: Storybook para desarrollo y documentación
+
+## 🎨 Principios de Diseño
+
+### Accesibilidad Primero
+
+Todos los componentes están construidos con accesibilidad como prioridad principal, usando React Aria Components como base.
+
+### Consistencia
+
+Sistema de design tokens centralizado asegura consistencia visual en toda la aplicación.
+
+### Performance
+
+CSS zero-runtime y componentes tree-shakeable para máxima performance.
+
+### Developer Experience
+
+TypeScript completo, documentación interactiva, y APIs intuitivas.
+
+## 🚀 Empezando
+
+### Instalación
+
+```bash
+# Instalar dependencias
+pnpm install
+
+# Desarrollo
+pnpm dev              # Next.js app en localhost:3000
+pnpm storybook        # Storybook en localhost:6006
+
+# Build
+pnpm build            # Build para producción
+pnpm build-storybook  # Build Storybook
+```
+
+### Uso Básico
+
+```tsx
+import { Button } from '@/ui';
+
+function App() {
+  return (
+    <Button variant="primary" size="medium">
+      Click me
+    </Button>
+  );
+}
+```
+
+## 📝 Estructura del Proyecto
+
+```
+src/
+├── ui/              # Componentes reutilizables
+├── tokens/          # Design tokens
+├── theme/           # Utilidades de tema
+├── icons/           # Sistema de iconos
+├── app/             # Next.js App Router
+└── storybook/       # Stories y documentación
+```
+
+## 🎯 Roadmap
+
+- [ ] Más componentes (Input, Card, Modal, etc.)
+- [ ] Testing automatizado
+- [ ] Visual regression testing
+- [ ] Figma tokens integration
+- [ ] Multi-brand theming
+
+---
+
+Explora las diferentes secciones para ver componentes, foundations, y documentación detallada.

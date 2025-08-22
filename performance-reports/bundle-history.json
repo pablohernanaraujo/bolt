@@ -1,0 +1,636 @@
+[
+  {
+    "timestamp": "2025-08-20T01:43:50.695Z",
+    "components": [
+      {
+        "component": "button",
+        "actualKB": 0.31,
+        "budgetKB": 2.5,
+        "status": "ok"
+      },
+      {
+        "component": "badge",
+        "actualKB": 0.17,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "avatar",
+        "actualKB": 0.21,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "spinner",
+        "actualKB": 0.21,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "skeleton",
+        "actualKB": 0.37,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "divider",
+        "actualKB": 0.25,
+        "budgetKB": 1,
+        "status": "ok"
+      },
+      {
+        "component": "code",
+        "actualKB": 0.16,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "link",
+        "actualKB": 0.36,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "toggle",
+        "actualKB": 0.17,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "icon-button",
+        "actualKB": 0.2,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "typography",
+        "actualKB": 0.4,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "input",
+        "actualKB": 0.29,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "textarea",
+        "actualKB": 0.23,
+        "budgetKB": 3.5,
+        "status": "ok"
+      },
+      {
+        "component": "checkbox",
+        "actualKB": 0.27,
+        "budgetKB": 3,
+        "status": "ok"
+      },
+      {
+        "component": "radio",
+        "actualKB": 0.17,
+        "budgetKB": 2.5,
+        "status": "ok"
+      },
+      {
+        "component": "radio-group",
+        "actualKB": 0.17,
+        "budgetKB": 3.5,
+        "status": "ok"
+      },
+      {
+        "component": "form-field",
+        "actualKB": 0.22,
+        "budgetKB": 3,
+        "status": "ok"
+      },
+      {
+        "component": "input-group",
+        "actualKB": 0.27,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "password-input",
+        "actualKB": 0.21,
+        "budgetKB": 4.5,
+        "status": "ok"
+      },
+      {
+        "component": "password-strength-meter",
+        "actualKB": 0.27,
+        "budgetKB": 3.5,
+        "status": "ok"
+      },
+      {
+        "component": "pin-input",
+        "actualKB": 0.34,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "file-upload",
+        "actualKB": 0.33,
+        "budgetKB": 6,
+        "status": "ok"
+      },
+      {
+        "component": "layout",
+        "actualKB": 0.52,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "container",
+        "actualKB": 0,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "flex",
+        "actualKB": 0,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "grid",
+        "actualKB": 0,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "hstack",
+        "actualKB": 0,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "vstack",
+        "actualKB": 0,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "center",
+        "actualKB": 0,
+        "budgetKB": 1,
+        "status": "ok"
+      },
+      {
+        "component": "aspect-ratio",
+        "actualKB": 0,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "app-layout",
+        "actualKB": 0,
+        "budgetKB": 3.5,
+        "status": "ok"
+      },
+      {
+        "component": "app-header",
+        "actualKB": 0,
+        "budgetKB": 3,
+        "status": "ok"
+      },
+      {
+        "component": "sidebar",
+        "actualKB": 0,
+        "budgetKB": 3,
+        "status": "ok"
+      },
+      {
+        "component": "main-content",
+        "actualKB": 0,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "content-wrapper",
+        "actualKB": 0,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "breadcrumb",
+        "actualKB": 0.25,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "tabs",
+        "actualKB": 0.18,
+        "budgetKB": 5,
+        "status": "ok"
+      },
+      {
+        "component": "pagination",
+        "actualKB": 0.25,
+        "budgetKB": 5,
+        "status": "ok"
+      },
+      {
+        "component": "list",
+        "actualKB": 0.23,
+        "budgetKB": 3,
+        "status": "ok"
+      },
+      {
+        "component": "modal",
+        "actualKB": 0.29,
+        "budgetKB": 7,
+        "status": "ok"
+      },
+      {
+        "component": "drawer",
+        "actualKB": 0.31,
+        "budgetKB": 6.5,
+        "status": "ok"
+      },
+      {
+        "component": "popover",
+        "actualKB": 0.31,
+        "budgetKB": 6,
+        "status": "ok"
+      },
+      {
+        "component": "tooltip",
+        "actualKB": 0.27,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "menu",
+        "actualKB": 0.35,
+        "budgetKB": 7,
+        "status": "ok"
+      },
+      {
+        "component": "accordion",
+        "actualKB": 0.21,
+        "budgetKB": 5,
+        "status": "ok"
+      },
+      {
+        "component": "theme-toggle",
+        "actualKB": 0.24,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "toast",
+        "actualKB": 0.27,
+        "budgetKB": 5,
+        "status": "ok"
+      },
+      {
+        "component": "progress",
+        "actualKB": 0.29,
+        "budgetKB": 3.5,
+        "status": "ok"
+      },
+      {
+        "component": "chart",
+        "actualKB": 0.27,
+        "budgetKB": 12,
+        "status": "ok"
+      },
+      {
+        "component": "translation",
+        "actualKB": 0.31,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "progressive-enhancement",
+        "actualKB": 0,
+        "budgetKB": 3,
+        "status": "ok"
+      },
+      {
+        "component": "deferred-hydration",
+        "actualKB": 0,
+        "budgetKB": 2.5,
+        "status": "ok"
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-08-20T01:44:10.459Z",
+    "components": [
+      {
+        "component": "button",
+        "actualKB": 0.31,
+        "budgetKB": 2.5,
+        "status": "ok"
+      },
+      {
+        "component": "badge",
+        "actualKB": 0.17,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "avatar",
+        "actualKB": 0.21,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "spinner",
+        "actualKB": 0.21,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "skeleton",
+        "actualKB": 0.37,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "divider",
+        "actualKB": 0.25,
+        "budgetKB": 1,
+        "status": "ok"
+      },
+      {
+        "component": "code",
+        "actualKB": 0.16,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "link",
+        "actualKB": 0.36,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "toggle",
+        "actualKB": 0.17,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "icon-button",
+        "actualKB": 0.2,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "typography",
+        "actualKB": 0.4,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "input",
+        "actualKB": 0.29,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "textarea",
+        "actualKB": 0.23,
+        "budgetKB": 3.5,
+        "status": "ok"
+      },
+      {
+        "component": "checkbox",
+        "actualKB": 0.27,
+        "budgetKB": 3,
+        "status": "ok"
+      },
+      {
+        "component": "radio",
+        "actualKB": 0.17,
+        "budgetKB": 2.5,
+        "status": "ok"
+      },
+      {
+        "component": "radio-group",
+        "actualKB": 0.17,
+        "budgetKB": 3.5,
+        "status": "ok"
+      },
+      {
+        "component": "form-field",
+        "actualKB": 0.22,
+        "budgetKB": 3,
+        "status": "ok"
+      },
+      {
+        "component": "input-group",
+        "actualKB": 0.27,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "password-input",
+        "actualKB": 0.21,
+        "budgetKB": 4.5,
+        "status": "ok"
+      },
+      {
+        "component": "password-strength-meter",
+        "actualKB": 0.27,
+        "budgetKB": 3.5,
+        "status": "ok"
+      },
+      {
+        "component": "pin-input",
+        "actualKB": 0.34,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "file-upload",
+        "actualKB": 0.33,
+        "budgetKB": 6,
+        "status": "ok"
+      },
+      {
+        "component": "layout",
+        "actualKB": 0.52,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "container",
+        "actualKB": 0,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "flex",
+        "actualKB": 0,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "grid",
+        "actualKB": 0,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "hstack",
+        "actualKB": 0,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "vstack",
+        "actualKB": 0,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "center",
+        "actualKB": 0,
+        "budgetKB": 1,
+        "status": "ok"
+      },
+      {
+        "component": "aspect-ratio",
+        "actualKB": 0,
+        "budgetKB": 1.5,
+        "status": "ok"
+      },
+      {
+        "component": "app-layout",
+        "actualKB": 0,
+        "budgetKB": 3.5,
+        "status": "ok"
+      },
+      {
+        "component": "app-header",
+        "actualKB": 0,
+        "budgetKB": 3,
+        "status": "ok"
+      },
+      {
+        "component": "sidebar",
+        "actualKB": 0,
+        "budgetKB": 3,
+        "status": "ok"
+      },
+      {
+        "component": "main-content",
+        "actualKB": 0,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "content-wrapper",
+        "actualKB": 0,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "breadcrumb",
+        "actualKB": 0.25,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "tabs",
+        "actualKB": 0.18,
+        "budgetKB": 5,
+        "status": "ok"
+      },
+      {
+        "component": "pagination",
+        "actualKB": 0.25,
+        "budgetKB": 5,
+        "status": "ok"
+      },
+      {
+        "component": "list",
+        "actualKB": 0.23,
+        "budgetKB": 3,
+        "status": "ok"
+      },
+      {
+        "component": "modal",
+        "actualKB": 0.29,
+        "budgetKB": 7,
+        "status": "ok"
+      },
+      {
+        "component": "drawer",
+        "actualKB": 0.31,
+        "budgetKB": 6.5,
+        "status": "ok"
+      },
+      {
+        "component": "popover",
+        "actualKB": 0.31,
+        "budgetKB": 6,
+        "status": "ok"
+      },
+      {
+        "component": "tooltip",
+        "actualKB": 0.27,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "menu",
+        "actualKB": 0.35,
+        "budgetKB": 7,
+        "status": "ok"
+      },
+      {
+        "component": "accordion",
+        "actualKB": 0.21,
+        "budgetKB": 5,
+        "status": "ok"
+      },
+      {
+        "component": "theme-toggle",
+        "actualKB": 0.24,
+        "budgetKB": 4,
+        "status": "ok"
+      },
+      {
+        "component": "toast",
+        "actualKB": 0.27,
+        "budgetKB": 5,
+        "status": "ok"
+      },
+      {
+        "component": "progress",
+        "actualKB": 0.29,
+        "budgetKB": 3.5,
+        "status": "ok"
+      },
+      {
+        "component": "chart",
+        "actualKB": 0.27,
+        "budgetKB": 12,
+        "status": "ok"
+      },
+      {
+        "component": "translation",
+        "actualKB": 0.31,
+        "budgetKB": 2,
+        "status": "ok"
+      },
+      {
+        "component": "progressive-enhancement",
+        "actualKB": 0,
+        "budgetKB": 3,
+        "status": "ok"
+      },
+      {
+        "component": "deferred-hydration",
+        "actualKB": 0,
+        "budgetKB": 2.5,
+        "status": "ok"
+      }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+export declare const container: string;
+export declare const labelPositions: Record<"left" | "right", string>;
+export declare const track: string;
+export declare const trackSizes: Record<"small" | "medium" | "large", string>;
+export declare const thumb: string;
+export declare const thumbSizes: Record<"small" | "medium" | "large", string>;
+export declare const thumbCheckedPositions: Record<"small" | "medium" | "large", string>;
+export declare const checkedVariants: Record<string | number, string>;
+export declare const label: string;
+export declare const labelSizes: Record<"small" | "medium" | "large", string>;

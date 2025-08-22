@@ -1,0 +1,592 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Documentation/Import Patterns" />
+
+# Import Patterns & Tree Shaking
+
+Guía completa de patrones de importación para optimal tree-shaking y bundle optimization.
+
+## Filosofía: Import Only What You Use
+
+### Problemas de Importación Tradicional
+
+❌ **Barrel export bloat** - Importar todo el design system
+❌ **Dead code inclusion** - Código no usado en el bundle
+❌ **Poor tree-shaking** - Bundlers no pueden eliminar código
+❌ **Large bundle sizes** - Performance degraded
+
+### Solución: Granular Imports
+
+✅ **Component-level imports** - Solo el código necesario
+✅ **Optimal tree-shaking** - Bundlers eliminan código no usado
+✅ **Smaller bundles** - Mejor performance
+✅ **Better caching** - Componentes cachean independientemente
+
+## Import Architecture
+
+### 1. Component-Level Imports (Recomendado)
+
+```typescript
+// ✅ Optimal - Solo importa el componente específico
+import { Button } from '@tu-org/design-system/button';
+import { Card } from '@tu-org/design-system/card';
+import { Typography } from '@tu-org/design-system/typography';
+
+// ✅ También óptimo - Subpath imports
+import { H1, H2, Body1 } from '@tu-org/design-system/typography';
+import { Container, Grid } from '@tu-org/design-system/layout';
+
+// ✅ Server vs Client específico
+import { ButtonServer } from '@tu-org/design-system/button/server';
+import { ButtonClient } from '@tu-org/design-system/button/client';
+```
+
+### 2. Package.json Exports Configuration
+
+Tu design system debe configurar exports para optimal tree-shaking:
+
+```json
+{
+  "name": "@tu-org/design-system",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./button": {
+      "import": "./dist/button/index.esm.js",
+      "require": "./dist/button/index.cjs.js",
+      "types": "./dist/button/index.d.ts"
+    },
+    "./button/server": {
+      "import": "./dist/button/button-server.esm.js",
+      "types": "./dist/button/button-server.d.ts"
+    },
+    "./button/client": {
+      "import": "./dist/button/button-client.esm.js",
+      "types": "./dist/button/button-client.d.ts"
+    },
+    "./card": {
+      "import": "./dist/card/index.esm.js",
+      "require": "./dist/card/index.cjs.js",
+      "types": "./dist/card/index.d.ts"
+    },
+    "./typography": {
+      "import": "./dist/typography/index.esm.js",
+      "require": "./dist/typography/index.cjs.js",
+      "types": "./dist/typography/index.d.ts"
+    },
+    "./layout": {
+      "import": "./dist/layout/index.esm.js",
+      "require": "./dist/layout/index.cjs.js",
+      "types": "./dist/layout/index.d.ts"
+    },
+    "./styles": {
+      "import": "./dist/styles/index.css"
+    },
+    "./server-theme": {
+      "import": "./dist/theme/server-theme.esm.js",
+      "types": "./dist/theme/server-theme.d.ts"
+    },
+    "./test-utils": {
+      "import": "./dist/utils/test-utils.esm.js",
+      "types": "./dist/utils/test-utils.d.ts"
+    }
+  }
+}
+```
+
+## Tree-Shaking Optimization
+
+### 1. Component Structure para Tree-Shaking
+
+```typescript
+// button/index.ts - Barrel export optimizado
+export { ButtonServer as Button } from './button-server';
+export { ButtonClient } from './button-client';
+export type { ButtonProps, ButtonServerProps } from './types';
+
+// Solo re-exporta lo que realmente se usa
+// Evita re-exportar utilities innecesarios
+```
+
+### 2. Conditional Exports por Environment
+
+```typescript
+// utils/platform-specific.ts
+// Solo incluye código relevante por platform
+
+// Server-only utilities
+export const serverUtils = {
+  getServerTheme: () => import('./server-theme').then(m => m.getServerTheme),
+  getServerLocale: () => import('./server-locale').then(m => m.getServerLocale),
+};
+
+// Client-only utilities  
+export const clientUtils = {
+  useLocalStorage: () => import('./use-local-storage').then(m => m.useLocalStorage),
+  useMediaQuery: () => import('./use-media-query').then(m => m.useMediaQuery),
+};
+
+// Universal utilities (available both sides)
+export const universalUtils = {
+  formatDate: () => import('./format-date').then(m => m.formatDate),
+  classNames: () => import('./class-names').then(m => m.classNames),
+};
+```
+
+## Import Patterns por Tipo de Componente
+
+### 1. Layout Components
+
+```typescript
+// ✅ Granular layout imports
+import { Container } from '@tu-org/design-system/layout/container';
+import { Grid, GridItem } from '@tu-org/design-system/layout/grid';
+import { Flex, HStack, VStack } from '@tu-org/design-system/layout/flex';
+
+// Layout composition
+function ProductGrid({ products }) {
+  return (
+    <Container>
+      <Grid columns={3} gap="md">
+        {products.map(product => (
+          <GridItem key={product.id}>
+            <ProductCard product={product} />
+          </GridItem>
+        ))}
+      </Grid>
+    </Container>
+  );
+}
+```
+
+### 2. Typography Components
+
+```typescript
+// ✅ Específico por tipo de typography
+import { H1, H2 } from '@tu-org/design-system/typography/headings';
+import { Body1, Body2 } from '@tu-org/design-system/typography/body';
+import { Caption, Overline } from '@tu-org/design-system/typography/utility';
+
+// O todos los typography si los usas múltiples
+import { H1, H2, Body1, Caption } from '@tu-org/design-system/typography';
+```
+
+### 3. Form Components
+
+```typescript
+// ✅ Import solo los form components necesarios
+import { InputField } from '@tu-org/design-system/input';
+import { TextareaField } from '@tu-org/design-system/textarea';
+import { Button } from '@tu-org/design-system/button';
+import { FormField } from '@tu-org/design-system/form-field';
+
+function ContactForm() {
+  return (
+    <form>
+      <FormField label="Name">
+        <InputField name="name" required />
+      </FormField>
+      
+      <FormField label="Message">
+        <TextareaField name="message" required />
+      </FormField>
+      
+      <Button type="submit">Send</Button>
+    </form>
+  );
+}
+```
+
+## Dynamic Imports Avanzados
+
+### 1. Feature-Based Dynamic Loading
+
+```typescript
+// features/charts/index.ts
+export const ChartFeature = {
+  // Load solo cuando se necesita charts
+  LineChart: () => import('./LineChart').then(m => m.LineChart),
+  BarChart: () => import('./BarChart').then(m => m.BarChart),
+  PieChart: () => import('./PieChart').then(m => m.PieChart),
+  
+  // Load utilities específicos
+  chartUtils: () => import('./chart-utils').then(m => m.chartUtils),
+  chartThemes: () => import('./chart-themes').then(m => m.chartThemes),
+};
+
+// Usage
+async function loadChartDashboard() {
+  const [LineChart, chartUtils] = await Promise.all([
+    ChartFeature.LineChart(),
+    ChartFeature.chartUtils(),
+  ]);
+  
+  return { LineChart, chartUtils };
+}
+```
+
+### 2. Conditional Library Loading
+
+```typescript
+// utils/conditional-imports.ts
+interface ImportConditions {
+  viewport?: { min?: number; max?: number };
+  network?: ('4g' | '3g' | '2g' | 'slow-2g')[];
+  battery?: { min?: number };
+  reducedMotion?: boolean;
+}
+
+export async function conditionalImport<T>(
+  importFn: () => Promise<T>,
+  conditions: ImportConditions
+): Promise<T | null> {
+  // Check viewport
+  if (conditions.viewport) {
+    const width = window.innerWidth;
+    if (conditions.viewport.min && width < conditions.viewport.min) return null;
+    if (conditions.viewport.max && width > conditions.viewport.max) return null;
+  }
+  
+  // Check network
+  if (conditions.network && 'connection' in navigator) {
+    const connection = (navigator as any).connection;
+    if (!conditions.network.includes(connection.effectiveType)) return null;
+  }
+  
+  // Check battery
+  if (conditions.battery && 'getBattery' in navigator) {
+    const battery = await (navigator as any).getBattery();
+    if (battery.level < (conditions.battery.min || 0)) return null;
+  }
+  
+  // Check reduced motion
+  if (conditions.reducedMotion !== undefined) {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (conditions.reducedMotion !== prefersReduced) return null;
+  }
+  
+  return importFn();
+}
+
+// Usage
+const AnimatedComponent = await conditionalImport(
+  () => import('./AnimatedComponent'),
+  {
+    viewport: { min: 768 },
+    network: ['4g', '3g'],
+    battery: { min: 0.3 },
+    reducedMotion: false,
+  }
+);
+```
+
+## Bundle Splitting Strategies
+
+### 1. Component-Level Splitting
+
+```typescript
+// webpack.config.js or next.config.js
+module.exports = {
+  experimental: {
+    optimizePackageImports: ['@tu-org/design-system']
+  },
+  
+  webpack: (config) => {
+    config.optimization.splitChunks = {
+      chunks: 'all',
+      cacheGroups: {
+        // Design system core
+        'design-system-core': {
+          test: /[\\/]node_modules[\\/]@tu-org[\\/]design-system[\\/](button|typography|layout)/,
+          name: 'design-system-core',
+          priority: 30,
+        },
+        
+        // Design system interactive
+        'design-system-interactive': {
+          test: /[\\/]node_modules[\\/]@tu-org[\\/]design-system[\\/](modal|dropdown|tooltip)/,
+          name: 'design-system-interactive',
+          priority: 25,
+        },
+        
+        // Design system forms
+        'design-system-forms': {
+          test: /[\\/]node_modules[\\/]@tu-org[\\/]design-system[\\/](input|textarea|checkbox)/,
+          name: 'design-system-forms',
+          priority: 25,
+        },
+      },
+    };
+    
+    return config;
+  },
+};
+```
+
+### 2. Route-Based Splitting
+
+```typescript
+// pages/products/[id]/page.tsx
+import { lazy, Suspense } from 'react';
+
+// Core components: Imported directly (bundle with page)
+import { Container, H1, Body1 } from '@tu-org/design-system';
+
+// Secondary components: Lazy loaded
+const ProductGallery = lazy(() => import('@/components/ProductGallery'));
+const ProductReviews = lazy(() => import('@/components/ProductReviews'));
+const RelatedProducts = lazy(() => import('@/components/RelatedProducts'));
+
+export default function ProductPage({ product }) {
+  return (
+    <Container>
+      {/* Above-the-fold: Immediate */}
+      <H1>{product.name}</H1>
+      <Body1>{product.description}</Body1>
+      
+      {/* Below-the-fold: Lazy loaded */}
+      <Suspense fallback={<GallerySkeleton />}>
+        <ProductGallery images={product.images} />
+      </Suspense>
+      
+      <Suspense fallback={<ReviewsSkeleton />}>
+        <ProductReviews productId={product.id} />
+      </Suspense>
+      
+      <Suspense fallback={<RelatedSkeleton />}>
+        <RelatedProducts categoryId={product.categoryId} />
+      </Suspense>
+    </Container>
+  );
+}
+```
+
+## Anti-Patterns de Importación
+
+### ❌ Barrel Export Completo
+
+```typescript
+// ❌ Importa todo el design system
+import { Button, Card, Typography, Modal, Chart, DataTable } from '@tu-org/design-system';
+
+// Solo usas Button pero se incluye todo en el bundle
+function MyComponent() {
+  return <Button>Click me</Button>;
+}
+```
+
+### ❌ Deep Imports sin Configuración
+
+```typescript
+// ❌ Deep imports pueden romperse
+import { Button } from '@tu-org/design-system/dist/components/button/button';
+import { ButtonProps } from '@tu-org/design-system/dist/components/button/types';
+```
+
+### ❌ Mixed Import Patterns
+
+```typescript
+// ❌ Inconsistente - mezcla barrel y granular
+import { Button } from '@tu-org/design-system'; // Barrel
+import { Card } from '@tu-org/design-system/card'; // Granular
+import { Typography } from '@tu-org/design-system'; // Barrel again
+```
+
+## ✅ Best Practices
+
+### 1. Consistent Import Pattern
+
+```typescript
+// ✅ Consistente - usa granular imports
+import { Button } from '@tu-org/design-system/button';
+import { Card } from '@tu-org/design-system/card';
+import { Typography } from '@tu-org/design-system/typography';
+
+// ✅ O barrel imports cuando usas múltiples del mismo module
+import { H1, H2, Body1, Body2 } from '@tu-org/design-system/typography';
+```
+
+### 2. ESLint Rules para Imports
+
+```json
+// .eslintrc.js
+{
+  "rules": {
+    "import/no-internal-modules": ["error", {
+      "allow": [
+        "@tu-org/design-system/*",
+        "@tu-org/design-system/*/server",
+        "@tu-org/design-system/*/client"
+      ]
+    }],
+    
+    "import/order": ["error", {
+      "groups": [
+        "builtin",
+        "external", 
+        "internal",
+        "parent",
+        "sibling",
+        "index"
+      ],
+      "pathGroups": [
+        {
+          "pattern": "@tu-org/design-system/**",
+          "group": "external",
+          "position": "after"
+        }
+      ]
+    }]
+  }
+}
+```
+
+### 3. TypeScript Path Mapping
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "paths": {
+      "@tu-org/design-system/*": ["./node_modules/@tu-org/design-system/dist/*"],
+      "@ds/*": ["./node_modules/@tu-org/design-system/dist/*"]
+    }
+  }
+}
+
+// Permite imports más limpios
+import { Button } from '@ds/button';
+import { Card } from '@ds/card';
+```
+
+## Performance Monitoring
+
+### 1. Bundle Analysis
+
+```typescript
+// scripts/analyze-bundle.js
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
+// Analiza qué del design system se está usando
+function analyzeDSUsage() {
+  return new BundleAnalyzerPlugin({
+    analyzerMode: 'static',
+    reportFilename: 'design-system-usage.html',
+    openAnalyzer: false,
+  });
+}
+```
+
+### 2. Import Cost Tracking
+
+```typescript
+// utils/import-tracker.ts
+interface ImportMetrics {
+  component: string;
+  size: number;
+  gzipped: number;
+  dependencies: string[];
+}
+
+export function trackImportCost(metrics: ImportMetrics[]): void {
+  console.table(metrics);
+  
+  // Send to analytics
+  metrics.forEach(metric => {
+    if (metric.size > 50 * 1024) { // 50KB threshold
+      console.warn(`Large import detected: ${metric.component} (${metric.size} bytes)`);
+    }
+  });
+}
+```
+
+## Testing Import Patterns
+
+### 1. Bundle Size Tests
+
+```typescript
+// __tests__/bundle-size.test.ts
+import { getComponentSize } from '@/utils/bundle-analyzer';
+
+describe('Bundle Size Tests', () => {
+  it('should keep Button component under size limit', async () => {
+    const buttonSize = await getComponentSize('button');
+    expect(buttonSize).toBeLessThan(15 * 1024); // 15KB limit
+  });
+
+  it('should not include unused components', async () => {
+    const bundleContents = await getBundleContents();
+    
+    // Si solo importamos Button, no debería incluir Modal
+    expect(bundleContents).toContain('Button');
+    expect(bundleContents).not.toContain('Modal');
+  });
+});
+```
+
+### 2. Tree-Shaking Tests
+
+```typescript
+// __tests__/tree-shaking.test.ts
+describe('Tree Shaking', () => {
+  it('should only include imported components', () => {
+    // Simula import específico
+    const { Button } = require('@tu-org/design-system/button');
+    
+    // Verifica que solo Button sea incluido, no otros components
+    expect(Button).toBeDefined();
+    expect(() => require('@tu-org/design-system/modal')).toThrow();
+  });
+});
+```
+
+## Migration Guide
+
+### From Barrel Imports to Granular
+
+```typescript
+// Before (Barrel imports)
+import { 
+  Button, 
+  Card, 
+  Typography, 
+  Modal,
+  DataTable 
+} from '@tu-org/design-system';
+
+// After (Granular imports)
+import { Button } from '@tu-org/design-system/button';
+import { Card } from '@tu-org/design-system/card';
+import { Typography } from '@tu-org/design-system/typography';
+// Solo importa Modal y DataTable cuando realmente se usen
+```
+
+### Automated Migration Script
+
+```bash
+# scripts/migrate-imports.sh
+#!/bin/bash
+
+# Busca y reemplaza barrel imports con granular imports
+find src -name "*.tsx" -o -name "*.ts" | xargs sed -i \
+  's/import { Button } from "@tu-org\/design-system"/import { Button } from "@tu-org\/design-system\/button"/g'
+
+find src -name "*.tsx" -o -name "*.ts" | xargs sed -i \
+  's/import { Card } from "@tu-org\/design-system"/import { Card } from "@tu-org\/design-system\/card"/g'
+```
+
+## Próximos Pasos
+
+- 🧪 [Testing](/?path=/docs/documentation-testing--docs) - Testing strategies para imports
+- 🚀 [Migration](/?path=/docs/documentation-migration--docs) - Migración completa a optimal patterns
+- ⚡ [Performance](/?path=/docs/documentation-performance--docs) - Performance monitoring avanzado
+
+## Referencias
+
+- [Webpack Tree Shaking](https://webpack.js.org/guides/tree-shaking/)
+- [ES Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+- [Package.json Exports](https://nodejs.org/api/packages.html#exports)
+- [Bundle Analysis](https://webpack.js.org/guides/code-splitting/)

@@ -1,0 +1,743 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Documentation/Testing SSR & RSC" />
+
+# Testing SSR & RSC Components
+
+Guía completa para testing de React Server Components y Server-Side Rendering usando las utilities del design system.
+
+## Testing Philosophy
+
+### Principios de Testing SSR/RSC
+
+✅ **Test behavior, not implementation**
+✅ **Server-first testing approach**
+✅ **Hydration consistency validation**
+✅ **Progressive enhancement verification**
+✅ **Performance-aware testing**
+
+## Testing Utilities Overview
+
+Tu design system incluye utilities sofisticadas para testing SSR/RSC:
+
+### 1. SSR Testing (`ssr-test-utils.tsx`)
+
+```typescript
+import { 
+  renderServer,
+  renderWithHydration,
+  expectNoHydrationMismatch,
+  renderStaticOnly,
+  expectServerClientMatch 
+} from '@tu-org/design-system/test-utils';
+```
+
+### 2. RSC Testing (`rsc-test-utils.tsx`)
+
+```typescript
+import {
+  renderServerComponent,
+  analyzeServerClientBoundaries,
+  testServerAction,
+  validateServerClientSplit,
+  testDataSafety
+} from '@tu-org/design-system/test-utils';
+```
+
+### 3. Hydration Testing (`hydration-test-utils.tsx`)
+
+```typescript
+import {
+  renderWithDeferredHydration,
+  testProgressiveEnhancement,
+  mockUserPreferences,
+  testNetworkAwareHydration
+} from '@tu-org/design-system/test-utils';
+```
+
+## Server Component Testing
+
+### 1. Basic Server Rendering
+
+```typescript
+// components/__tests__/button-server.test.tsx
+import { renderServer, renderStaticOnly } from '@/test-utils';
+import { ButtonServer } from '../button-server';
+
+describe('ButtonServer', () => {
+  it('should render correctly on the server', () => {
+    const { serverHTML, staticHTML } = renderServer(
+      <ButtonServer variant="primary">Click me</ButtonServer>
+    );
+    
+    // Verifica server-rendered HTML
+    expect(serverHTML).toContain('Click me');
+    expect(serverHTML).toContain('button');
+    
+    // Verifica static HTML sin React IDs
+    expect(staticHTML).not.toContain('data-react');
+    expect(staticHTML).toContain('Click me');
+  });
+
+  it('should work without JavaScript', () => {
+    const { html, forms } = renderStaticOnly(
+      <form action="/api/submit" method="POST">
+        <ButtonServer type="submit">Submit</ButtonServer>
+      </form>
+    );
+    
+    expect(forms[0].action).toBe('/api/submit');
+    expect(forms[0].method).toBe('POST');
+    expect(html).toContain('type="submit"');
+  });
+
+  it('should preserve accessibility attributes', () => {
+    const { serverHTML } = renderServer(
+      <ButtonServer 
+        aria-label="Save document" 
+        role="button"
+        variant="primary"
+      >
+        Save
+      </ButtonServer>
+    );
+    
+    expect(serverHTML).toContain('aria-label="Save document"');
+    expect(serverHTML).toContain('role="button"');
+  });
+});
+```
+
+### 2. Server Component Analysis
+
+```typescript
+// components/__tests__/server-boundaries.test.tsx
+import { analyzeServerClientBoundaries } from '@/test-utils';
+import { ButtonServer } from '../button-server';
+import { ButtonClient } from '../button-client';
+
+describe('Server/Client Boundaries', () => {
+  it('should identify server components correctly', () => {
+    const analysis = analyzeServerClientBoundaries(ButtonServer);
+    
+    expect(analysis.isServerComponent).toBe(true);
+    expect(analysis.violations).toHaveLength(0);
+    expect(analysis.clientComponents).toHaveLength(0);
+  });
+
+  it('should identify client components correctly', () => {
+    const analysis = analyzeServerClientBoundaries(ButtonClient);
+    
+    expect(analysis.isServerComponent).toBe(false);
+    expect(analysis.clientComponents).toContain('ButtonClient');
+  });
+
+  it('should detect invalid server component patterns', () => {
+    // Mock component with useState (invalid in server component)
+    const InvalidServerComponent = () => {
+      const [count, setCount] = useState(0); // This should be detected
+      return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
+    };
+
+    const analysis = analyzeServerClientBoundaries(InvalidServerComponent);
+    
+    expect(analysis.violations).toContainEqual({
+      component: 'InvalidServerComponent',
+      issue: 'Uses useState in server component',
+      suggestion: 'Move useState to a client component or use server-side state management'
+    });
+  });
+});
+```
+
+## Hydration Testing
+
+### 1. Hydration Consistency
+
+```typescript
+// components/__tests__/hydration.test.tsx
+import { 
+  renderWithHydration, 
+  expectNoHydrationMismatch,
+  expectServerClientMatch 
+} from '@/test-utils';
+import { Button } from '../button';
+
+describe('Button Hydration', () => {
+  it('should hydrate without mismatches', async () => {
+    const result = await renderWithHydration(
+      <Button variant="primary">Hydrate me</Button>
+    );
+    
+    expectNoHydrationMismatch(result);
+    expect(result.hydration.success).toBe(true);
+    expect(result.hydration.hydrationTime).toBeLessThan(100);
+  });
+
+  it('should render identically on server and client', async () => {
+    await expectServerClientMatch(
+      <Button variant="secondary" size="large">
+        Consistent Button
+      </Button>
+    );
+  });
+
+  it('should handle dynamic content correctly', async () => {
+    const dynamicContent = `Generated at ${Date.now()}`;
+    
+    const result = await renderWithHydration(
+      <Button variant="primary">{dynamicContent}</Button>
+    );
+    
+    // Should not have hydration mismatches even with dynamic content
+    expectNoHydrationMismatch(result);
+  });
+});
+```
+
+### 2. Deferred Hydration Testing
+
+```typescript
+// components/__tests__/deferred-hydration.test.tsx
+import { renderWithDeferredHydration } from '@/test-utils';
+import { DeferredHydration, ENHANCEMENT_CONFIGS } from '@/ui/utils';
+import { HeavyChart } from '../heavy-chart';
+
+describe('Deferred Hydration', () => {
+  it('should not hydrate initially', () => {
+    const { isHydrated } = renderWithDeferredHydration(
+      <DeferredHydration fallback={<div>Loading...</div>}>
+        <HeavyChart data={mockData} />
+      </DeferredHydration>
+    );
+    
+    expect(isHydrated()).toBe(false);
+  });
+
+  it('should hydrate when visible', async () => {
+    const { triggerIntersection, isHydrated, getMetrics } = renderWithDeferredHydration(
+      <DeferredHydration 
+        enhancementOptions={ENHANCEMENT_CONFIGS.HEAVY_COMPONENT}
+        observerConfig={{ rootMargin: '100px' }}
+      >
+        <HeavyChart data={mockData} />
+      </DeferredHydration>
+    );
+    
+    expect(isHydrated()).toBe(false);
+    
+    // Simulate component becoming visible
+    await triggerIntersection();
+    
+    expect(isHydrated()).toBe(true);
+    
+    const metrics = getMetrics();
+    expect(metrics.timeToHydration).toBeLessThan(200);
+    expect(metrics.hydrationSuccess).toBe(true);
+  });
+
+  it('should respect user preferences', async () => {
+    // Mock reduced motion preference
+    mockUserPreferences({ reducedMotion: true });
+    
+    const { triggerIntersection, isHydrated } = renderWithDeferredHydration(
+      <DeferredHydration 
+        enhancementOptions={{
+          respectReducedMotion: true,
+          respectDataSaver: false,
+        }}
+      >
+        <AnimatedComponent />
+      </DeferredHydration>
+    );
+    
+    await triggerIntersection();
+    
+    // Should not hydrate due to reduced motion preference
+    expect(isHydrated()).toBe(false);
+  });
+});
+```
+
+## Server Actions Testing
+
+### 1. Server Action Functionality
+
+```typescript
+// app/actions/__tests__/contact-form.test.tsx
+import { testServerAction } from '@/test-utils';
+import { submitContactForm } from '../contact-form';
+
+describe('Contact Form Server Action', () => {
+  it('should process form submission correctly', async () => {
+    const formData = {
+      email: 'test@example.com',
+      message: 'Hello world',
+      name: 'John Doe'
+    };
+
+    const result = await testServerAction(submitContactForm, formData);
+    
+    expect(result.success).toBe(true);
+    expect(result.data).toEqual({
+      message: 'Contact form submitted successfully',
+      id: expect.any(String)
+    });
+  });
+
+  it('should handle validation errors', async () => {
+    const invalidFormData = {
+      email: 'invalid-email',
+      message: '',
+      name: ''
+    };
+
+    const result = await testServerAction(submitContactForm, invalidFormData);
+    
+    expect(result.success).toBe(false);
+    expect(result.error?.message).toContain('Invalid email format');
+  });
+
+  it('should trigger redirects correctly', async () => {
+    const formData = {
+      email: 'success@example.com',
+      message: 'Success case',
+      name: 'Success User'
+    };
+
+    const result = await testServerAction(submitContactForm, formData);
+    
+    expect(result.success).toBe(true);
+    expect(result.redirect).toBe('/contact/success');
+  });
+
+  it('should set cookies appropriately', async () => {
+    const result = await testServerAction(submitContactForm, {
+      email: 'user@example.com',
+      message: 'Test message',
+      name: 'Test User'
+    });
+
+    expect(result.cookies).toEqual({
+      'contact-submitted': 'true',
+      'last-contact-email': 'user@example.com'
+    });
+  });
+});
+```
+
+### 2. Data Safety Testing
+
+```typescript
+// components/__tests__/data-safety.test.tsx
+import { testDataSafety } from '@/test-utils';
+import { UserProfile } from '../user-profile';
+
+describe('Data Safety', () => {
+  it('should not leak sensitive data in server HTML', () => {
+    const sensitiveUser = {
+      id: '123',
+      name: 'John Doe',
+      email: 'john@example.com',
+      password: 'secret123', // Should never appear in HTML
+      apiKey: 'sk_test_123456', // Should never appear in HTML
+      token: 'bearer_token_123' // Should never appear in HTML
+    };
+
+    const { serverHTML } = renderServer(
+      <UserProfile user={sensitiveUser} />
+    );
+
+    const safety = testDataSafety(serverHTML, ['password', 'apiKey', 'token']);
+    
+    expect(safety.safe).toBe(true);
+    expect(safety.leaks).toHaveLength(0);
+  });
+
+  it('should detect potential sensitive data leaks', () => {
+    const htmlWithLeaks = `
+      <div>
+        <span>User: john@example.com</span>
+        <input type="hidden" value="secret123" />
+        <script>const apiKey = "sk_test_123";</script>
+      </div>
+    `;
+
+    const safety = testDataSafety(htmlWithLeaks);
+    
+    expect(safety.safe).toBe(false);
+    expect(safety.leaks.length).toBeGreaterThan(0);
+    expect(safety.leaks[0].pattern).toBe('secret');
+  });
+});
+```
+
+## Performance Testing
+
+### 1. Hydration Performance
+
+```typescript
+// __tests__/performance.test.tsx
+import { renderWithDeferredHydration, testNetworkAwareHydration } from '@/test-utils';
+
+describe('Performance Tests', () => {
+  it('should hydrate efficiently', async () => {
+    const startTime = performance.now();
+    
+    const { triggerIntersection, isHydrated } = renderWithDeferredHydration(
+      <HeavyComponent data={largeDataset} />
+    );
+    
+    await triggerIntersection();
+    
+    const hydrationTime = performance.now() - startTime;
+    
+    expect(isHydrated()).toBe(true);
+    expect(hydrationTime).toBeLessThan(100); // 100ms hydration budget
+  });
+
+  it('should adapt to network conditions', async () => {
+    const results = await testNetworkAwareHydration(
+      <HeavyComponent />,
+      [
+        { type: '4g', shouldHydrate: true },
+        { type: '3g', shouldHydrate: true, delay: 200 },
+        { type: '2g', shouldHydrate: true, delay: 500 },
+        { type: 'slow-2g', shouldHydrate: false }
+      ]
+    );
+    
+    expect(results.get('4g')).toBe(true);
+    expect(results.get('3g')).toBe(true);
+    expect(results.get('slow-2g')).toBe(false);
+  });
+});
+```
+
+### 2. Bundle Size Testing
+
+```typescript
+// __tests__/bundle-size.test.tsx
+import { analyzeBundleSize } from '@/test-utils';
+
+describe('Bundle Size Tests', () => {
+  it('should keep core components under size limits', async () => {
+    const sizes = await analyzeBundleSize([
+      'button',
+      'card', 
+      'typography',
+      'layout'
+    ]);
+    
+    // Core components should be small
+    expect(sizes.button).toBeLessThan(15 * 1024); // 15KB
+    expect(sizes.card).toBeLessThan(8 * 1024);    // 8KB
+    expect(sizes.typography).toBeLessThan(12 * 1024); // 12KB
+    expect(sizes.layout).toBeLessThan(20 * 1024); // 20KB
+  });
+
+  it('should identify heavy components', async () => {
+    const sizes = await analyzeBundleSize([
+      'chart',
+      'data-table',
+      'rich-text-editor'
+    ]);
+    
+    // Heavy components should be deferred
+    expect(sizes.chart).toBeGreaterThan(50 * 1024);
+    expect(sizes['data-table']).toBeGreaterThan(40 * 1024);
+    expect(sizes['rich-text-editor']).toBeGreaterThan(100 * 1024);
+  });
+});
+```
+
+## Theme Testing
+
+### 1. Server-Side Theme Testing
+
+```typescript
+// theme/__tests__/server-theme.test.tsx
+import { getServerTheme, getThemeClassName } from '@/theme/server-theme';
+import { renderServer } from '@/test-utils';
+
+describe('Server Theme', () => {
+  it('should detect theme from cookies', async () => {
+    // Mock cookies
+    const mockCookies = new Map([['theme', 'dark']]);
+    vi.mocked(cookies).mockReturnValue({
+      get: (name) => ({ value: mockCookies.get(name) }),
+    });
+
+    const theme = await getServerTheme();
+    expect(theme).toBe('dark');
+  });
+
+  it('should apply correct theme classes', () => {
+    const lightClassName = getThemeClassName('light');
+    const darkClassName = getThemeClassName('dark');
+    
+    expect(lightClassName).toContain('light');
+    expect(darkClassName).toContain('dark');
+    expect(lightClassName).not.toBe(darkClassName);
+  });
+
+  it('should render with correct theme attributes', () => {
+    const { serverHTML } = renderServer(
+      <div data-theme="dark">
+        <Button variant="primary">Themed Button</Button>
+      </div>
+    );
+    
+    expect(serverHTML).toContain('data-theme="dark"');
+  });
+});
+```
+
+### 2. Theme Hydration Testing
+
+```typescript
+// theme/__tests__/theme-hydration.test.tsx
+describe('Theme Hydration', () => {
+  it('should not cause hydration mismatch with themes', async () => {
+    const ThemeButton = () => (
+      <div data-theme="light">
+        <Button variant="primary">Themed Button</Button>
+      </div>
+    );
+
+    await expectServerClientMatch(<ThemeButton />);
+  });
+
+  it('should handle theme switching without hydration issues', async () => {
+    const { server, hydration } = await renderWithHydration(
+      <div data-theme="dark">
+        <ThemeToggle initialTheme="dark" />
+      </div>
+    );
+
+    expectNoHydrationMismatch({ server, hydration, mismatches: [] });
+  });
+});
+```
+
+## Progressive Enhancement Testing
+
+### 1. Base Functionality Testing
+
+```typescript
+// components/__tests__/progressive-enhancement.test.tsx
+import { testProgressiveEnhancement } from '@/test-utils';
+
+describe('Progressive Enhancement', () => {
+  it('should work without JavaScript', () => {
+    const { html, forms, links } = renderStaticOnly(
+      <div>
+        <form action="/submit" method="POST">
+          <input type="email" name="email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+        <a href="/success">Success Page</a>
+      </div>
+    );
+
+    expect(forms).toHaveLength(1);
+    expect(forms[0].action).toBe('/submit');
+    expect(forms[0].method).toBe('POST');
+    expect(links).toContain('/success');
+  });
+
+  it('should enhance with JavaScript', async () => {
+    const enhancement = await testProgressiveEnhancement(
+      <EnhancedForm />,
+      {
+        baseFeatures: ['form submission', 'validation'],
+        enhancedFeatures: ['real-time validation', 'optimistic updates']
+      }
+    );
+
+    expect(enhancement.baseWorking).toBe(true);
+    expect(enhancement.enhancedWorking).toBe(true);
+    expect(enhancement.gracefulDegradation).toBe(true);
+  });
+});
+```
+
+## Custom Matchers
+
+Tu design system incluye custom matchers para testing:
+
+```typescript
+// test-setup.ts
+expect.extend({
+  toHaveNoHydrationMismatch(received) {
+    if (received.mismatches.length === 0) {
+      return {
+        message: () => 'Expected hydration mismatches but found none',
+        pass: true,
+      };
+    }
+    
+    return {
+      message: () => 
+        `Expected no hydration mismatches but found:\n${received.mismatches.join('\n')}`,
+      pass: false,
+    };
+  },
+
+  toBeServerComponent(received) {
+    const analysis = analyzeServerClientBoundaries(received);
+    
+    return {
+      message: () => 
+        analysis.isServerComponent 
+          ? 'Expected component not to be a server component'
+          : 'Expected component to be a server component',
+      pass: analysis.isServerComponent,
+    };
+  },
+
+  toRenderStatically(received) {
+    try {
+      const { html } = renderStaticOnly(received);
+      return {
+        message: () => 'Component renders statically',
+        pass: html.length > 0,
+      };
+    } catch (error) {
+      return {
+        message: () => `Component failed to render statically: ${error.message}`,
+        pass: false,
+      };
+    }
+  },
+});
+
+// Usage in tests
+expect(result).toHaveNoHydrationMismatch();
+expect(ButtonServer).toBeServerComponent();
+expect(<StaticComponent />).toRenderStatically();
+```
+
+## Testing Best Practices
+
+### ✅ Do's
+
+```typescript
+// ✅ Test server rendering first
+describe('Component', () => {
+  it('should render on server', () => {
+    const { serverHTML } = renderServer(<Component />);
+    expect(serverHTML).toBeDefined();
+  });
+});
+
+// ✅ Test hydration consistency
+it('should hydrate without mismatches', async () => {
+  await expectServerClientMatch(<Component />);
+});
+
+// ✅ Test progressive enhancement
+it('should work without JavaScript', () => {
+  const { html } = renderStaticOnly(<Component />);
+  expect(html).toContain('expected-content');
+});
+
+// ✅ Test performance boundaries
+it('should meet performance budgets', async () => {
+  const metrics = await measureHydrationTime(<Component />);
+  expect(metrics.timeToHydration).toBeLessThan(100);
+});
+```
+
+### ❌ Don'ts
+
+```typescript
+// ❌ Don't test only client-side
+describe('Component', () => {
+  it('should render', () => {
+    render(<Component />); // Missing server testing
+  });
+});
+
+// ❌ Don't ignore hydration
+it('should work', () => {
+  const { container } = render(<Component />);
+  // No hydration validation
+});
+
+// ❌ Don't test implementation details
+it('should call useState', () => {
+  const spy = vi.spyOn(React, 'useState');
+  render(<Component />);
+  expect(spy).toHaveBeenCalled(); // Testing implementation
+});
+```
+
+## CI/CD Integration
+
+### 1. Performance Regression Testing
+
+```yaml
+# .github/workflows/performance.yml
+name: Performance Tests
+on: [push, pull_request]
+
+jobs:
+  performance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Run performance tests
+        run: pnpm test:performance
+      
+      - name: Check bundle sizes
+        run: pnpm test:bundle-size
+      
+      - name: Hydration performance audit
+        run: pnpm test:hydration-performance
+```
+
+### 2. SSR/RSC Validation
+
+```yaml
+# .github/workflows/ssr-validation.yml
+name: SSR/RSC Validation
+on: [push, pull_request]
+
+jobs:
+  ssr-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test server rendering
+        run: pnpm test:ssr
+      
+      - name: Validate server/client boundaries
+        run: pnpm test:boundaries
+      
+      - name: Test hydration consistency
+        run: pnpm test:hydration
+      
+      - name: Data safety audit
+        run: pnpm test:data-safety
+```
+
+## Próximos Pasos
+
+- 🚀 [Migration Guide](/?path=/docs/documentation-migration--docs) - Migrar tu testing a SSR/RSC patterns
+- 📦 [Import Patterns](/?path=/docs/documentation-import-patterns--docs) - Testing de tree-shaking
+- ⚡ [Performance](/?path=/docs/documentation-performance--docs) - Performance testing avanzado
+
+## Referencias
+
+- [Testing Library RSC Support](https://testing-library.com/docs/react-testing-library/api/#render-options)
+- [Vitest Configuration](https://vitest.dev/config/)
+- [React Server Components Testing](https://react.dev/reference/rsc/server-components#testing)
+- [Next.js Testing](https://nextjs.org/docs/testing)

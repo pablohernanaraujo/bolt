@@ -1,0 +1,162 @@
+.c0sb1i0 {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--_2o5pan1);
+  border: 2px solid var(--_2o5pan0);
+  overflow: hidden;
+  flex-shrink: 0;
+  user-select: none;
+}
+.c0sb1i1 {
+  width: 24px;
+  height: 24px;
+}
+.c0sb1i2 {
+  width: 32px;
+  height: 32px;
+}
+.c0sb1i3 {
+  width: 40px;
+  height: 40px;
+}
+.c0sb1i4 {
+  width: 48px;
+  height: 48px;
+}
+.c0sb1i5 {
+  width: 64px;
+  height: 64px;
+}
+.c0sb1i6 {
+  width: 80px;
+  height: 80px;
+}
+.c0sb1i7 {
+  border-radius: 50%;
+}
+.c0sb1i8 {
+  border-radius: var(--mkppdn19);
+}
+.c0sb1i9 {
+  border-radius: var(--mkppdn17);
+}
+.c0sb1ia {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.c0sb1ib {
+  border-radius: 50%;
+}
+.c0sb1ic {
+  border-radius: calc(var(--mkppdn19) - 2px);
+}
+.c0sb1id {
+  border-radius: calc(var(--mkppdn17) - 2px);
+}
+.c0sb1ie {
+  color: var(--_2o5pan4);
+  font-family: var(--mkppdn0);
+  font-weight: var(--mkppdnh);
+  line-height: 1;
+  text-align: center;
+}
+.c0sb1if {
+  font-size: 8px;
+}
+.c0sb1ig {
+  font-size: 10px;
+}
+.c0sb1ih {
+  font-size: 14px;
+}
+.c0sb1ii {
+  font-size: 16px;
+}
+.c0sb1ij {
+  font-size: 20px;
+}
+.c0sb1ik {
+  font-size: 24px;
+}
+.c0sb1il {
+  color: var(--_2o5pan5);
+  flex-shrink: 0;
+}
+.c0sb1im {
+  width: 12px;
+  height: 12px;
+}
+.c0sb1in {
+  width: 14px;
+  height: 14px;
+}
+.c0sb1io {
+  width: 18px;
+  height: 18px;
+}
+.c0sb1ip {
+  width: 22px;
+  height: 22px;
+}
+.c0sb1iq {
+  width: 28px;
+  height: 28px;
+}
+.c0sb1ir {
+  width: 36px;
+  height: 36px;
+}
+.c0sb1is {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid var(--_2o5pan0);
+  bottom: 0;
+  right: 0;
+  transform: translate(25%, 25%);
+}
+.c0sb1it {
+  width: 8px;
+  height: 8px;
+  border-width: 1px;
+}
+.c0sb1iu {
+  width: 10px;
+  height: 10px;
+  border-width: 1px;
+}
+.c0sb1iv {
+  width: 12px;
+  height: 12px;
+  border-width: 2px;
+}
+.c0sb1iw {
+  width: 14px;
+  height: 14px;
+  border-width: 2px;
+}
+.c0sb1ix {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+}
+.c0sb1iy {
+  width: 22px;
+  height: 22px;
+  border-width: 2px;
+}
+.c0sb1iz {
+  background-color: var(--_2o5pani);
+}
+.c0sb1i10 {
+  background-color: var(--_2o5pan6);
+}
+.c0sb1i11 {
+  background-color: var(--_2o5pang);
+}
+.c0sb1i12 {
+  background-color: var(--_2o5pane);
+}

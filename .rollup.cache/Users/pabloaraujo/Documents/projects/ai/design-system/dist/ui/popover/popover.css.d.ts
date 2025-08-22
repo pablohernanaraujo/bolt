@@ -1,0 +1,18 @@
+export declare const popoverOverlay: string;
+export declare const popover: string;
+export declare const popoverSizes: Record<"small" | "medium" | "large", string>;
+export declare const popoverVariants: Record<string | number, string>;
+export declare const popoverHeader: string;
+export declare const popoverHeaderWithDivider: string;
+export declare const popoverTitle: string;
+export declare const popoverCloseButton: string;
+export declare const popoverBody: string;
+export declare const popoverBodyWithHeader: string;
+export declare const popoverBodyWithFooter: string;
+export declare const popoverFooter: string;
+export declare const popoverFooterWithDivider: string;
+export declare const popoverArrow: string;
+export declare const popoverArrowVariants: Record<string | number, string>;
+export declare const enteringAnimation: string;
+export declare const exitingAnimation: string;
+export declare const responsivePopover: string;

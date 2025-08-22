@@ -1,0 +1,17 @@
+export declare const menuBase: string;
+export declare const menuSize: Record<"small" | "medium" | "large", string>;
+export declare const menuVariant: Record<string | number, string>;
+export declare const menuItemBase: string;
+export declare const menuItemSize: Record<"small" | "medium" | "large", string>;
+export declare const menuItemVariant: Record<string | number, string>;
+export declare const menuItemContent: string;
+export declare const menuItemText: string;
+export declare const menuItemShortcut: string;
+export declare const menuItemIcon: string;
+export declare const menuSectionHeader: string;
+export declare const menuSection: string;
+export declare const menuSeparator: string;
+export declare const menuPopover: string;
+export declare const menuFadeIn: string;
+export declare const menuFadeOut: string;
+export declare const menuTrigger: string;

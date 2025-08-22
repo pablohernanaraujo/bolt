@@ -1,0 +1,16 @@
+import { type FileUploadFile, type FileUploadSize, type FileUploadValidation, type FileUploadVariant } from './types';
+export declare const createFileUploadFile: (file: File) => FileUploadFile;
+export declare const fileListToArray: (fileList: FileList | null) => FileUploadFile[];
+export declare const formatFileSize: (bytes: number) => string;
+export declare const getFileExtension: (filename: string) => string;
+export declare const isFileTypeAccepted: (file: File, acceptedTypes?: string[]) => boolean;
+export declare const validateFile: (file: File, maxFileSize?: number, acceptedTypes?: string[]) => FileUploadValidation;
+export declare const validateFiles: (files: File[], maxFiles?: number, maxFileSize?: number, acceptedTypes?: string[]) => FileUploadValidation;
+export declare const cleanupFilePreviews: (files: FileUploadFile[]) => void;
+export declare const buildFileUploadRootClassName: (variant?: FileUploadVariant, size?: FileUploadSize, isDisabled?: boolean, hasError?: boolean, className?: string) => string;
+export declare const buildFileUploadTriggerClassName: (size?: FileUploadSize, isDisabled?: boolean, className?: string) => string;
+export declare const buildFileUploadListClassName: (className?: string) => string;
+export declare const buildFileUploadItemClassName: (hasError?: boolean, className?: string) => string;
+export declare const isImageFile: (file: File) => boolean;
+export declare const getFileTypeIcon: (file: File) => string;
+export declare const buildAcceptString: (acceptedTypes?: string[]) => string | undefined;

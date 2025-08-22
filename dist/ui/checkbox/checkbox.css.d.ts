@@ -1,0 +1,11 @@
+export declare const checkboxContainer: string;
+export declare const checkboxContainerLabelLeft: string;
+export declare const checkboxContainerLabelRight: string;
+export declare const checkboxInput: string;
+export declare const checkboxBase: string;
+export declare const checkboxSizes: Record<"small" | "medium" | "large", string>;
+export declare const checkboxVariants: Record<string | number, string>;
+export declare const checkboxCheckmark: string;
+export declare const checkmarkSizes: Record<"small" | "medium" | "large", string>;
+export declare const checkboxLabel: string;
+export declare const labelSizes: Record<"small" | "medium" | "large", string>;

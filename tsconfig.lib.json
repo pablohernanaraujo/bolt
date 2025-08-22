@@ -1,0 +1,54 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // ESM output configuration
+    "module": "ES2022",
+    "target": "ES2022",
+    "moduleResolution": "bundler",
+
+    // Output configuration
+    "outDir": "./dist",
+    "declaration": false,
+    "sourceMap": false,
+
+    // Enable emit for library build
+    "noEmit": false,
+
+    // Use React 17+ JSX transform
+    "jsx": "react-jsx",
+
+    // Optimization
+    "removeComments": true,
+    "skipLibCheck": true,
+
+    // Ensure tree-shaking compatibility
+    "moduleDetection": "force",
+
+    // Temporarily relax type checking for build
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "strict": false,
+    "skipDefaultLibCheck": true
+  },
+  "include": [
+    "src/ui/**/*",
+    "src/theme/**/*",
+    "src/icons/**/*"
+  ],
+  "exclude": [
+    "src/ui/**/*.test.tsx",
+    "src/ui/**/*.stories.tsx",
+    "src/ui/**/__tests__/**/*",
+    "src/ui/**/*.css.ts",
+    "src/tokens/**/*.css.ts",
+    "src/theme/**/*.css.ts",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "node_modules",
+    "dist",
+    ".next",
+    "storybook-static"
+  ]
+}

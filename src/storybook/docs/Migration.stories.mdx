@@ -1,0 +1,790 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Documentation/Migration & Changelog" />
+
+# Migration Guide & Semantic Changelog
+
+Guía completa para migrar a la arquitectura server-first y mantener changelogs semánticos para cambios SSR/hidratación.
+
+## Migration Philosophy
+
+### Principios de Migración
+
+✅ **Incremental migration** - Migra componente por componente
+✅ **Backwards compatibility** - Mantén compatibilidad durante transición  
+✅ **Performance-first** - Prioriza mejoras de performance
+✅ **Zero downtime** - Sin interrupciones en producción
+
+## Migration Roadmap
+
+### Fase 1: Foundation Setup (Semana 1-2)
+
+#### 1.1 Next.js App Router Migration
+
+```bash
+# Actualizar a Next.js 15 + React 19
+pnpm update next@latest react@latest react-dom@latest
+
+# Instalar design system actualizado
+pnpm add @tu-org/design-system@latest
+```
+
+```typescript
+// next.config.ts
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
+  // Habilitar RSC y optimizaciones
+  experimental: {
+    serverComponentsExternalPackages: ['@tu-org/design-system'],
+  },
+  
+  // Optimización para tree-shaking
+  transpilePackages: ['@tu-org/design-system'],
+  
+  // Bundle optimization
+  webpack: (config) => {
+    config.optimization.splitChunks = {
+      cacheGroups: {
+        'design-system': {
+          test: /[\\/]node_modules[\\/]@tu-org[\\/]design-system/,
+          name: 'design-system',
+          chunks: 'all',
+        },
+      },
+    };
+    return config;
+  },
+};
+
+export default nextConfig;
+```
+
+#### 1.2 Layout Migration
+
+```typescript
+// Before: pages/_app.tsx (Pages Router)
+import type { AppProps } from 'next/app';
+import { ThemeProvider } from '@tu-org/design-system';
+
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <ThemeProvider>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
+}
+
+// After: app/layout.tsx (App Router)
+import { getServerTheme, getThemeClassName } from '@tu-org/design-system/server-theme';
+import { ClientProviders } from '@/components/ClientProviders';
+
+export default async function RootLayout({ children }) {
+  const serverTheme = await getServerTheme();
+  
+  return (
+    <html data-theme={serverTheme}>
+      <body className={getThemeClassName(serverTheme)}>
+        <ClientProviders serverTheme={serverTheme}>
+          {children}
+        </ClientProviders>
+      </body>
+    </html>
+  );
+}
+```
+
+### Fase 2: Component Migration (Semana 3-6)
+
+#### 2.1 Import Pattern Migration
+
+```bash
+# Script automático para migrar imports
+./scripts/migrate-imports.sh
+```
+
+```bash
+#!/bin/bash
+# scripts/migrate-imports.sh
+
+# Migrar de barrel imports a granular imports
+find src -name "*.tsx" -o -name "*.ts" | xargs sed -i \
+  's/import { Button, Card, Typography } from "@tu-org\/design-system"/import { Button } from "@tu-org\/design-system\/button";\nimport { Card } from "@tu-org\/design-system\/card";\nimport { Typography } from "@tu-org\/design-system\/typography";/g'
+
+echo "✅ Imports migrated to granular pattern"
+```
+
+#### 2.2 Component-by-Component Migration
+
+**Priority Order:**
+1. **Layout components** (Container, Grid, Flex) - Mayor impacto en performance
+2. **Typography** (H1-H6, Body, Caption) - Usados frecuentemente
+3. **Basic UI** (Button, Card, Badge) - Componentes core
+4. **Forms** (Input, Textarea, Checkbox) - Con progressive enhancement
+5. **Interactive** (Modal, Dropdown, Tooltip) - Últimos, más complejos
+
+```typescript
+// Before: Client-only Button
+'use client';
+import { useState } from 'react';
+
+export function Button({ onClick, children, ...props }) {
+  const [isPressed, setIsPressed] = useState(false);
+  
+  return (
+    <button 
+      {...props}
+      onClick={onClick}
+      onMouseDown={() => setIsPressed(true)}
+      onMouseUp={() => setIsPressed(false)}
+    >
+      {children}
+    </button>
+  );
+}
+
+// After: Server-first Button with client enhancement
+// button/button.tsx
+export { ButtonServer as Button } from './button-server';
+export { ButtonClient } from './button-client';
+
+// button/button-server.tsx (NO "use client")
+export const ButtonServer = ({ children, ...props }) => (
+  <button {...props}>{children}</button>
+);
+
+// button/button-client.tsx (solo cuando se necesita interactividad avanzada)
+'use client';
+export const ButtonClient = ({ onPress, children, ...props }) => (
+  <AriaButton onPress={onPress} {...props}>{children}</AriaButton>
+);
+```
+
+### Fase 3: Performance Optimization (Semana 7-8)
+
+#### 3.1 Deferred Hydration Implementation
+
+```typescript
+// Before: Todo client-side
+'use client';
+export function Dashboard() {
+  return (
+    <div>
+      <AnalyticsChart />
+      <DataTable />
+      <UserActivity />
+    </div>
+  );
+}
+
+// After: Server structure + deferred heavy components
+import { DeferredHydration, ENHANCEMENT_CONFIGS } from '@tu-org/design-system';
+
+export function Dashboard() {
+  return (
+    <div>
+      {/* Critical content: Server-rendered */}
+      <DashboardSummary />
+      
+      {/* Heavy components: Deferred */}
+      <DeferredHydration 
+        fallback={<AnalyticsSkeleton />}
+        enhancementOptions={ENHANCEMENT_CONFIGS.HEAVY_COMPONENT}
+      >
+        <AnalyticsChart />
+      </DeferredHydration>
+      
+      <DeferredHydration fallback={<TableSkeleton />}>
+        <DataTable />
+      </DeferredHydration>
+    </div>
+  );
+}
+```
+
+#### 3.2 Dynamic Import Migration
+
+```typescript
+// Before: Synchronous heavy imports
+import { Chart } from 'recharts';
+import { DataTable } from 'react-table';
+import { RichTextEditor } from '@tiptap/react';
+
+// After: Dynamic imports con deferred hydration
+import { createDeferredComponent } from '@tu-org/design-system';
+
+const Chart = createDeferredComponent(
+  () => import('recharts').then(m => ({ default: m.LineChart })),
+  {
+    loading: ChartSkeleton,
+    ssr: false,
+    hydrationOptions: {
+      enhancementOptions: ENHANCEMENT_CONFIGS.HEAVY_COMPONENT,
+      observerConfig: { rootMargin: '200px' },
+    },
+  }
+);
+
+const DataTable = createDeferredComponent(
+  () => import('./DataTable'),
+  {
+    loading: TableSkeleton,
+    hydrationOptions: {
+      enhancementOptions: ENHANCEMENT_CONFIGS.HEAVY_COMPONENT,
+    },
+  }
+);
+```
+
+## Breaking Change Management
+
+### Semantic Versioning for SSR/RSC
+
+#### Version Impact Categories
+
+- **PATCH (x.x.X)**: Bug fixes que no afectan hidratación
+- **MINOR (x.X.x)**: Nuevas features server-compatible, deferred hydration improvements
+- **MAJOR (X.x.x)**: Breaking changes en server/client boundaries
+
+### Breaking Change Examples
+
+#### MAJOR: Server/Client Boundary Changes
+
+```markdown
+## [2.0.0] - 2024-01-15
+
+### BREAKING CHANGES
+
+#### Button Component Architecture Changed
+
+**Before:**
+```typescript
+import { Button } from '@tu-org/design-system';
+// All buttons were client components
+```
+
+**After:**
+```typescript
+// Default: Server component (BREAKING)
+import { Button } from '@tu-org/design-system';
+
+// Explicit client component when needed
+import { ButtonClient } from '@tu-org/design-system/button';
+```
+
+**Migration:**
+- Replace client-specific usage with `ButtonClient`
+- Server components work with forms and basic interactions
+- Test hydration compatibility in your app
+
+**Impact:**
+- ✅ 60% smaller JavaScript bundles for most use cases
+- ✅ Better Core Web Vitals scores
+- ⚠️ onClick handlers need migration to ButtonClient or form actions
+```
+
+#### MINOR: New Deferred Features
+
+```markdown
+## [1.5.0] - 2024-01-10
+
+### Added
+
+#### Deferred Hydration Support for Heavy Components
+
+```typescript
+// New deferred hydration wrapper
+import { DeferredHydration } from '@tu-org/design-system';
+
+<DeferredHydration fallback={<Skeleton />}>
+  <HeavyChart data={data} />
+</DeferredHydration>
+```
+
+**Benefits:**
+- ✅ Automatic intersection-based loading
+- ✅ Network and battery awareness
+- ✅ User preference respect (reduced motion, data saver)
+
+**Migration:**
+- Optional - wrap heavy components for better performance
+- No breaking changes to existing APIs
+```
+
+## Changelog Template
+
+### Template Structure
+
+```markdown
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+- New server-compatible components
+- Enhanced deferred hydration features
+
+### Changed
+- Performance improvements in SSR rendering
+- Better tree-shaking support
+
+### Deprecated
+- Legacy client-only component APIs
+
+### Removed
+- Deprecated barrel export patterns
+
+### Fixed
+- Hydration mismatches in theme components
+- SSR compatibility issues
+
+### Security
+- Data leakage prevention in server components
+
+---
+
+## [2.1.0] - 2024-01-20
+
+### Added
+
+#### 🚀 New Server-Compatible Form Components
+
+```typescript
+// Zero JavaScript form components
+import { FormField, InputField, TextareaField } from '@tu-org/design-system/forms';
+
+<form action="/submit" method="POST">
+  <FormField label="Email">
+    <InputField name="email" type="email" required />
+  </FormField>
+  <FormField label="Message">
+    <TextareaField name="message" required />
+  </FormField>
+  <Button type="submit">Submit</Button>
+</form>
+```
+
+**Performance Impact:**
+- ✅ Form components: 0KB JavaScript bundle
+- ✅ Works without client-side hydration
+- ✅ Progressive enhancement ready
+
+#### 📊 Enhanced Analytics Integration
+
+```typescript
+// Automatic performance tracking
+import { trackHydrationMetrics } from '@tu-org/design-system/analytics';
+
+// Automatically tracks:
+// - Time to hydration
+// - Bundle sizes
+// - User preferences impact
+// - Network-aware loading metrics
+```
+
+### Changed
+
+#### ⚡ Improved Deferred Hydration Performance
+
+- **Intersection Observer optimization**: 40% faster detection
+- **Network awareness**: Automatic adaptation to slow connections
+- **Battery level respect**: Defers loading on low battery devices
+
+**Before:**
+```typescript
+// Basic deferred hydration
+<DeferredHydration>
+  <HeavyComponent />
+</DeferredHydration>
+```
+
+**After:**
+```typescript
+// Enhanced with network and battery awareness
+<DeferredHydration
+  enhancementOptions={ENHANCEMENT_CONFIGS.HEAVY_COMPONENT}
+  observerConfig={{ rootMargin: '100px', threshold: 0.1 }}
+>
+  <HeavyComponent />
+</DeferredHydration>
+```
+
+### Fixed
+
+#### 🐛 Theme Hydration Consistency
+
+- **Issue**: Theme mismatches between server and client causing FOUC
+- **Solution**: Enhanced server-side theme detection with cookie + header fallback
+- **Impact**: Zero flash of unstyled content (FOUC) in 99.9% of cases
+
+#### 🔧 TypeScript Declarations
+
+- Fixed missing type exports for server components
+- Enhanced IntelliSense support for granular imports
+- Better error messages for server/client boundary violations
+
+### Performance Improvements
+
+| Metric | Before | After | Improvement |
+|--------|---------|--------|-------------|
+| Bundle Size (gzipped) | 125KB | 78KB | 38% smaller |
+| Time to Interactive | 3.2s | 2.1s | 34% faster |
+| Hydration Time | 180ms | 95ms | 47% faster |
+| Core Web Vitals Score | 65 | 89 | 37% better |
+
+---
+
+## [2.0.0] - 2024-01-15
+
+### BREAKING CHANGES
+
+#### 🏗️ Server-First Architecture Migration
+
+**Component Default Behavior Changed:**
+
+| Component | v1.x Behavior | v2.x Behavior | Migration Required |
+|-----------|---------------|---------------|-------------------|
+| Button | Client component | Server component | ✅ Use ButtonClient for onClick |
+| Card | Client component | Server component | ✅ No changes needed |
+| Typography | Client component | Server component | ✅ No changes needed |
+| Modal | Client component | Hybrid (server + client) | ✅ Use ModalCloseButton for interactivity |
+
+**Import Changes:**
+
+```typescript
+// ❌ BREAKING: These now import server components
+import { Button, Card, Typography } from '@tu-org/design-system';
+
+// ✅ MIGRATION: Use client versions when needed
+import { ButtonClient } from '@tu-org/design-system/button';
+import { ModalClient } from '@tu-org/design-system/modal';
+
+// ✅ PREFERRED: Granular imports for better tree-shaking
+import { Button } from '@tu-org/design-system/button';      // Server component
+import { ButtonClient } from '@tu-org/design-system/button'; // Client component
+```
+
+#### 📦 Package Structure Changes
+
+**Before (v1.x):**
+```
+@tu-org/design-system
+├── dist/
+│   ├── index.js          # All components
+│   └── index.d.ts
+```
+
+**After (v2.x):**
+```
+@tu-org/design-system
+├── dist/
+│   ├── button/
+│   │   ├── index.js      # Server component (default)
+│   │   ├── server.js     # Explicit server
+│   │   └── client.js     # Explicit client
+│   ├── card/
+│   ├── typography/
+│   └── index.js          # Barrel exports (discouraged)
+```
+
+### Migration Guide
+
+#### Step 1: Update Dependencies
+
+```bash
+# Update to v2.x
+pnpm update @tu-org/design-system@^2.0.0
+
+# Update peer dependencies
+pnpm update next@^15.0.0 react@^19.0.0
+```
+
+#### Step 2: Automated Migration
+
+```bash
+# Run automated migration script
+npx @tu-org/design-system-migrate
+
+# Or manual migration
+./node_modules/@tu-org/design-system/scripts/migrate-v2.sh
+```
+
+#### Step 3: Manual Review Required
+
+The migration script will create a `MIGRATION_REVIEW.md` file listing components that need manual review:
+
+```markdown
+# Manual Migration Required
+
+## Components with Event Handlers
+- src/components/Header.tsx:15 - Button with onClick needs ButtonClient
+- src/pages/contact.tsx:23 - Form with onSubmit needs enhancement
+
+## Complex Interactions
+- src/components/Dashboard.tsx - Modal with state management
+- src/components/ProductCard.tsx - Interactive elements need client components
+```
+
+#### Step 4: Performance Validation
+
+```bash
+# Validate bundle sizes after migration
+pnpm run bundle-analyzer
+
+# Run performance regression tests
+pnpm run test:performance
+
+# Check hydration consistency
+pnpm run test:hydration
+```
+
+### Expected Migration Results
+
+#### Before Migration (v1.x)
+```
+Bundle Analysis:
+├── vendor.js: 245KB (gzipped: 89KB)
+├── main.js: 156KB (gzipped: 67KB) 
+└── components.js: 123KB (gzipped: 45KB)
+
+Performance:
+├── FCP: 2.8s
+├── LCP: 4.1s
+└── TTI: 5.2s
+```
+
+#### After Migration (v2.x)
+```
+Bundle Analysis:
+├── vendor.js: 198KB (gzipped: 71KB) ⬇️ 20%
+├── main.js: 89KB (gzipped: 34KB)    ⬇️ 49%
+└── components.js: 67KB (gzipped: 23KB) ⬇️ 49%
+
+Performance:
+├── FCP: 1.9s ⬇️ 32%
+├── LCP: 2.7s ⬇️ 34%
+└── TTI: 3.1s ⬇️ 40%
+```
+
+### Rollback Plan
+
+If migration issues occur:
+
+```bash
+# Revert to v1.x
+pnpm add @tu-org/design-system@^1.8.0
+
+# Restore previous imports
+git checkout HEAD~1 -- src/
+```
+
+---
+
+## [1.8.0] - 2024-01-10 (Pre-v2 Preparation)
+
+### Added
+
+#### 🚀 Server Component Previews (Experimental)
+
+```typescript
+// Preview server components (experimental)
+import { ButtonServer, CardServer } from '@tu-org/design-system/experimental';
+
+// Enable server component testing
+export const experimental = {
+  serverComponents: true,
+};
+```
+
+### Deprecated
+
+#### ⚠️ Barrel Exports (Will be removed in v2.0)
+
+```typescript
+// ⚠️ DEPRECATED: Will be removed in v2.0
+import { Button, Card, Typography } from '@tu-org/design-system';
+
+// ✅ PREFERRED: Start using granular imports
+import { Button } from '@tu-org/design-system/button';
+import { Card } from '@tu-org/design-system/card';
+```
+
+**Migration Timeline:**
+- v1.8.x: Deprecation warnings
+- v1.9.x: Migration tools available
+- v2.0.x: Barrel exports removed
+
+---
+```
+
+## Automated Migration Tools
+
+### 1. Migration Script
+
+```bash
+#!/bin/bash
+# scripts/migrate-v2.sh
+
+echo "🚀 Starting Design System v2 Migration..."
+
+# Backup current state
+git stash push -m "Pre-migration backup"
+
+# Update imports
+echo "📦 Migrating import patterns..."
+find src -name "*.tsx" -o -name "*.ts" | xargs sed -i \
+  's/import { Button } from "@tu-org\/design-system"/import { Button } from "@tu-org\/design-system\/button"/g'
+
+# Detect onClick usage needing client components
+echo "🔍 Detecting components requiring client migration..."
+grep -r "onClick\|onPress\|onChange" src/ --include="*.tsx" | \
+  grep -E "(Button|Modal|Input)" > MIGRATION_REVIEW.md
+
+# Run tests to validate migration
+echo "🧪 Running migration validation tests..."
+pnpm test:migration
+
+echo "✅ Migration complete! Review MIGRATION_REVIEW.md for manual changes."
+```
+
+### 2. ESLint Migration Rules
+
+```json
+// .eslintrc.migration.js
+{
+  "rules": {
+    "design-system/no-barrel-imports": "error",
+    "design-system/server-client-boundaries": "warn",
+    "design-system/prefer-granular-imports": "error"
+  }
+}
+```
+
+### 3. TypeScript Migration Support
+
+```typescript
+// types/migration.d.ts
+declare module '@tu-org/design-system' {
+  /**
+   * @deprecated Use granular imports: @tu-org/design-system/button
+   * Will be removed in v2.0
+   */
+  export const Button: never;
+  
+  /**
+   * @deprecated Use granular imports: @tu-org/design-system/card  
+   * Will be removed in v2.0
+   */
+  export const Card: never;
+}
+```
+
+## Rollback Strategy
+
+### Emergency Rollback Plan
+
+```bash
+#!/bin/bash
+# scripts/emergency-rollback.sh
+
+echo "🚨 Emergency rollback initiated..."
+
+# Revert package.json
+git checkout HEAD~1 -- package.json
+pnpm install
+
+# Revert all source changes
+git checkout HEAD~1 -- src/
+
+# Run emergency tests
+pnpm test:critical
+
+echo "🔄 Rollback complete. System restored to previous state."
+```
+
+### Progressive Rollback
+
+```typescript
+// rollback/feature-flags.ts
+export const MIGRATION_FLAGS = {
+  useServerComponents: process.env.USE_SERVER_COMPONENTS === 'true',
+  useDeferredHydration: process.env.USE_DEFERRED_HYDRATION === 'true',
+  useGranularImports: process.env.USE_GRANULAR_IMPORTS === 'true',
+};
+
+// Conditional component usage
+const Button = MIGRATION_FLAGS.useServerComponents 
+  ? ButtonServer 
+  : ButtonClient;
+```
+
+## Next Steps After Migration
+
+### 1. Performance Monitoring
+
+```typescript
+// utils/performance-monitoring.ts
+export function setupPerformanceMonitoring() {
+  // Track Core Web Vitals improvements
+  if (typeof window !== 'undefined') {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(console.log);
+      getFID(console.log);
+      getFCP(console.log);
+      getLCP(console.log);
+      getTTFB(console.log);
+    });
+  }
+}
+```
+
+### 2. Continuous Integration Updates
+
+```yaml
+# .github/workflows/post-migration.yml
+name: Post-Migration Validation
+on: [push, pull_request]
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bundle size regression check
+        run: pnpm run bundle-size-check
+      
+      - name: Performance regression tests  
+        run: pnpm run test:performance
+        
+      - name: Hydration consistency check
+        run: pnpm run test:hydration
+        
+      - name: Accessibility regression test
+        run: pnpm run test:a11y
+```
+
+### 3. Team Training Resources
+
+- 📚 **Internal Wiki**: Server vs Client component decision tree
+- 🎥 **Training Videos**: Recorded migration walkthrough
+- 🛠️ **Code Review Checklist**: SSR/RSC best practices
+- 📊 **Performance Dashboard**: Before/after metrics tracking
+
+## Próximos Pasos
+
+Después de completar la migración:
+
+- 🎯 [Performance Monitoring](/?path=/docs/documentation-performance--docs) - Configurar métricas continuas
+- 🧪 [Advanced Testing](/?path=/docs/documentation-testing--docs) - Implementar testing SSR/RSC
+- 📚 [Team Training](/?path=/docs/documentation-nextjs-integration--docs) - Entrenar al equipo en nuevos patterns
+
+## Referencias
+
+- [Semantic Versioning](https://semver.org/)
+- [Keep a Changelog](https://keepachangelog.com/)
+- [Migration Best Practices](https://martinfowler.com/articles/migration-patterns.html)
+- [Next.js App Router Migration](https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration)

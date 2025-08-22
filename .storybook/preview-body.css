@@ -1,0 +1,36 @@
+/* /.storybook/preview-body.css
+ * Global styles for Storybook preview iframe
+ * Removes default margins and padding to prevent white borders
+ * RELEVANT FILES: preview.ts, preview-head.html
+ */
+
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow-x: hidden;
+}
+
+/* Ensure the Storybook root element also has no margin/padding */
+#storybook-root,
+#root {
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Remove any default padding from Storybook's wrapper */
+.sb-show-main,
+.sb-main-padded {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Ensure the preview iframe fills the entire space */
+.sb-preview-wrapper {
+  padding: 0 !important;
+  margin: 0 !important;
+}

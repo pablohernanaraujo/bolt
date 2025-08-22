@@ -1,0 +1,40 @@
+._1k7q2je0 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mkppdnv);
+  width: 100%;
+}
+._1k7q2je1 {
+  display: flex;
+  align-items: center;
+  gap: var(--mkppdnu);
+  font-family: var(--mkppdn0);
+  font-size: var(--mkppdn7);
+  font-weight: var(--mkppdnh);
+  line-height: var(--mkppdnk);
+  color: var(--_2o5pan4);
+  cursor: pointer;
+}
+._1k7q2je1[data-disabled] {
+  color: var(--_2o5pan6);
+  cursor: not-allowed;
+}
+._1k7q2je2 {
+  color: var(--_2o5pane);
+  font-size: var(--mkppdn7);
+  font-weight: var(--mkppdnh);
+  line-height: 1;
+}
+._1k7q2je3 {
+  font-size: var(--mkppdn5);
+  line-height: var(--mkppdnk);
+  font-family: var(--mkppdn0);
+  margin: 0;
+}
+._1k7q2je4 {
+  color: var(--_2o5pan5);
+}
+._1k7q2je5 {
+  color: var(--_2o5pane);
+  font-weight: var(--mkppdnh);
+}

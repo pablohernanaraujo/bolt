@@ -1,0 +1,36 @@
+<!-- /.storybook/preview-head.html -->
+<!-- Custom head content for Storybook preview iframe -->
+<!-- Includes global styles to remove white borders in dark mode -->
+<!-- RELEVANT FILES: preview.ts, preview-body.css -->
+
+<style>
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow-x: hidden;
+  }
+
+  /* Ensure the Storybook root element also has no margin/padding */
+  #storybook-root,
+  #root {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  /* Remove any default padding from Storybook's wrapper */
+  .sb-show-main,
+  .sb-main-padded {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Ensure smooth transitions when switching themes */
+  * {
+    transition: background-color 0.3s ease;
+  }
+</style>

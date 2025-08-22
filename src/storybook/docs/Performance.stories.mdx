@@ -1,0 +1,725 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Documentation/Performance Optimization" />
+
+# Performance Optimization Guide
+
+Estrategias avanzadas de performance usando deferred hydration, dynamic imports y progressive enhancement.
+
+## Filosofía: Zero JavaScript Until Needed
+
+### Problemas de Performance Tradicionales
+
+❌ **JavaScript bundle bloat**
+❌ **Unnecessary hydration overhead**
+❌ **Poor Core Web Vitals (LCP, FID, CLS)**
+❌ **Slow initial page loads**
+
+### Solución: Progressive Enhancement
+
+✅ **Zero JavaScript para componentes estáticos**
+✅ **Deferred hydration para componentes pesados**
+✅ **Dynamic imports basados en intersección**
+✅ **Bundle splitting inteligente**
+
+## Deferred Hydration Architecture
+
+### 1. DeferredHydration Component
+
+Tu design system incluye un wrapper sofisticado para deferred hydration:
+
+```typescript
+// Uso básico del DeferredHydration
+import { DeferredHydration, ENHANCEMENT_CONFIGS } from '@tu-org/design-system';
+
+function DataDashboard({ data }) {
+  return (
+    <DeferredHydration
+      fallback={<DashboardSkeleton />}
+      enhancementOptions={ENHANCEMENT_CONFIGS.HEAVY_COMPONENT}
+      observerConfig={{ rootMargin: '100px', threshold: 0.1 }}
+    >
+      <ExpensiveChart data={data} />
+    </DeferredHydration>
+  );
+}
+```
+
+### 2. Enhancement Configurations
+
+```typescript
+// utils/progressive-enhancement.ts
+export const ENHANCEMENT_CONFIGS = {
+  // Para componentes pesados (charts, tablas grandes)
+  HEAVY_COMPONENT: {
+    respectReducedMotion: true,
+    respectDataSaver: true,
+    respectBatteryLevel: true,
+    minViewportWidth: 768,
+    networkAware: true,
+  },
+  
+  // Para overlays interactivos (modals, dropdowns)
+  INTERACTIVE_OVERLAY: {
+    respectReducedMotion: true,
+    respectDataSaver: false, // Crítico para UX
+    respectBatteryLevel: false,
+    minViewportWidth: 0,
+    networkAware: false,
+  },
+  
+  // Para mejoras de formularios
+  FORM_ENHANCEMENT: {
+    respectReducedMotion: false,
+    respectDataSaver: true,
+    respectBatteryLevel: true,
+    minViewportWidth: 0,
+    networkAware: true,
+  },
+} as const;
+```
+
+## Dynamic Import Strategies
+
+### 1. createDeferredComponent Utility
+
+```typescript
+// Componente dinámico con deferred hydration automático
+import { createDeferredComponent } from '@tu-org/design-system';
+
+const HeavyChart = createDeferredComponent(
+  () => import('./HeavyChart'),
+  {
+    loading: ChartSkeleton,
+    ssr: false, // No renderizar en servidor
+    hydrationOptions: {
+      enhancementOptions: ENHANCEMENT_CONFIGS.HEAVY_COMPONENT,
+      observerConfig: { rootMargin: '200px' },
+      delay: 100, // Delay adicional para mejor UX
+    },
+  }
+);
+
+// Uso simple
+function Dashboard({ chartData }) {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      {/* Se carga solo cuando es visible y las condiciones son apropiadas */}
+      <HeavyChart data={chartData} />
+    </div>
+  );
+}
+```
+
+### 2. Manual Dynamic Import with Intersection
+
+```typescript
+// Máximo control sobre el loading
+import { useState, useRef, useEffect } from 'react';
+import { createVisibilityObserver } from '@tu-org/design-system/utils';
+
+function ConditionalChart({ data }) {
+  const [ChartComponent, setChartComponent] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    if (!elementRef.current) return;
+
+    const observer = createVisibilityObserver(
+      (entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '100px', threshold: 0.1 }
+    );
+
+    observer.observe(elementRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isVisible && !ChartComponent) {
+      // Load only when visible
+      import('./ExpensiveChart').then((module) => {
+        setChartComponent(() => module.default);
+      });
+    }
+  }, [isVisible, ChartComponent]);
+
+  return (
+    <div ref={elementRef}>
+      {ChartComponent ? (
+        <ChartComponent data={data} />
+      ) : (
+        <ChartSkeleton />
+      )}
+    </div>
+  );
+}
+```
+
+## Progressive Enhancement Patterns
+
+### 1. Form Enhancement sin JavaScript Base
+
+```typescript
+// Base: Funciona sin JavaScript
+function NewsletterForm() {
+  return (
+    <form action="/api/newsletter" method="POST">
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="your@email.com"
+        required 
+      />
+      <button type="submit">Subscribe</button>
+      
+      {/* Enhancement se carga solo si es beneficioso */}
+      <FormEnhancement />
+    </form>
+  );
+}
+
+// Enhancement: Se hidrata condicionalmente
+const FormEnhancement = createDeferredComponent(
+  () => import('./FormEnhancementClient'),
+  {
+    ssr: false,
+    hydrationOptions: {
+      enhancementOptions: ENHANCEMENT_CONFIGS.FORM_ENHANCEMENT,
+      immediate: false, // Solo cuando interactúan
+      observerConfig: { rootMargin: '0px' },
+    },
+  }
+);
+```
+
+### 2. Modal con Progressive Loading
+
+```typescript
+// Modal structure: Server-side
+import { Modal } from '@tu-org/design-system';
+
+function ProductModal({ productId, isOpen }) {
+  return (
+    <Modal size="large" isOpen={isOpen}>
+      {/* Content básico siempre disponible */}
+      <ProductBasicInfo productId={productId} />
+      
+      {/* Features avanzados se cargan bajo demanda */}
+      {isOpen && (
+        <DeferredHydration
+          enhancementOptions={ENHANCEMENT_CONFIGS.INTERACTIVE_OVERLAY}
+          immediate={true} // Modal ya está visible
+        >
+          <ProductAdvancedFeatures productId={productId} />
+        </DeferredHydration>
+      )}
+    </Modal>
+  );
+}
+```
+
+## Performance Monitoring
+
+### 1. Performance Metrics Integration
+
+```typescript
+// utils/performance-metrics.ts
+export interface PerformanceMetrics {
+  timeToHydration: number;
+  bundleSize: number;
+  hydrationSuccess: boolean;
+  userAgent: string;
+  networkType: string;
+}
+
+export function trackHydrationMetrics(
+  componentName: string,
+  metrics: PerformanceMetrics
+): void {
+  // Send to analytics
+  if (window.gtag) {
+    window.gtag('event', 'hydration_complete', {
+      component_name: componentName,
+      time_to_hydration: metrics.timeToHydration,
+      bundle_size: metrics.bundleSize,
+      success: metrics.hydrationSuccess,
+    });
+  }
+}
+```
+
+### 2. Enhanced DeferredHydration con Metrics
+
+```typescript
+// components/MonitoredDeferredHydration.tsx
+'use client';
+
+import { DeferredHydration, type DeferredHydrationProps } from '@tu-org/design-system';
+import { trackHydrationMetrics } from '@/utils/performance-metrics';
+
+interface MonitoredDeferredHydrationProps extends DeferredHydrationProps {
+  componentName: string;
+  trackMetrics?: boolean;
+}
+
+export function MonitoredDeferredHydration({
+  componentName,
+  trackMetrics = true,
+  ...props
+}: MonitoredDeferredHydrationProps) {
+  const handleHydrationComplete = (metrics: PerformanceMetrics) => {
+    if (trackMetrics) {
+      trackHydrationMetrics(componentName, metrics);
+    }
+  };
+
+  return (
+    <DeferredHydration
+      {...props}
+      onHydrationComplete={handleHydrationComplete}
+    >
+      {props.children}
+    </DeferredHydration>
+  );
+}
+```
+
+## Bundle Optimization Strategies
+
+### 1. Component-Level Code Splitting
+
+```typescript
+// pages/dashboard/index.tsx
+import { lazy, Suspense } from 'react';
+
+// Split por features, no por routes
+const ChartSection = lazy(() => import('@/components/dashboard/ChartSection'));
+const TableSection = lazy(() => import('@/components/dashboard/TableSection'));
+const AnalyticsSection = lazy(() => import('@/components/dashboard/AnalyticsSection'));
+
+export default function Dashboard() {
+  return (
+    <div className="dashboard">
+      <h1>Dashboard</h1>
+      
+      {/* Critical above-the-fold content */}
+      <DashboardSummary />
+      
+      {/* Non-critical sections with deferred loading */}
+      <Suspense fallback={<ChartSkeleton />}>
+        <ChartSection />
+      </Suspense>
+      
+      <Suspense fallback={<TableSkeleton />}>
+        <TableSection />
+      </Suspense>
+      
+      <Suspense fallback={<AnalyticsSkeleton />}>
+        <AnalyticsSection />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+### 2. Library-Specific Splitting
+
+```typescript
+// utils/heavy-imports.ts
+// Split heavy libraries into separate bundles
+
+// Chart library - solo cuando se necesita
+export const loadChartLibrary = () => 
+  import('recharts').then(module => ({
+    LineChart: module.LineChart,
+    XAxis: module.XAxis,
+    YAxis: module.YAxis,
+    CartesianGrid: module.CartesianGrid,
+    Tooltip: module.Tooltip,
+    ResponsiveContainer: module.ResponsiveContainer,
+  }));
+
+// Date library - solo para date pickers
+export const loadDateLibrary = () =>
+  import('date-fns').then(module => ({
+    format: module.format,
+    parseISO: module.parseISO,
+    addDays: module.addDays,
+  }));
+
+// Rich text editor - solo cuando se edita
+export const loadRichTextEditor = () =>
+  import('@tiptap/react').then(module => ({
+    useEditor: module.useEditor,
+    EditorContent: module.EditorContent,
+  }));
+```
+
+## Network-Aware Loading
+
+### 1. Network Condition Detection
+
+```typescript
+// utils/network-conditions.ts
+export interface NetworkInfo {
+  effectiveType: '4g' | '3g' | '2g' | 'slow-2g';
+  downlink: number;
+  saveData: boolean;
+}
+
+export function getNetworkInfo(): NetworkInfo {
+  if ('connection' in navigator) {
+    const connection = (navigator as any).connection;
+    return {
+      effectiveType: connection.effectiveType || '4g',
+      downlink: connection.downlink || 10,
+      saveData: connection.saveData || false,
+    };
+  }
+  
+  return {
+    effectiveType: '4g',
+    downlink: 10,
+    saveData: false,
+  };
+}
+
+export function shouldDeferForNetwork(): boolean {
+  const network = getNetworkInfo();
+  
+  // Defer on slow connections or data saver mode
+  return (
+    network.saveData ||
+    network.effectiveType === 'slow-2g' ||
+    network.effectiveType === '2g' ||
+    (network.effectiveType === '3g' && network.downlink < 1.5)
+  );
+}
+```
+
+### 2. Network-Adaptive Components
+
+```typescript
+// components/AdaptiveChart.tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+import { shouldDeferForNetwork } from '@/utils/network-conditions';
+import { DeferredHydration } from '@tu-org/design-system';
+
+function AdaptiveChart({ data, ...props }) {
+  const [shouldDefer, setShouldDefer] = useState(true);
+
+  useEffect(() => {
+    setShouldDefer(shouldDeferForNetwork());
+  }, []);
+
+  if (shouldDefer) {
+    return (
+      <DeferredHydration
+        fallback={<ChartSkeleton />}
+        enhancementOptions={{
+          ...ENHANCEMENT_CONFIGS.HEAVY_COMPONENT,
+          networkAware: true,
+        }}
+        delay={shouldDefer ? 2000 : 0} // Longer delay on slow networks
+      >
+        <HeavyChart data={data} {...props} />
+      </DeferredHydration>
+    );
+  }
+
+  return <HeavyChart data={data} {...props} />;
+}
+```
+
+## User Preference Respect
+
+### 1. Reduced Motion Support
+
+```typescript
+// utils/accessibility-preferences.ts
+export function respectsReducedMotion(): boolean {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+export function respectsDataSaver(): boolean {
+  if ('connection' in navigator) {
+    return (navigator as any).connection.saveData;
+  }
+  return false;
+}
+
+export function getBatteryLevel(): Promise<number> {
+  if ('getBattery' in navigator) {
+    return (navigator as any).getBattery().then(battery => battery.level);
+  }
+  return Promise.resolve(1); // Assume full battery
+}
+```
+
+### 2. Preference-Aware Enhancement
+
+```typescript
+// components/PreferenceAwareComponent.tsx
+import { DeferredHydration, shouldEnhanceComponent } from '@tu-org/design-system';
+
+function InteractiveWidget({ data }) {
+  return (
+    <DeferredHydration
+      enhancementOptions={{
+        respectReducedMotion: true,
+        respectDataSaver: true,
+        respectBatteryLevel: true,
+        minBatteryLevel: 0.3, // 30% battery minimum
+      }}
+      fallback={<SimpleWidget data={data} />}
+    >
+      <ComplexInteractiveWidget data={data} />
+    </DeferredHydration>
+  );
+}
+```
+
+## Performance Testing
+
+### 1. Hydration Performance Tests
+
+```typescript
+// __tests__/performance.test.tsx
+import { renderWithDeferredHydration } from '@tu-org/design-system/test-utils';
+
+describe('Performance Tests', () => {
+  it('should hydrate heavy components efficiently', async () => {
+    const startTime = performance.now();
+    
+    const { triggerIntersection, isHydrated } = renderWithDeferredHydration(
+      <HeavyChart data={mockData} />
+    );
+    
+    expect(isHydrated()).toBe(false); // Not hydrated initially
+    
+    await triggerIntersection();
+    
+    const hydrationTime = performance.now() - startTime;
+    expect(hydrationTime).toBeLessThan(100); // < 100ms
+    expect(isHydrated()).toBe(true);
+  });
+
+  it('should respect network conditions', async () => {
+    // Mock slow network
+    Object.defineProperty(navigator, 'connection', {
+      value: { effectiveType: '2g', saveData: true },
+      writable: true,
+    });
+
+    const { isHydrated } = renderWithDeferredHydration(
+      <NetworkAwareComponent />
+    );
+
+    // Should not hydrate on slow network
+    expect(isHydrated()).toBe(false);
+  });
+});
+```
+
+### 2. Bundle Size Monitoring
+
+```typescript
+// scripts/bundle-analysis.js
+const bundleAnalyzer = require('webpack-bundle-analyzer');
+
+// Monitor bundle sizes for performance regression
+const BUNDLE_SIZE_LIMITS = {
+  'design-system-core': 50 * 1024, // 50KB
+  'design-system-charts': 100 * 1024, // 100KB
+  'design-system-forms': 30 * 1024, // 30KB
+};
+
+function analyzeBundles() {
+  // Implementation to check bundle sizes against limits
+}
+```
+
+## Real-World Performance Patterns
+
+### 1. E-commerce Product Page
+
+```typescript
+function ProductPage({ product }) {
+  return (
+    <main>
+      {/* Critical above-the-fold: Server-rendered */}
+      <ProductHero product={product} />
+      <ProductInfo product={product} />
+      <PriceAndActions product={product} />
+      
+      {/* Secondary content: Deferred */}
+      <DeferredHydration
+        enhancementOptions={ENHANCEMENT_CONFIGS.HEAVY_COMPONENT}
+        observerConfig={{ rootMargin: '300px' }}
+      >
+        <ProductReviews productId={product.id} />
+      </DeferredHydration>
+      
+      {/* Interactive features: Load on demand */}
+      <DeferredHydration
+        enhancementOptions={ENHANCEMENT_CONFIGS.INTERACTIVE_OVERLAY}
+        observerConfig={{ rootMargin: '100px' }}
+      >
+        <ProductCustomizer product={product} />
+      </DeferredHydration>
+    </main>
+  );
+}
+```
+
+### 2. Admin Dashboard
+
+```typescript
+function AdminDashboard() {
+  return (
+    <DashboardLayout>
+      {/* Always visible summary */}
+      <DashboardSummary />
+      
+      {/* Heavy components: Deferred until visible */}
+      <section className="dashboard-grid">
+        <DeferredHydration fallback={<AnalyticsSkeleton />}>
+          <AnalyticsChart />
+        </DeferredHydration>
+        
+        <DeferredHydration fallback={<UserTableSkeleton />}>
+          <UserManagementTable />
+        </DeferredHydration>
+        
+        <DeferredHydration fallback={<ReportsSkeleton />}>
+          <ReportsWidget />
+        </DeferredHydration>
+      </section>
+    </DashboardLayout>
+  );
+}
+```
+
+## Core Web Vitals Optimization
+
+### 1. LCP (Largest Contentful Paint)
+
+```typescript
+// Optimize LCP by prioritizing above-the-fold content
+function OptimizedHero({ image, title }) {
+  return (
+    <section className="hero">
+      {/* Priority loading for LCP element */}
+      <Image
+        src={image}
+        alt={title}
+        priority={true} // Next.js priority loading
+        sizes="100vw"
+        fill
+      />
+      <h1>{title}</h1>
+    </section>
+  );
+}
+```
+
+### 2. FID (First Input Delay)
+
+```typescript
+// Minimize FID by deferring non-critical JavaScript
+function InteractiveHeader() {
+  return (
+    <header>
+      {/* Critical navigation: Immediately interactive */}
+      <nav>
+        <Link href="/">Home</Link>
+        <Link href="/products">Products</Link>
+      </nav>
+      
+      {/* Non-critical interactions: Deferred */}
+      <DeferredHydration
+        immediate={false}
+        observerConfig={{ rootMargin: '0px' }}
+      >
+        <SearchWidget />
+        <UserDropdown />
+      </DeferredHydration>
+    </header>
+  );
+}
+```
+
+### 3. CLS (Cumulative Layout Shift)
+
+```typescript
+// Prevent CLS with consistent sizing
+function StableChart({ data }) {
+  return (
+    <div style={{ minHeight: '400px' }}> {/* Reserve space */}
+      <DeferredHydration
+        fallback={
+          <div style={{ 
+            width: '100%', 
+            height: '400px', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+          }}>
+            <ChartSkeleton />
+          </div>
+        }
+      >
+        <Chart data={data} />
+      </DeferredHydration>
+    </div>
+  );
+}
+```
+
+## Production Checklist
+
+### ✅ Performance Audit
+
+- [ ] Bundle sizes dentro de límites
+- [ ] Critical CSS inlined
+- [ ] Non-critical JavaScript deferred
+- [ ] Images optimizadas con Next.js Image
+- [ ] Fonts preloaded
+- [ ] Third-party scripts deferred
+
+### ✅ User Experience
+
+- [ ] Zero FOUC (Flash of Unstyled Content)
+- [ ] Progressive enhancement working
+- [ ] Accessibility preferences respected
+- [ ] Network conditions considered
+- [ ] Battery level optimization active
+
+### ✅ Monitoring
+
+- [ ] Core Web Vitals tracking
+- [ ] Hydration performance metrics
+- [ ] Bundle size monitoring
+- [ ] Error tracking for deferred components
+
+## Próximos Pasos
+
+- 📱 [Import Patterns](/?path=/docs/documentation-import-patterns--docs) - Tree-shaking y optimization
+- 🧪 [Testing](/?path=/docs/documentation-testing--docs) - Performance testing strategies
+- 🚀 [Migration](/?path=/docs/documentation-migration--docs) - Migrar a architecture optimizada
+
+## Referencias
+
+- [Core Web Vitals](https://web.dev/vitals/)
+- [React 18 Concurrent Features](https://react.dev/blog/2022/03/29/react-v18)
+- [Next.js Performance](https://nextjs.org/docs/advanced-features/measuring-performance)
+- [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)

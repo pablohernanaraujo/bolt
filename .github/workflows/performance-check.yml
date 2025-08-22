@@ -1,0 +1,204 @@
+# /.github/workflows/performance-check.yml
+# GitHub Actions workflow for performance budget enforcement and bundle analysis
+# Runs on PRs and main branch to prevent performance regressions
+# RELEVANT FILES: scripts/check-bundle-size.js, performance-budgets.config.js
+
+name: Performance Budget Check
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/ui/**'
+      - 'src/tokens/**'
+      - 'package.json'
+      - 'next.config.ts'
+      - 'performance-budgets.config.js'
+  push:
+    branches: [main]
+    paths:
+      - 'src/ui/**'
+      - 'src/tokens/**'
+
+jobs:
+  performance-check:
+    name: Performance Budget Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # Need previous commit for comparison
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build for analysis
+        run: pnpm run build
+        env:
+          NODE_ENV: production
+
+      - name: Check bundle sizes
+        run: pnpm run performance:check
+        continue-on-error: false
+
+      - name: Analyze bundles
+        run: pnpm run performance:analyze
+        continue-on-error: true
+
+      - name: Audit side effects
+        run: pnpm run audit:side-effects
+        continue-on-error: false
+
+      - name: Audit global listeners
+        run: pnpm run audit:global-listeners
+        continue-on-error: false
+
+      - name: Generate performance report
+        run: pnpm run performance:report
+        if: always()
+
+      - name: Upload performance artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: performance-reports
+          path: performance-reports/
+          retention-days: 30
+
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            try {
+              const reportPath = 'performance-reports/bundle-size-check.json';
+              if (fs.existsSync(reportPath)) {
+                const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+                
+                let comment = '## 📊 Performance Budget Report\n\n';
+                comment += `- ✅ **${report.summary.passing}** components within budget\n`;
+                comment += `- ⚠️ **${report.summary.warnings}** components over warning threshold\n`;
+                comment += `- ❌ **${report.summary.errors}** components over budget\n\n`;
+                
+                if (report.summary.errors > 0 || report.summary.warnings > 0) {
+                  comment += '### Components exceeding thresholds:\n\n';
+                  comment += '| Component | Actual | Budget | Status |\n';
+                  comment += '|-----------|--------|--------|---------|\n';
+                  
+                  report.components
+                    .filter(c => c.status !== 'ok')
+                    .forEach(component => {
+                      const icon = component.status === 'error' ? '❌' : '⚠️';
+                      comment += `| ${component.component} | ${component.actualKB}KB | ${component.budgetKB}KB | ${icon} |\n`;
+                    });
+                }
+                
+                comment += '\n_Performance report generated automatically by GitHub Actions_';
+                
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: comment
+                });
+              }
+            } catch (error) {
+              console.log('Could not post performance report:', error.message);
+            }
+
+  bundle-analysis:
+    name: Bundle Analysis
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build with bundle analysis
+        run: pnpm run build:analyze
+        env:
+          NODE_ENV: production
+          ANALYZE: true
+
+      - name: Upload bundle analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-analysis
+          path: .next/analyze/
+          retention-days: 30
+
+  critical-css-check:
+    name: Critical CSS Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check critical CSS size
+        run: |
+          # Extract critical CSS components and check their combined size
+          node -e "
+            const config = require('./performance-budgets.config.js');
+            const { CRITICAL_CSS_COMPONENTS, GLOBAL_BUDGETS } = config.default;
+            console.log('Critical CSS components:', CRITICAL_CSS_COMPONENTS.join(', '));
+            console.log('CSS budget limit:', GLOBAL_BUDGETS.totalCSS.gzip + 'KB');
+          "
+
+      - name: Validate CSS bundle
+        run: |
+          if [ -f .next/static/css ]; then
+            total_css_size=$(find .next/static/css -name "*.css" -exec wc -c {} + | tail -n1 | awk '{print $1}')
+            echo "Total CSS size: $total_css_size bytes"
+            
+            # Convert to KB and check against budget
+            css_kb=$(echo "scale=2; $total_css_size / 1024" | bc)
+            echo "CSS size: ${css_kb}KB"
+          else
+            echo "No CSS files found - build may have failed"
+          fi

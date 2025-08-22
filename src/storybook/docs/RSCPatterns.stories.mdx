@@ -1,0 +1,537 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Documentation/RSC Patterns" />
+
+# React Server Components Patterns
+
+Patrones avanzados para maximizar los beneficios de React Server Components en tu design system.
+
+## Filosofía: Server-First Architecture
+
+### Principios Fundamentales
+
+1. **Server-first por defecto**: Todo componente debe renderizar en el servidor salvo que requiera JavaScript
+2. **Boundaries quirúrgicos**: Usa "use client" solo en archivos que realmente necesitan interactividad
+3. **Separación headless + presentacional**: Separa lógica interactiva de presentación para maximizar compatibilidad server
+
+## Patrón 1: Componentes Server-Compatible
+
+### ✅ Componente Puro de Servidor
+
+```typescript
+// button/button-server.tsx (NO "use client")
+import { forwardRef, type ReactElement } from 'react';
+import { buildButtonClassName } from './helpers';
+
+export const ButtonServer = forwardRef<HTMLButtonElement, ButtonServerProps>(
+  ({ variant, size, children, ...props }, ref): ReactElement => {
+    const className = buildButtonClassName(variant, size, {
+      defaultClassName: '',
+      isPressed: false,
+      isHovered: false,
+      isFocused: false,
+      isDisabled: props.disabled || false,
+    });
+
+    return (
+      <button ref={ref} className={className} {...props}>
+        {children}
+      </button>
+    );
+  }
+);
+```
+
+**Beneficios:**
+- ✅ Zero JavaScript bundle
+- ✅ Funciona sin hidratación
+- ✅ SEO-friendly
+- ✅ Interacción inmediata
+- ✅ Progressive enhancement ready
+
+### Cuándo Usar Server Components
+
+```typescript
+// ✅ Perfect for Server Components
+const ProductCard = ({ product }) => (
+  <Card>
+    <Image src={product.image} alt={product.name} />
+    <Typography variant="h3">{product.name}</Typography>
+    <Typography variant="body1">{product.description}</Typography>
+    <Typography variant="subtitle1">${product.price}</Typography>
+    
+    {/* Form submissions work without JS */}
+    <form action="/api/cart/add" method="POST">
+      <input type="hidden" name="productId" value={product.id} />
+      <Button type="submit">Add to Cart</Button>
+    </form>
+  </Card>
+);
+
+// ✅ Layout components
+const PageLayout = ({ children }) => (
+  <Container>
+    <AppHeader />
+    <MainContent>
+      {children}
+    </MainContent>
+    <AppFooter />
+  </Container>
+);
+
+// ✅ Typography and content
+const ArticleContent = ({ article }) => (
+  <article>
+    <H1>{article.title}</H1>
+    <Body1>{article.content}</Body1>
+    <Link href={`/author/${article.authorId}`}>
+      By {article.author}
+    </Link>
+  </article>
+);
+```
+
+## Patrón 2: Split Server/Client Architecture
+
+Para componentes que necesitan tanto estructura como interactividad:
+
+### Server Component (Estructura + Presentación)
+
+```typescript
+// modal/modal-server.tsx (NO "use client")
+import { type ReactNode, type ReactElement } from 'react';
+import { buildModalClassName } from './helpers';
+
+interface ModalServerProps {
+  size?: 'small' | 'medium' | 'large';
+  title?: string;
+  children: ReactNode;
+  className?: string;
+}
+
+export const ModalServer = ({ 
+  size = 'medium', 
+  title, 
+  children, 
+  className 
+}: ModalServerProps): ReactElement => {
+  const modalClassName = buildModalClassName(size, className);
+
+  return (
+    <div className={modalClassName} role="dialog" aria-modal="true">
+      {title && (
+        <header className="modal-header">
+          <h2 id="modal-title">{title}</h2>
+        </header>
+      )}
+      <div className="modal-content" role="document">
+        {children}
+      </div>
+    </div>
+  );
+};
+```
+
+### Client Component (Solo Interactividad)
+
+```typescript
+// modal/modal-client.tsx
+'use client';
+
+import { useEffect, useState, type ReactElement } from 'react';
+import { IconButton } from '../icon-button';
+import { X } from '@/icons';
+
+interface ModalClientProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+  enableEscape?: boolean;
+  enableClickOutside?: boolean;
+}
+
+export const ModalCloseButton = ({ 
+  onClose 
+}: { onClose?: () => void }): ReactElement => (
+  <IconButton 
+    aria-label="Close modal"
+    onClick={onClose}
+    className="modal-close-button"
+  >
+    <X />
+  </IconButton>
+);
+
+export const useModalScrollLock = (isOpen: boolean): void => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }
+  }, [isOpen]);
+};
+
+export const ModalOverlay = ({ 
+  isOpen, 
+  onClose, 
+  children 
+}: ModalClientProps & { children: ReactElement }): ReactElement => {
+  useModalScrollLock(isOpen);
+
+  if (!isOpen) return null;
+
+  return (
+    <div 
+      className="modal-overlay" 
+      onClick={onClose}
+      role="presentation"
+    >
+      <div onClick={(e) => e.stopPropagation()}>
+        {children}
+      </div>
+    </div>
+  );
+};
+```
+
+### API Principal (Re-exports Server como Default)
+
+```typescript
+// modal/modal.tsx
+// Default exports: Server-compatible
+export { ModalServer as Modal } from './modal-server';
+
+// Named exports: Client components cuando se necesiten
+export { 
+  ModalCloseButton, 
+  ModalOverlay, 
+  useModalScrollLock 
+} from './modal-client';
+
+export type { ModalServerProps } from './modal-server';
+```
+
+### Uso del Patrón Split
+
+```typescript
+// pages/product/[id]/page.tsx (Server Component)
+import { Modal, ModalCloseButton } from '@tu-org/design-system';
+
+export default function ProductModal({ params }) {
+  return (
+    <Modal size="large" title="Product Details">
+      <ProductDetails productId={params.id} />
+      
+      {/* Solo esta parte necesita JavaScript */}
+      <ModalCloseButton />
+    </Modal>
+  );
+}
+```
+
+## Patrón 3: Server-Side Data Integration
+
+### Async Server Components con Data Fetching
+
+```typescript
+// components/UserProfile.tsx (Server Component)
+interface User {
+  id: string;
+  name: string;
+  avatar: string;
+  posts: Post[];
+}
+
+async function getUserData(userId: string): Promise<User> {
+  const response = await fetch(`/api/users/${userId}`, {
+    // Next.js cache configuration
+    next: { revalidate: 3600 }
+  });
+  return response.json();
+}
+
+// ✅ Async Server Component
+export default async function UserProfile({ 
+  userId 
+}: { 
+  userId: string 
+}): Promise<ReactElement> {
+  // Data fetching happens on the server
+  const user = await getUserData(userId);
+
+  return (
+    <Card>
+      <Avatar src={user.avatar} alt={user.name} size="large" />
+      <Typography variant="h2">{user.name}</Typography>
+      
+      {/* Posts rendered on server */}
+      <div className="user-posts">
+        {user.posts.map(post => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </div>
+      
+      {/* Interactive features use client components */}
+      <FollowButton userId={user.id} />
+    </Card>
+  );
+}
+```
+
+### Server Actions Integration
+
+```typescript
+// components/ContactForm.tsx (Server Component)
+import { Button, InputField, TextareaField } from '@tu-org/design-system';
+
+// ✅ Server Action
+async function submitContact(formData: FormData) {
+  'use server';
+  
+  const email = formData.get('email') as string;
+  const message = formData.get('message') as string;
+  
+  // Process form server-side
+  await sendEmail({ email, message });
+  
+  // Redirect after success
+  redirect('/contact/success');
+}
+
+// ✅ Server Component con Server Action
+export function ContactForm(): ReactElement {
+  return (
+    <form action={submitContact} className="contact-form">
+      <InputField 
+        name="email" 
+        type="email" 
+        label="Email"
+        required 
+      />
+      <TextareaField 
+        name="message" 
+        label="Message"
+        required 
+      />
+      <Button type="submit">
+        Send Message
+      </Button>
+    </form>
+  );
+}
+```
+
+## Patrón 4: Progressive Enhancement
+
+### Base Funcional sin JavaScript
+
+```typescript
+// components/ThemeToggle.tsx (Progressive Enhancement)
+import { getServerTheme } from '@/theme/server-theme';
+import { Button } from '@tu-org/design-system';
+
+export async function ThemeToggleBase(): Promise<ReactElement> {
+  const currentTheme = await getServerTheme();
+  const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+  return (
+    <form action="/api/theme" method="POST">
+      <input type="hidden" name="theme" value={nextTheme} />
+      <Button type="submit" variant="ghost">
+        {currentTheme === 'light' ? '🌙' : '☀️'}
+        {currentTheme === 'light' ? 'Dark' : 'Light'} Mode
+      </Button>
+    </form>
+  );
+}
+```
+
+### Enhancement con JavaScript
+
+```typescript
+// components/ThemeToggleEnhanced.tsx
+'use client';
+
+import { useState, useTransition } from 'react';
+import { Button } from '@tu-org/design-system';
+
+export function ThemeToggleEnhanced({ 
+  initialTheme 
+}: { 
+  initialTheme: 'light' | 'dark' 
+}): ReactElement {
+  const [theme, setTheme] = useState(initialTheme);
+  const [isPending, startTransition] = useTransition();
+
+  const toggleTheme = () => {
+    startTransition(async () => {
+      const newTheme = theme === 'light' ? 'dark' : 'light';
+      
+      // Optimistic update
+      setTheme(newTheme);
+      document.documentElement.setAttribute('data-theme', newTheme);
+      
+      // Persist server-side
+      await fetch('/api/theme', {
+        method: 'POST',
+        body: new FormData([['theme', newTheme]])
+      });
+    });
+  };
+
+  return (
+    <Button 
+      onClick={toggleTheme}
+      variant="ghost"
+      disabled={isPending}
+    >
+      {theme === 'light' ? '🌙' : '☀️'}
+      {theme === 'light' ? 'Dark' : 'Light'} Mode
+    </Button>
+  );
+}
+```
+
+## Patrón 5: Composición Server/Client
+
+### Container Server + Children Flexibles
+
+```typescript
+// layouts/DashboardLayout.tsx (Server Component)
+import { type ReactNode, type ReactElement } from 'react';
+import { Sidebar, AppHeader, MainContent } from '@tu-org/design-system';
+
+interface DashboardLayoutProps {
+  children: ReactNode;
+  sidebar?: ReactNode;
+  header?: ReactNode;
+}
+
+export function DashboardLayout({ 
+  children, 
+  sidebar, 
+  header 
+}: DashboardLayoutProps): ReactElement {
+  return (
+    <div className="dashboard-layout">
+      <AppHeader>
+        {header}
+      </AppHeader>
+      
+      <div className="dashboard-content">
+        <Sidebar>
+          {sidebar}
+        </Sidebar>
+        
+        <MainContent>
+          {children}
+        </MainContent>
+      </div>
+    </div>
+  );
+}
+```
+
+### Uso con Composición Mixta
+
+```typescript
+// app/dashboard/page.tsx
+import { DashboardLayout } from '@/components/layouts';
+import { UserMenu, NavigationMenu } from '@/components/navigation';
+import { DashboardStats, RecentActivity } from '@/components/dashboard';
+
+export default function DashboardPage(): ReactElement {
+  return (
+    <DashboardLayout
+      header={<UserMenu />}                    {/* Client component */}
+      sidebar={<NavigationMenu />}              {/* Server component */}
+    >
+      <DashboardStats />                        {/* Server component */}
+      <RecentActivity />                        {/* Server component */}
+    </DashboardLayout>
+  );
+}
+```
+
+## Anti-Patterns a Evitar
+
+### ❌ Client Boundary Demasiado Amplio
+
+```typescript
+// ❌ Bad - Todo el layout se vuelve cliente
+'use client';
+
+export function Layout({ children }) {
+  const [theme, setTheme] = useState('light'); // Solo esto necesita cliente
+  
+  return (
+    <div>
+      <Header />          {/* No necesita ser cliente */}
+      <Sidebar />         {/* No necesita ser cliente */}
+      <main>{children}</main> {/* No necesita ser cliente */}
+    </div>
+  );
+}
+```
+
+### ✅ Good - Boundary Quirúrgico
+
+```typescript
+// ✅ Good - Solo el toggle es cliente
+export function Layout({ children }) {
+  return (
+    <div>
+      <Header>
+        <ThemeToggleClient /> {/* Solo esto necesita cliente */}
+      </Header>
+      <Sidebar />
+      <main>{children}</main>
+    </div>
+  );
+}
+```
+
+## Debugging Server/Client Boundaries
+
+### Identifica Componentes en DevTools
+
+```typescript
+// helpers/component-debug.ts
+export function markServerComponent(name: string) {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`🖥️  Server Component: ${name}`);
+  }
+}
+
+export function markClientComponent(name: string) {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`💻 Client Component: ${name}`);
+  }
+}
+```
+
+### Validación en Tiempo de Build
+
+```typescript
+// scripts/validate-boundaries.ts
+import { analyzeServerClientBoundaries } from '@tu-org/design-system/test-utils';
+
+// Valida que los componentes tengan boundaries correctos
+export function validateComponentBoundaries() {
+  // Implementation que verifica patrones server/client
+}
+```
+
+## Próximos Pasos
+
+- 🎨 [Server Theming](/?path=/docs/documentation-server-theming--docs) - Theming server-side avanzado
+- ⚡ [Performance](/?path=/docs/documentation-performance--docs) - Deferred hydration y optimizaciones
+- 🧪 [Testing RSC](/?path=/docs/documentation-testing--docs) - Testing utilities para server components
+- 📝 [Migration Guide](/?path=/docs/documentation-migration--docs) - Migrar a architecture server-first
+
+## Referencias
+
+- [React Server Components RFC](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md)
+- [Next.js Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
+- [Server vs Client Components](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)

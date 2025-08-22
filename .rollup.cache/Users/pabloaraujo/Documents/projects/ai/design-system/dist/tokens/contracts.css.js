@@ -1,0 +1,62 @@
+import { createThemeContract } from '@vanilla-extract/css';
+export const colors = createThemeContract({
+    background: {
+        primary: null,
+        secondary: null,
+        tertiary: null,
+        inverse: null,
+    },
+    foreground: {
+        primary: null,
+        secondary: null,
+        tertiary: null,
+        inverse: null,
+    },
+    brand: {
+        primary: null,
+        primaryHover: null,
+        primaryActive: null,
+        secondary: null,
+        secondaryHover: null,
+        secondaryActive: null,
+    },
+    semantic: {
+        error: null,
+        errorBackground: null,
+        warning: null,
+        warningBackground: null,
+        success: null,
+        successBackground: null,
+        info: null,
+        infoBackground: null,
+    },
+    border: {
+        primary: null,
+        secondary: null,
+        focus: null,
+    },
+    toast: {
+        background: null,
+        border: null,
+        shadow: null,
+        successBackground: null,
+        successBorder: null,
+        successIcon: null,
+        errorBackground: null,
+        errorBorder: null,
+        errorIcon: null,
+        warningBackground: null,
+        warningBorder: null,
+        warningIcon: null,
+        infoBackground: null,
+        infoBorder: null,
+        infoIcon: null,
+    },
+});
+export const shadows = createThemeContract({
+    small: null,
+    medium: null,
+    large: null,
+    focus: null,
+    toast: null,
+});

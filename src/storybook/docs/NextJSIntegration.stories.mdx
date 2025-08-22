@@ -1,0 +1,342 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Documentation/Next.js App Router Integration" />
+
+# Next.js App Router Integration Guide
+
+Guía completa para integrar este design system con Next.js App Router y React Server Components.
+
+## Configuración Inicial
+
+### 1. Instalación
+
+```bash
+# Instalar el design system
+pnpm add @tu-org/design-system
+
+# Peer dependencies (Next.js 15, React 19)
+pnpm add next@latest react@latest react-dom@latest
+```
+
+### 2. Configuración de Next.js
+
+Configura tu `next.config.ts` para soportar vanilla-extract y optimizaciones del design system:
+
+```typescript
+// next.config.ts
+import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
+import type { NextConfig } from 'next';
+
+const withVanillaExtract = createVanillaExtractPlugin();
+
+const nextConfig: NextConfig = {
+  // Optimización para tree-shaking del design system
+  transpilePackages: ['@tu-org/design-system'],
+  
+  // Configuración para RSC
+  experimental: {
+    serverComponentsExternalPackages: ['@tu-org/design-system'],
+  },
+  
+  // Optimización de CSS
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+};
+
+export default withVanillaExtract(nextConfig);
+```
+
+## Layout Setup con Server-Side Theming
+
+### Root Layout (app/layout.tsx)
+
+```typescript
+// app/layout.tsx
+import type { Metadata } from 'next';
+import { type ReactElement, type ReactNode } from 'react';
+
+// Importa CSS del design system
+import '@tu-org/design-system/styles';
+
+import { 
+  getServerTheme, 
+  getThemeClassName, 
+  getThemeDataAttributes 
+} from '@tu-org/design-system/server-theme';
+
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}): Promise<ReactElement> {
+  // ✅ Server-side theme detection sin JavaScript
+  const serverTheme = await getServerTheme();
+  const themeClassName = getThemeClassName(serverTheme);
+  const themeDataAttributes = getThemeDataAttributes(serverTheme);
+
+  return (
+    <html {...themeDataAttributes}>
+      <body className={themeClassName}>
+        {/* Server Layout Component */}
+        <ServerLayout serverTheme={serverTheme}>
+          {children}
+        </ServerLayout>
+      </body>
+    </html>
+  );
+}
+```
+
+### Server Layout Component
+
+```typescript
+// components/ServerLayout.tsx
+import { type ReactNode, type ReactElement } from 'react';
+import { 
+  Container,
+  AppHeader,
+  ThemeToggleServer 
+} from '@tu-org/design-system';
+
+interface ServerLayoutProps {
+  children: ReactNode;
+  serverTheme: 'light' | 'dark';
+}
+
+// ✅ Server Component - No "use client"
+export const ServerLayout = ({ 
+  children, 
+  serverTheme 
+}: ServerLayoutProps): ReactElement => (
+  <Container>
+    <AppHeader>
+      {/* Server-compatible theme toggle */}
+      <ThemeToggleServer initialTheme={serverTheme} />
+    </AppHeader>
+    <main>{children}</main>
+  </Container>
+);
+```
+
+## Arquitectura Server-First
+
+### Decisión: ¿Server o Client Component?
+
+```typescript
+// ✅ Server Component (por defecto)
+// Usa cuando NO necesitas:
+// - useState, useEffect, event handlers
+// - Browser APIs (window, document)
+// - Interactividad compleja
+
+import { Button, Card, Typography } from '@tu-org/design-system';
+
+export default function ProductCard({ product }) {
+  return (
+    <Card>
+      <Typography variant="h3">{product.name}</Typography>
+      <Typography variant="body1">{product.description}</Typography>
+      {/* Form button - funciona sin JS */}
+      <form action="/api/add-to-cart" method="POST">
+        <input type="hidden" name="productId" value={product.id} />
+        <Button type="submit">Add to Cart</Button>
+      </form>
+    </Card>
+  );
+}
+```
+
+```typescript
+// ✅ Client Component (cuando necesario)
+'use client';
+
+import { useState } from 'react';
+import { Button, Modal } from '@tu-org/design-system';
+
+export function InteractiveProductCard({ product }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setIsModalOpen(true)}>
+        View Details
+      </Button>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        {/* Modal content */}
+      </Modal>
+    </>
+  );
+}
+```
+
+## Patterns de Importación
+
+### 1. Imports por Componente (Recomendado)
+
+```typescript
+// ✅ Tree-shaking óptimo
+import { Button } from '@tu-org/design-system/button';
+import { Card } from '@tu-org/design-system/card';
+import { Typography } from '@tu-org/design-system/typography';
+
+// ✅ Server vs Client específico
+import { ButtonServer } from '@tu-org/design-system/button/server';
+import { ButtonClient } from '@tu-org/design-system/button/client';
+```
+
+### 2. Barrel Exports (Para desarrollo rápido)
+
+```typescript
+// ⚠️ Menos eficiente pero más conveniente
+import { Button, Card, Typography } from '@tu-org/design-system';
+```
+
+## Client Providers Setup
+
+### Providers solo del lado cliente
+
+```typescript
+// components/ClientProviders.tsx
+'use client';
+
+import { type ReactNode } from 'react';
+import { 
+  TranslationProvider,
+  ToastProvider 
+} from '@tu-org/design-system';
+
+interface ClientProvidersProps {
+  children: ReactNode;
+  // Props del servidor
+  serverLocale: string;
+  serverMessages: Record<string, string>;
+}
+
+export function ClientProviders({ 
+  children, 
+  serverLocale, 
+  serverMessages 
+}: ClientProvidersProps) {
+  return (
+    <TranslationProvider 
+      locale={serverLocale} 
+      messages={serverMessages}
+    >
+      <ToastProvider>
+        {children}
+      </ToastProvider>
+    </TranslationProvider>
+  );
+}
+```
+
+### Integración en Layout
+
+```typescript
+// app/layout.tsx (actualizado)
+import { getServerLocale, getServerMessages } from '@/i18n/server';
+import { ClientProviders } from '@/components/ClientProviders';
+
+export default async function RootLayout({ children }) {
+  const [serverTheme, serverLocale, serverMessages] = await Promise.all([
+    getServerTheme(),
+    getServerLocale(),
+    getServerMessages(),
+  ]);
+
+  return (
+    <html data-theme={serverTheme}>
+      <body className={getThemeClassName(serverTheme)}>
+        <ServerLayout serverTheme={serverTheme}>
+          <ClientProviders 
+            serverLocale={serverLocale}
+            serverMessages={serverMessages}
+          >
+            {children}
+          </ClientProviders>
+        </ServerLayout>
+      </body>
+    </html>
+  );
+}
+```
+
+## Componentes con Boundaries Quirúrgicos
+
+El design system usa un patrón de separación server/client:
+
+```typescript
+// ✅ Patrón recomendado para componentes complejos
+// modal/modal.tsx
+export { ModalServer as Modal } from './modal-server';     // Default: Server
+export { ModalClient } from './modal-client';              // Client cuando necesario
+export { ModalCloseButton } from './modal-client';         // Piezas cliente específicas
+```
+
+### Ejemplo: Modal con Server Structure + Client Interactivity
+
+```typescript
+// Tu página (Server Component)
+import { Modal, ModalCloseButton } from '@tu-org/design-system';
+
+export default function ProductPage({ product }) {
+  return (
+    <div>
+      {/* Modal structure renderizada en servidor */}
+      <Modal size="large" title={product.name}>
+        <ProductDetails product={product} />
+        
+        {/* Solo el botón close requiere JavaScript */}
+        <ModalCloseButton />
+      </Modal>
+    </div>
+  );
+}
+```
+
+## Progressive Enhancement
+
+### Form Submission con Enhancement
+
+```typescript
+// ✅ Funciona sin JS, mejorado con JS
+export function NewsletterForm() {
+  return (
+    <form action="/api/newsletter" method="POST">
+      <InputField 
+        name="email" 
+        type="email" 
+        placeholder="tu@email.com"
+        required 
+      />
+      <Button type="submit">
+        Subscribe
+      </Button>
+      
+      {/* Client enhancement para mejor UX */}
+      <FormEnhancement />
+    </form>
+  );
+}
+
+// components/FormEnhancement.tsx
+'use client';
+export function FormEnhancement() {
+  // Maneja loading states, validación en tiempo real, etc.
+  return null; // Invisible enhancement
+}
+```
+
+## Siguientes Pasos
+
+- 📖 [RSC Patterns](/?path=/docs/documentation-rsc-patterns--docs) - Patrones avanzados de Server Components
+- 🎨 [Server Theming](/?path=/docs/documentation-server-theming--docs) - Theming avanzado server-side
+- ⚡ [Performance](/?path=/docs/documentation-performance--docs) - Optimización y dynamic imports
+- 🧪 [Testing](/?path=/docs/documentation-testing--docs) - Testing SSR/RSC components
+
+## Recursos Adicionales
+
+- [Next.js App Router Docs](https://nextjs.org/docs/app)
+- [React Server Components](https://react.dev/reference/rsc/server-components)
+- [Vanilla Extract](https://vanilla-extract.style/)

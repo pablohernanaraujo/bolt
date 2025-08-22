@@ -1,0 +1,1110 @@
+{
+  "v": 5,
+  "entries": {
+    "components-button--default": {
+      "type": "story",
+      "id": "components-button--default",
+      "name": "Default",
+      "title": "Components/Button",
+      "importPath": "./src/storybook/components/button.stories.tsx",
+      "componentPath": "./src/ui/button",
+      "tags": ["dev", "test"]
+    },
+    "components-button--variants": {
+      "type": "story",
+      "id": "components-button--variants",
+      "name": "Variants",
+      "title": "Components/Button",
+      "importPath": "./src/storybook/components/button.stories.tsx",
+      "componentPath": "./src/ui/button",
+      "tags": ["dev", "test"]
+    },
+    "components-button--sizes": {
+      "type": "story",
+      "id": "components-button--sizes",
+      "name": "Sizes",
+      "title": "Components/Button",
+      "importPath": "./src/storybook/components/button.stories.tsx",
+      "componentPath": "./src/ui/button",
+      "tags": ["dev", "test"]
+    },
+    "components-button--with-icons": {
+      "type": "story",
+      "id": "components-button--with-icons",
+      "name": "With Icons",
+      "title": "Components/Button",
+      "importPath": "./src/storybook/components/button.stories.tsx",
+      "componentPath": "./src/ui/button",
+      "tags": ["dev", "test"]
+    },
+    "components-button--states": {
+      "type": "story",
+      "id": "components-button--states",
+      "name": "States",
+      "title": "Components/Button",
+      "importPath": "./src/storybook/components/button.stories.tsx",
+      "componentPath": "./src/ui/button",
+      "tags": ["dev", "test"]
+    },
+    "components-button--full-width": {
+      "type": "story",
+      "id": "components-button--full-width",
+      "name": "Full Width",
+      "title": "Components/Button",
+      "importPath": "./src/storybook/components/button.stories.tsx",
+      "componentPath": "./src/ui/button",
+      "tags": ["dev", "test"]
+    },
+    "components-button--playground": {
+      "type": "story",
+      "id": "components-button--playground",
+      "name": "Playground",
+      "title": "Components/Button",
+      "importPath": "./src/storybook/components/button.stories.tsx",
+      "componentPath": "./src/ui/button",
+      "tags": ["dev", "test"]
+    },
+    "foundations-colors--brand-colors": {
+      "type": "story",
+      "id": "foundations-colors--brand-colors",
+      "name": "Brand Colors",
+      "title": "Foundations/Colors",
+      "importPath": "./src/storybook/foundations/colors.stories.tsx",
+      "tags": ["dev", "test"]
+    },
+    "foundations-colors--semantic-colors": {
+      "type": "story",
+      "id": "foundations-colors--semantic-colors",
+      "name": "Semantic Colors",
+      "title": "Foundations/Colors",
+      "importPath": "./src/storybook/foundations/colors.stories.tsx",
+      "tags": ["dev", "test"]
+    },
+    "foundations-colors--background-colors": {
+      "type": "story",
+      "id": "foundations-colors--background-colors",
+      "name": "Background Colors",
+      "title": "Foundations/Colors",
+      "importPath": "./src/storybook/foundations/colors.stories.tsx",
+      "tags": ["dev", "test"]
+    },
+    "foundations-colors--foreground-colors": {
+      "type": "story",
+      "id": "foundations-colors--foreground-colors",
+      "name": "Foreground Colors",
+      "title": "Foundations/Colors",
+      "importPath": "./src/storybook/foundations/colors.stories.tsx",
+      "tags": ["dev", "test"]
+    },
+    "foundations-colors--border-colors": {
+      "type": "story",
+      "id": "foundations-colors--border-colors",
+      "name": "Border Colors",
+      "title": "Foundations/Colors",
+      "importPath": "./src/storybook/foundations/colors.stories.tsx",
+      "tags": ["dev", "test"]
+    },
+    "foundations-colors--all-colors": {
+      "type": "story",
+      "id": "foundations-colors--all-colors",
+      "name": "All Colors",
+      "title": "Foundations/Colors",
+      "importPath": "./src/storybook/foundations/colors.stories.tsx",
+      "tags": ["dev", "test"]
+    },
+    "layout-hstack--default": {
+      "type": "story",
+      "id": "layout-hstack--default",
+      "name": "Default",
+      "title": "Layout/HStack",
+      "importPath": "./src/storybook/layout/hstack.stories.tsx",
+      "componentPath": "./src/ui/layout/hstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-hstack--playground": {
+      "type": "story",
+      "id": "layout-hstack--playground",
+      "name": "Playground",
+      "title": "Layout/HStack",
+      "importPath": "./src/storybook/layout/hstack.stories.tsx",
+      "componentPath": "./src/ui/layout/hstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-hstack--spacing-variations": {
+      "type": "story",
+      "id": "layout-hstack--spacing-variations",
+      "name": "Spacing Variations",
+      "title": "Layout/HStack",
+      "importPath": "./src/storybook/layout/hstack.stories.tsx",
+      "componentPath": "./src/ui/layout/hstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-hstack--alignment-options": {
+      "type": "story",
+      "id": "layout-hstack--alignment-options",
+      "name": "Alignment Options",
+      "title": "Layout/HStack",
+      "importPath": "./src/storybook/layout/hstack.stories.tsx",
+      "componentPath": "./src/ui/layout/hstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-hstack--justification-options": {
+      "type": "story",
+      "id": "layout-hstack--justification-options",
+      "name": "Justification Options",
+      "title": "Layout/HStack",
+      "importPath": "./src/storybook/layout/hstack.stories.tsx",
+      "componentPath": "./src/ui/layout/hstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-hstack--wrap-functionality": {
+      "type": "story",
+      "id": "layout-hstack--wrap-functionality",
+      "name": "Wrap Functionality",
+      "title": "Layout/HStack",
+      "importPath": "./src/storybook/layout/hstack.stories.tsx",
+      "componentPath": "./src/ui/layout/hstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-hstack--reversed-order": {
+      "type": "story",
+      "id": "layout-hstack--reversed-order",
+      "name": "Reversed Order",
+      "title": "Layout/HStack",
+      "importPath": "./src/storybook/layout/hstack.stories.tsx",
+      "componentPath": "./src/ui/layout/hstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-hstack--navigation-bar": {
+      "type": "story",
+      "id": "layout-hstack--navigation-bar",
+      "name": "Navigation Bar",
+      "title": "Layout/HStack",
+      "importPath": "./src/storybook/layout/hstack.stories.tsx",
+      "componentPath": "./src/ui/layout/hstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-hstack--button-group": {
+      "type": "story",
+      "id": "layout-hstack--button-group",
+      "name": "Button Group",
+      "title": "Layout/HStack",
+      "importPath": "./src/storybook/layout/hstack.stories.tsx",
+      "componentPath": "./src/ui/layout/hstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-hstack--card-actions": {
+      "type": "story",
+      "id": "layout-hstack--card-actions",
+      "name": "Card Actions",
+      "title": "Layout/HStack",
+      "importPath": "./src/storybook/layout/hstack.stories.tsx",
+      "componentPath": "./src/ui/layout/hstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-hstack--complex-layout": {
+      "type": "story",
+      "id": "layout-hstack--complex-layout",
+      "name": "Complex Layout",
+      "title": "Layout/HStack",
+      "importPath": "./src/storybook/layout/hstack.stories.tsx",
+      "componentPath": "./src/ui/layout/hstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-vstack--default": {
+      "type": "story",
+      "id": "layout-vstack--default",
+      "name": "Default",
+      "title": "Layout/VStack",
+      "importPath": "./src/storybook/layout/vstack.stories.tsx",
+      "componentPath": "./src/ui/layout/vstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-vstack--playground": {
+      "type": "story",
+      "id": "layout-vstack--playground",
+      "name": "Playground",
+      "title": "Layout/VStack",
+      "importPath": "./src/storybook/layout/vstack.stories.tsx",
+      "componentPath": "./src/ui/layout/vstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-vstack--spacing-variations": {
+      "type": "story",
+      "id": "layout-vstack--spacing-variations",
+      "name": "Spacing Variations",
+      "title": "Layout/VStack",
+      "importPath": "./src/storybook/layout/vstack.stories.tsx",
+      "componentPath": "./src/ui/layout/vstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-vstack--alignment-options": {
+      "type": "story",
+      "id": "layout-vstack--alignment-options",
+      "name": "Alignment Options",
+      "title": "Layout/VStack",
+      "importPath": "./src/storybook/layout/vstack.stories.tsx",
+      "componentPath": "./src/ui/layout/vstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-vstack--justification-options": {
+      "type": "story",
+      "id": "layout-vstack--justification-options",
+      "name": "Justification Options",
+      "title": "Layout/VStack",
+      "importPath": "./src/storybook/layout/vstack.stories.tsx",
+      "componentPath": "./src/ui/layout/vstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-vstack--wrap-functionality": {
+      "type": "story",
+      "id": "layout-vstack--wrap-functionality",
+      "name": "Wrap Functionality",
+      "title": "Layout/VStack",
+      "importPath": "./src/storybook/layout/vstack.stories.tsx",
+      "componentPath": "./src/ui/layout/vstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-vstack--reversed-order": {
+      "type": "story",
+      "id": "layout-vstack--reversed-order",
+      "name": "Reversed Order",
+      "title": "Layout/VStack",
+      "importPath": "./src/storybook/layout/vstack.stories.tsx",
+      "componentPath": "./src/ui/layout/vstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-vstack--sidebar-navigation": {
+      "type": "story",
+      "id": "layout-vstack--sidebar-navigation",
+      "name": "Sidebar Navigation",
+      "title": "Layout/VStack",
+      "importPath": "./src/storybook/layout/vstack.stories.tsx",
+      "componentPath": "./src/ui/layout/vstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-vstack--form-layout": {
+      "type": "story",
+      "id": "layout-vstack--form-layout",
+      "name": "Form Layout",
+      "title": "Layout/VStack",
+      "importPath": "./src/storybook/layout/vstack.stories.tsx",
+      "componentPath": "./src/ui/layout/vstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-vstack--card-stack": {
+      "type": "story",
+      "id": "layout-vstack--card-stack",
+      "name": "Card Stack",
+      "title": "Layout/VStack",
+      "importPath": "./src/storybook/layout/vstack.stories.tsx",
+      "componentPath": "./src/ui/layout/vstack",
+      "tags": ["dev", "test"]
+    },
+    "layout-vstack--complex-layout": {
+      "type": "story",
+      "id": "layout-vstack--complex-layout",
+      "name": "Complex Layout",
+      "title": "Layout/VStack",
+      "importPath": "./src/storybook/layout/vstack.stories.tsx",
+      "componentPath": "./src/ui/layout/vstack",
+      "tags": ["dev", "test"]
+    },
+    "typography-body1--default": {
+      "type": "story",
+      "id": "typography-body1--default",
+      "name": "Default",
+      "title": "Typography/Body1",
+      "importPath": "./src/storybook/typography/body1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body1--emphasis-levels": {
+      "type": "story",
+      "id": "typography-body1--emphasis-levels",
+      "name": "Emphasis Levels",
+      "title": "Typography/Body1",
+      "importPath": "./src/storybook/typography/body1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body1--polymorphic-as": {
+      "type": "story",
+      "id": "typography-body1--polymorphic-as",
+      "name": "Polymorphic As",
+      "title": "Typography/Body1",
+      "importPath": "./src/storybook/typography/body1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body1--with-class-name": {
+      "type": "story",
+      "id": "typography-body1--with-class-name",
+      "name": "With Class Name",
+      "title": "Typography/Body1",
+      "importPath": "./src/storybook/typography/body1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body1--long-text": {
+      "type": "story",
+      "id": "typography-body1--long-text",
+      "name": "Long Text",
+      "title": "Typography/Body1",
+      "importPath": "./src/storybook/typography/body1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body1--text-styling": {
+      "type": "story",
+      "id": "typography-body1--text-styling",
+      "name": "Text Styling",
+      "title": "Typography/Body1",
+      "importPath": "./src/storybook/typography/body1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body1--playground": {
+      "type": "story",
+      "id": "typography-body1--playground",
+      "name": "Playground",
+      "title": "Typography/Body1",
+      "importPath": "./src/storybook/typography/body1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body2--default": {
+      "type": "story",
+      "id": "typography-body2--default",
+      "name": "Default",
+      "title": "Typography/Body2",
+      "importPath": "./src/storybook/typography/body2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body2--emphasis-levels": {
+      "type": "story",
+      "id": "typography-body2--emphasis-levels",
+      "name": "Emphasis Levels",
+      "title": "Typography/Body2",
+      "importPath": "./src/storybook/typography/body2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body2--polymorphic-as": {
+      "type": "story",
+      "id": "typography-body2--polymorphic-as",
+      "name": "Polymorphic As",
+      "title": "Typography/Body2",
+      "importPath": "./src/storybook/typography/body2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body2--with-class-name": {
+      "type": "story",
+      "id": "typography-body2--with-class-name",
+      "name": "With Class Name",
+      "title": "Typography/Body2",
+      "importPath": "./src/storybook/typography/body2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body2--long-text": {
+      "type": "story",
+      "id": "typography-body2--long-text",
+      "name": "Long Text",
+      "title": "Typography/Body2",
+      "importPath": "./src/storybook/typography/body2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body2--text-styling": {
+      "type": "story",
+      "id": "typography-body2--text-styling",
+      "name": "Text Styling",
+      "title": "Typography/Body2",
+      "importPath": "./src/storybook/typography/body2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body2--playground": {
+      "type": "story",
+      "id": "typography-body2--playground",
+      "name": "Playground",
+      "title": "Typography/Body2",
+      "importPath": "./src/storybook/typography/body2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body3--default": {
+      "type": "story",
+      "id": "typography-body3--default",
+      "name": "Default",
+      "title": "Typography/Body3",
+      "importPath": "./src/storybook/typography/body3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body3--emphasis-levels": {
+      "type": "story",
+      "id": "typography-body3--emphasis-levels",
+      "name": "Emphasis Levels",
+      "title": "Typography/Body3",
+      "importPath": "./src/storybook/typography/body3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body3--polymorphic-as": {
+      "type": "story",
+      "id": "typography-body3--polymorphic-as",
+      "name": "Polymorphic As",
+      "title": "Typography/Body3",
+      "importPath": "./src/storybook/typography/body3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body3--with-class-name": {
+      "type": "story",
+      "id": "typography-body3--with-class-name",
+      "name": "With Class Name",
+      "title": "Typography/Body3",
+      "importPath": "./src/storybook/typography/body3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body3--long-text": {
+      "type": "story",
+      "id": "typography-body3--long-text",
+      "name": "Long Text",
+      "title": "Typography/Body3",
+      "importPath": "./src/storybook/typography/body3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body3--text-styling": {
+      "type": "story",
+      "id": "typography-body3--text-styling",
+      "name": "Text Styling",
+      "title": "Typography/Body3",
+      "importPath": "./src/storybook/typography/body3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-body3--playground": {
+      "type": "story",
+      "id": "typography-body3--playground",
+      "name": "Playground",
+      "title": "Typography/Body3",
+      "importPath": "./src/storybook/typography/body3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-caption--default": {
+      "type": "story",
+      "id": "typography-caption--default",
+      "name": "Default",
+      "title": "Typography/Caption",
+      "importPath": "./src/storybook/typography/caption.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-caption--emphasis-levels": {
+      "type": "story",
+      "id": "typography-caption--emphasis-levels",
+      "name": "Emphasis Levels",
+      "title": "Typography/Caption",
+      "importPath": "./src/storybook/typography/caption.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-caption--polymorphic-as": {
+      "type": "story",
+      "id": "typography-caption--polymorphic-as",
+      "name": "Polymorphic As",
+      "title": "Typography/Caption",
+      "importPath": "./src/storybook/typography/caption.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-caption--with-class-name": {
+      "type": "story",
+      "id": "typography-caption--with-class-name",
+      "name": "With Class Name",
+      "title": "Typography/Caption",
+      "importPath": "./src/storybook/typography/caption.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-caption--long-text": {
+      "type": "story",
+      "id": "typography-caption--long-text",
+      "name": "Long Text",
+      "title": "Typography/Caption",
+      "importPath": "./src/storybook/typography/caption.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-caption--text-styling": {
+      "type": "story",
+      "id": "typography-caption--text-styling",
+      "name": "Text Styling",
+      "title": "Typography/Caption",
+      "importPath": "./src/storybook/typography/caption.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-caption--playground": {
+      "type": "story",
+      "id": "typography-caption--playground",
+      "name": "Playground",
+      "title": "Typography/Caption",
+      "importPath": "./src/storybook/typography/caption.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-giant--default": {
+      "type": "story",
+      "id": "typography-giant--default",
+      "name": "Default",
+      "title": "Typography/Giant",
+      "importPath": "./src/storybook/typography/giant.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-giant--emphasis-levels": {
+      "type": "story",
+      "id": "typography-giant--emphasis-levels",
+      "name": "Emphasis Levels",
+      "title": "Typography/Giant",
+      "importPath": "./src/storybook/typography/giant.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-giant--polymorphic-as": {
+      "type": "story",
+      "id": "typography-giant--polymorphic-as",
+      "name": "Polymorphic As",
+      "title": "Typography/Giant",
+      "importPath": "./src/storybook/typography/giant.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-giant--with-class-name": {
+      "type": "story",
+      "id": "typography-giant--with-class-name",
+      "name": "With Class Name",
+      "title": "Typography/Giant",
+      "importPath": "./src/storybook/typography/giant.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-giant--long-text": {
+      "type": "story",
+      "id": "typography-giant--long-text",
+      "name": "Long Text",
+      "title": "Typography/Giant",
+      "importPath": "./src/storybook/typography/giant.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-giant--text-styling": {
+      "type": "story",
+      "id": "typography-giant--text-styling",
+      "name": "Text Styling",
+      "title": "Typography/Giant",
+      "importPath": "./src/storybook/typography/giant.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-giant--playground": {
+      "type": "story",
+      "id": "typography-giant--playground",
+      "name": "Playground",
+      "title": "Typography/Giant",
+      "importPath": "./src/storybook/typography/giant.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h1--default": {
+      "type": "story",
+      "id": "typography-h1--default",
+      "name": "Default",
+      "title": "Typography/H1",
+      "importPath": "./src/storybook/typography/h1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h1--emphasis-levels": {
+      "type": "story",
+      "id": "typography-h1--emphasis-levels",
+      "name": "Emphasis Levels",
+      "title": "Typography/H1",
+      "importPath": "./src/storybook/typography/h1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h1--polymorphic-as": {
+      "type": "story",
+      "id": "typography-h1--polymorphic-as",
+      "name": "Polymorphic As",
+      "title": "Typography/H1",
+      "importPath": "./src/storybook/typography/h1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h1--with-class-name": {
+      "type": "story",
+      "id": "typography-h1--with-class-name",
+      "name": "With Class Name",
+      "title": "Typography/H1",
+      "importPath": "./src/storybook/typography/h1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h1--long-text": {
+      "type": "story",
+      "id": "typography-h1--long-text",
+      "name": "Long Text",
+      "title": "Typography/H1",
+      "importPath": "./src/storybook/typography/h1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h1--text-styling": {
+      "type": "story",
+      "id": "typography-h1--text-styling",
+      "name": "Text Styling",
+      "title": "Typography/H1",
+      "importPath": "./src/storybook/typography/h1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h1--playground": {
+      "type": "story",
+      "id": "typography-h1--playground",
+      "name": "Playground",
+      "title": "Typography/H1",
+      "importPath": "./src/storybook/typography/h1.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h2--default": {
+      "type": "story",
+      "id": "typography-h2--default",
+      "name": "Default",
+      "title": "Typography/H2",
+      "importPath": "./src/storybook/typography/h2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h2--emphasis-levels": {
+      "type": "story",
+      "id": "typography-h2--emphasis-levels",
+      "name": "Emphasis Levels",
+      "title": "Typography/H2",
+      "importPath": "./src/storybook/typography/h2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h2--polymorphic-as": {
+      "type": "story",
+      "id": "typography-h2--polymorphic-as",
+      "name": "Polymorphic As",
+      "title": "Typography/H2",
+      "importPath": "./src/storybook/typography/h2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h2--with-class-name": {
+      "type": "story",
+      "id": "typography-h2--with-class-name",
+      "name": "With Class Name",
+      "title": "Typography/H2",
+      "importPath": "./src/storybook/typography/h2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h2--long-text": {
+      "type": "story",
+      "id": "typography-h2--long-text",
+      "name": "Long Text",
+      "title": "Typography/H2",
+      "importPath": "./src/storybook/typography/h2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h2--text-styling": {
+      "type": "story",
+      "id": "typography-h2--text-styling",
+      "name": "Text Styling",
+      "title": "Typography/H2",
+      "importPath": "./src/storybook/typography/h2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h2--playground": {
+      "type": "story",
+      "id": "typography-h2--playground",
+      "name": "Playground",
+      "title": "Typography/H2",
+      "importPath": "./src/storybook/typography/h2.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h3--default": {
+      "type": "story",
+      "id": "typography-h3--default",
+      "name": "Default",
+      "title": "Typography/H3",
+      "importPath": "./src/storybook/typography/h3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h3--emphasis-levels": {
+      "type": "story",
+      "id": "typography-h3--emphasis-levels",
+      "name": "Emphasis Levels",
+      "title": "Typography/H3",
+      "importPath": "./src/storybook/typography/h3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h3--polymorphic-as": {
+      "type": "story",
+      "id": "typography-h3--polymorphic-as",
+      "name": "Polymorphic As",
+      "title": "Typography/H3",
+      "importPath": "./src/storybook/typography/h3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h3--with-class-name": {
+      "type": "story",
+      "id": "typography-h3--with-class-name",
+      "name": "With Class Name",
+      "title": "Typography/H3",
+      "importPath": "./src/storybook/typography/h3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h3--long-text": {
+      "type": "story",
+      "id": "typography-h3--long-text",
+      "name": "Long Text",
+      "title": "Typography/H3",
+      "importPath": "./src/storybook/typography/h3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h3--text-styling": {
+      "type": "story",
+      "id": "typography-h3--text-styling",
+      "name": "Text Styling",
+      "title": "Typography/H3",
+      "importPath": "./src/storybook/typography/h3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h3--playground": {
+      "type": "story",
+      "id": "typography-h3--playground",
+      "name": "Playground",
+      "title": "Typography/H3",
+      "importPath": "./src/storybook/typography/h3.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h4--default": {
+      "type": "story",
+      "id": "typography-h4--default",
+      "name": "Default",
+      "title": "Typography/H4",
+      "importPath": "./src/storybook/typography/h4.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h4--emphasis-levels": {
+      "type": "story",
+      "id": "typography-h4--emphasis-levels",
+      "name": "Emphasis Levels",
+      "title": "Typography/H4",
+      "importPath": "./src/storybook/typography/h4.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h4--polymorphic-as": {
+      "type": "story",
+      "id": "typography-h4--polymorphic-as",
+      "name": "Polymorphic As",
+      "title": "Typography/H4",
+      "importPath": "./src/storybook/typography/h4.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h4--with-class-name": {
+      "type": "story",
+      "id": "typography-h4--with-class-name",
+      "name": "With Class Name",
+      "title": "Typography/H4",
+      "importPath": "./src/storybook/typography/h4.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h4--long-text": {
+      "type": "story",
+      "id": "typography-h4--long-text",
+      "name": "Long Text",
+      "title": "Typography/H4",
+      "importPath": "./src/storybook/typography/h4.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h4--text-styling": {
+      "type": "story",
+      "id": "typography-h4--text-styling",
+      "name": "Text Styling",
+      "title": "Typography/H4",
+      "importPath": "./src/storybook/typography/h4.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h4--playground": {
+      "type": "story",
+      "id": "typography-h4--playground",
+      "name": "Playground",
+      "title": "Typography/H4",
+      "importPath": "./src/storybook/typography/h4.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h5--default": {
+      "type": "story",
+      "id": "typography-h5--default",
+      "name": "Default",
+      "title": "Typography/H5",
+      "importPath": "./src/storybook/typography/h5.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h5--emphasis-levels": {
+      "type": "story",
+      "id": "typography-h5--emphasis-levels",
+      "name": "Emphasis Levels",
+      "title": "Typography/H5",
+      "importPath": "./src/storybook/typography/h5.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h5--polymorphic-as": {
+      "type": "story",
+      "id": "typography-h5--polymorphic-as",
+      "name": "Polymorphic As",
+      "title": "Typography/H5",
+      "importPath": "./src/storybook/typography/h5.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h5--with-class-name": {
+      "type": "story",
+      "id": "typography-h5--with-class-name",
+      "name": "With Class Name",
+      "title": "Typography/H5",
+      "importPath": "./src/storybook/typography/h5.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h5--long-text": {
+      "type": "story",
+      "id": "typography-h5--long-text",
+      "name": "Long Text",
+      "title": "Typography/H5",
+      "importPath": "./src/storybook/typography/h5.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h5--text-styling": {
+      "type": "story",
+      "id": "typography-h5--text-styling",
+      "name": "Text Styling",
+      "title": "Typography/H5",
+      "importPath": "./src/storybook/typography/h5.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-h5--playground": {
+      "type": "story",
+      "id": "typography-h5--playground",
+      "name": "Playground",
+      "title": "Typography/H5",
+      "importPath": "./src/storybook/typography/h5.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-overline--default": {
+      "type": "story",
+      "id": "typography-overline--default",
+      "name": "Default",
+      "title": "Typography/Overline",
+      "importPath": "./src/storybook/typography/overline.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-overline--emphasis-levels": {
+      "type": "story",
+      "id": "typography-overline--emphasis-levels",
+      "name": "Emphasis Levels",
+      "title": "Typography/Overline",
+      "importPath": "./src/storybook/typography/overline.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-overline--polymorphic-as": {
+      "type": "story",
+      "id": "typography-overline--polymorphic-as",
+      "name": "Polymorphic As",
+      "title": "Typography/Overline",
+      "importPath": "./src/storybook/typography/overline.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-overline--with-class-name": {
+      "type": "story",
+      "id": "typography-overline--with-class-name",
+      "name": "With Class Name",
+      "title": "Typography/Overline",
+      "importPath": "./src/storybook/typography/overline.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-overline--long-text": {
+      "type": "story",
+      "id": "typography-overline--long-text",
+      "name": "Long Text",
+      "title": "Typography/Overline",
+      "importPath": "./src/storybook/typography/overline.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-overline--text-styling": {
+      "type": "story",
+      "id": "typography-overline--text-styling",
+      "name": "Text Styling",
+      "title": "Typography/Overline",
+      "importPath": "./src/storybook/typography/overline.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-overline--playground": {
+      "type": "story",
+      "id": "typography-overline--playground",
+      "name": "Playground",
+      "title": "Typography/Overline",
+      "importPath": "./src/storybook/typography/overline.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-subtitle--default": {
+      "type": "story",
+      "id": "typography-subtitle--default",
+      "name": "Default",
+      "title": "Typography/Subtitle",
+      "importPath": "./src/storybook/typography/subtitle.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-subtitle--emphasis-levels": {
+      "type": "story",
+      "id": "typography-subtitle--emphasis-levels",
+      "name": "Emphasis Levels",
+      "title": "Typography/Subtitle",
+      "importPath": "./src/storybook/typography/subtitle.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-subtitle--polymorphic-as": {
+      "type": "story",
+      "id": "typography-subtitle--polymorphic-as",
+      "name": "Polymorphic As",
+      "title": "Typography/Subtitle",
+      "importPath": "./src/storybook/typography/subtitle.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-subtitle--with-class-name": {
+      "type": "story",
+      "id": "typography-subtitle--with-class-name",
+      "name": "With Class Name",
+      "title": "Typography/Subtitle",
+      "importPath": "./src/storybook/typography/subtitle.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-subtitle--long-text": {
+      "type": "story",
+      "id": "typography-subtitle--long-text",
+      "name": "Long Text",
+      "title": "Typography/Subtitle",
+      "importPath": "./src/storybook/typography/subtitle.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-subtitle--text-styling": {
+      "type": "story",
+      "id": "typography-subtitle--text-styling",
+      "name": "Text Styling",
+      "title": "Typography/Subtitle",
+      "importPath": "./src/storybook/typography/subtitle.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-subtitle--playground": {
+      "type": "story",
+      "id": "typography-subtitle--playground",
+      "name": "Playground",
+      "title": "Typography/Subtitle",
+      "importPath": "./src/storybook/typography/subtitle.stories.tsx",
+      "componentPath": "./src/ui/typography",
+      "tags": ["dev", "test"]
+    },
+    "typography-overview--typography-scale": {
+      "type": "story",
+      "id": "typography-overview--typography-scale",
+      "name": "Typography Scale",
+      "title": "Typography/Overview",
+      "importPath": "./src/storybook/typography/typography-overview.stories.tsx",
+      "tags": ["dev", "test"]
+    },
+    "typography-overview--headings": {
+      "type": "story",
+      "id": "typography-overview--headings",
+      "name": "Headings",
+      "title": "Typography/Overview",
+      "importPath": "./src/storybook/typography/typography-overview.stories.tsx",
+      "tags": ["dev", "test"]
+    },
+    "typography-overview--body-text": {
+      "type": "story",
+      "id": "typography-overview--body-text",
+      "name": "Body Text",
+      "title": "Typography/Overview",
+      "importPath": "./src/storybook/typography/typography-overview.stories.tsx",
+      "tags": ["dev", "test"]
+    },
+    "typography-overview--polymorphic-usage": {
+      "type": "story",
+      "id": "typography-overview--polymorphic-usage",
+      "name": "Polymorphic Usage",
+      "title": "Typography/Overview",
+      "importPath": "./src/storybook/typography/typography-overview.stories.tsx",
+      "tags": ["dev", "test"]
+    },
+    "typography-overview--in-context": {
+      "type": "story",
+      "id": "typography-overview--in-context",
+      "name": "In Context",
+      "title": "Typography/Overview",
+      "importPath": "./src/storybook/typography/typography-overview.stories.tsx",
+      "tags": ["dev", "test"]
+    }
+  }
+}

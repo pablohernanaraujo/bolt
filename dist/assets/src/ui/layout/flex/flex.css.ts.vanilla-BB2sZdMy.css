@@ -1,0 +1,96 @@
+._1iyslrx0 {
+  display: flex;
+}
+._1iyslrx1 {
+  flex-direction: row;
+}
+._1iyslrx2 {
+  flex-direction: column;
+}
+._1iyslrx3 {
+  flex-direction: row-reverse;
+}
+._1iyslrx4 {
+  flex-direction: column-reverse;
+}
+._1iyslrx5 {
+  flex-wrap: nowrap;
+}
+._1iyslrx6 {
+  flex-wrap: wrap;
+}
+._1iyslrx7 {
+  flex-wrap: wrap-reverse;
+}
+._1iyslrx8 {
+  align-items: flex-start;
+}
+._1iyslrx9 {
+  align-items: center;
+}
+._1iyslrxa {
+  align-items: flex-end;
+}
+._1iyslrxb {
+  align-items: stretch;
+}
+._1iyslrxc {
+  align-items: baseline;
+}
+._1iyslrxd {
+  justify-content: flex-start;
+}
+._1iyslrxe {
+  justify-content: center;
+}
+._1iyslrxf {
+  justify-content: flex-end;
+}
+._1iyslrxg {
+  justify-content: space-between;
+}
+._1iyslrxh {
+  justify-content: space-around;
+}
+._1iyslrxi {
+  justify-content: space-evenly;
+}
+._1iyslrxj {
+  gap: var(--mkppdnt);
+}
+._1iyslrxk {
+  gap: var(--mkppdnu);
+}
+._1iyslrxl {
+  gap: var(--mkppdnv);
+}
+._1iyslrxm {
+  gap: var(--mkppdnw);
+}
+._1iyslrxn {
+  gap: var(--mkppdnx);
+}
+._1iyslrxo {
+  gap: var(--mkppdny);
+}
+._1iyslrxp {
+  gap: var(--mkppdnz);
+}
+._1iyslrxq {
+  gap: var(--mkppdn10);
+}
+._1iyslrxr {
+  gap: var(--mkppdn11);
+}
+._1iyslrxs {
+  gap: var(--mkppdn12);
+}
+._1iyslrxt {
+  gap: var(--mkppdn13);
+}
+._1iyslrxu {
+  gap: var(--mkppdn14);
+}
+._1iyslrxv {
+  gap: var(--mkppdn15);
+}

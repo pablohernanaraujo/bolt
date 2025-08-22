@@ -19,9 +19,16 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/ui/*": ["./src/ui/*"],
+      "@/icons": ["./src/icons"],
+      "@/icons/*": ["./src/icons/*"],
+      "@/theme": ["./src/theme"],
+      "@/theme/*": ["./src/theme/*"],
+      "@/tokens": ["./src/tokens"],
+      "@/tokens/*": ["./src/tokens/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".storybook/**/*", "storybook-static/**/*"]
 }

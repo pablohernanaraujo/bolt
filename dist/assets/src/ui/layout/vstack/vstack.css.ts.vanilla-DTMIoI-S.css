@@ -1,0 +1,86 @@
+._11c24e30 {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+._11c24e31 {
+  gap: var(--mkppdnt);
+}
+._11c24e32 {
+  gap: var(--mkppdnu);
+}
+._11c24e33 {
+  gap: var(--mkppdnv);
+}
+._11c24e34 {
+  gap: var(--mkppdnw);
+}
+._11c24e35 {
+  gap: var(--mkppdnx);
+}
+._11c24e36 {
+  gap: var(--mkppdny);
+}
+._11c24e37 {
+  gap: var(--mkppdnz);
+}
+._11c24e38 {
+  gap: var(--mkppdn10);
+}
+._11c24e39 {
+  gap: var(--mkppdn11);
+}
+._11c24e3a {
+  gap: var(--mkppdn12);
+}
+._11c24e3b {
+  gap: var(--mkppdn13);
+}
+._11c24e3c {
+  gap: var(--mkppdn14);
+}
+._11c24e3d {
+  gap: var(--mkppdn15);
+}
+._11c24e3e {
+  align-items: flex-start;
+}
+._11c24e3f {
+  align-items: center;
+}
+._11c24e3g {
+  align-items: flex-end;
+}
+._11c24e3h {
+  align-items: stretch;
+}
+._11c24e3i {
+  align-items: baseline;
+}
+._11c24e3j {
+  justify-content: flex-start;
+}
+._11c24e3k {
+  justify-content: center;
+}
+._11c24e3l {
+  justify-content: flex-end;
+}
+._11c24e3m {
+  justify-content: space-between;
+}
+._11c24e3n {
+  justify-content: space-around;
+}
+._11c24e3o {
+  justify-content: space-evenly;
+}
+._11c24e3p {
+  flex-wrap: wrap;
+}
+._11c24e3q {
+  flex-direction: column-reverse;
+}

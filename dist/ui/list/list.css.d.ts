@@ -1,0 +1,12 @@
+export declare const listRoot: string;
+export declare const variants: Record<"ordered" | "unordered" | "basic", string>;
+export declare const spacing: Record<"sm" | "lg" | "md", string>;
+export declare const listItem: string;
+export declare const listItemWithIcon: string;
+export declare const listItemIcon: string;
+export declare const listItemContent: string;
+export declare const emphasis: Record<"medium" | "high" | "low" | "pure", string>;
+export declare const weight: Record<"bold" | "medium" | "normal" | "semibold", string>;
+export declare const decoration: Record<"italic" | "line-through" | "underline", string>;
+export declare const size: Record<"xs" | "sm" | "base" | "lg" | "xl", string>;
+export declare const colorScheme: Record<"brand" | "error" | "warning" | "success" | "info" | "default", string>;

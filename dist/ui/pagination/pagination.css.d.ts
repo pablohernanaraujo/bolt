@@ -1,0 +1,14 @@
+export declare const pagination: string;
+export declare const paginationItem: string;
+export declare const paginationButton: string;
+export declare const sizes: Record<"small" | "medium" | "large", string>;
+export declare const variants: Record<string | number, string>;
+export declare const ellipsis: string;
+export declare const navigationButton: string;
+export declare const buttonIcon: string;
+export declare const buttonText: string;
+export declare const responsiveText: string;
+export declare const srOnly: string;
+export declare const paginationGap: Record<"small" | "medium" | "large", string>;
+export declare const paginationSection: string;
+export declare const compact: string;
