@@ -4,3 +4,4 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
     colorScheme?: 'default' | 'brand' | 'success' | 'warning' | 'error' | 'info';
     size?: 'small' | 'medium' | 'large';
 }
+//# sourceMappingURL=types.d.ts.map

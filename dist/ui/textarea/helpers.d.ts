@@ -8,3 +8,4 @@ export declare function buildTextAreaClassName(variant: TextAreaProps['variant']
 }): string;
 export declare const isTextAreaInvalid: (hasError?: boolean, isInvalid?: boolean) => boolean;
 export declare const getTextAreaRows: (size: TextAreaProps["size"], rows?: number) => number;
+//# sourceMappingURL=helpers.d.ts.map

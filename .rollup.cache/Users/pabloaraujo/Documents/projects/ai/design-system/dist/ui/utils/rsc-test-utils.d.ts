@@ -69,3 +69,4 @@ export declare function testDataSafety(html: string, sensitivePatterns?: string[
         found: string;
     }>;
 };
+//# sourceMappingURL=rsc-test-utils.d.ts.map

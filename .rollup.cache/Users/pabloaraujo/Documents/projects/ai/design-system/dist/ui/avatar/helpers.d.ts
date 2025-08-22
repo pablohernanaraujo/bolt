@@ -6,3 +6,4 @@ export declare const buildAvatarIconClassName: (size?: AvatarSize) => string;
 export declare const buildStatusIndicatorClassName: (size?: AvatarSize, status?: AvatarStatus) => string;
 export declare const generateInitials: (name: string) => string;
 export declare const getIconSize: (size: AvatarSize) => number;
+//# sourceMappingURL=helpers.d.ts.map

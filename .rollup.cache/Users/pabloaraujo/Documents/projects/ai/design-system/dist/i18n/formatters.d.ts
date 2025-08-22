@@ -20,3 +20,4 @@ export declare function formatCurrency(value: number, locale: string, options: C
 export declare function formatDate(date: Date | string | number, locale: string, options?: DateFormatOptions): string;
 export declare function formatRelativeTime(date: Date | string | number, locale: string, baseDate?: Date): string;
 export declare function createLocaleFormatters(localeInfo: LocaleInfo): Record<string, (...args: any[]) => string>;
+//# sourceMappingURL=formatters.d.ts.map

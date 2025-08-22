@@ -1,1 +1,2 @@
 export declare const buildBadgeClassName: (variant: "solid" | "subtle" | "outline", colorScheme: "default" | "brand" | "success" | "warning" | "error" | "info", size: "small" | "medium" | "large", className?: string) => string;
+//# sourceMappingURL=helpers.d.ts.map

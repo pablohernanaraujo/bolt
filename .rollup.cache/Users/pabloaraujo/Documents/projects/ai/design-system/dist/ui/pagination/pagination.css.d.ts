@@ -12,3 +12,4 @@ export declare const srOnly: string;
 export declare const paginationGap: Record<"small" | "medium" | "large", string>;
 export declare const paginationSection: string;
 export declare const compact: string;
+//# sourceMappingURL=pagination.css.d.ts.map

@@ -7,3 +7,4 @@ export declare const formatDataProgressValue: (value: number, maxValue: number) 
 export declare const getProgressVariantByValue: (value: number, maxValue: number) => ProgressVariant;
 export declare const calculateProgressPercentage: (value: number, maxValue: number) => number;
 export declare const isIndeterminateProgress: (value: number | undefined) => value is undefined;
+//# sourceMappingURL=helpers.d.ts.map

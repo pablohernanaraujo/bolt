@@ -7,3 +7,4 @@ export interface CheckboxServerProps extends Omit<InputHTMLAttributes<HTMLInputE
     children?: React.ReactNode;
 }
 export declare const CheckboxServer: import("react").ForwardRefExoticComponent<CheckboxServerProps & import("react").RefAttributes<HTMLLabelElement>>;
+//# sourceMappingURL=checkbox-server.d.ts.map

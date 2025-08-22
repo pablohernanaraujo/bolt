@@ -24,3 +24,4 @@ export declare const defaultPaginationConfig: {
     pageAriaLabel: (page: number) => string;
     'aria-label': string;
 };
+//# sourceMappingURL=helpers.d.ts.map

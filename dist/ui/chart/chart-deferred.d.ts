@@ -19,3 +19,4 @@ export declare const SAMPLE_CHART_DATA: {
     value: number;
     color: string;
 }[];
+//# sourceMappingURL=chart-deferred.d.ts.map

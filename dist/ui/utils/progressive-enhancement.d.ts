@@ -86,3 +86,4 @@ export declare const ENHANCEMENT_CONFIGS: {
         readonly enhancementDelay: 0;
     };
 };
+//# sourceMappingURL=progressive-enhancement.d.ts.map

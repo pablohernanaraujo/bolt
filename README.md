@@ -2,7 +2,7 @@
 
 Modern React component library with server-first architecture, built for Next.js and performance.
 
-[![npm version](https://badge.fury.io/js/bolt.svg)](https://badge.fury.io/js/bolt)
+[![npm version](https://badge.fury.io/js/@pablohernanaraujo%2Fbolt.svg)](https://badge.fury.io/js/@pablohernanaraujo%2Fbolt)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Tree Shaking](https://img.shields.io/badge/Tree%20Shaking-Supported-green.svg)](https://webpack.js.org/guides/tree-shaking/)
@@ -22,13 +22,13 @@ Modern React component library with server-first architecture, built for Next.js
 
 ```bash
 # npm
-npm install bolt
+npm install @pablohernanaraujo/bolt
 
 # pnpm
-pnpm add bolt
+pnpm add @pablohernanaraujo/bolt
 
 # yarn
-yarn add bolt
+yarn add @pablohernanaraujo/bolt
 ```
 
 ### Peer Dependencies
@@ -40,7 +40,7 @@ npm install react react-dom
 ## Quick Start
 
 ```tsx
-import { Button, Modal, ThemeProvider } from 'bolt';
+import { Button, Modal, ThemeProvider } from '@pablohernanaraujo/bolt';
 
 export default function App() {
   return (
@@ -74,7 +74,7 @@ export default function App() {
 Import all components from the main package with automatic tree-shaking:
 
 ```tsx
-import { Button, Input, Modal, Card } from 'bolt';
+import { Button, Input, Modal, Card } from '@pablohernanaraujo/bolt';
 ```
 
 **Bundle Impact**: Only the components you actually use will be included in your bundle thanks to ES modules and tree-shaking.
@@ -84,9 +84,9 @@ import { Button, Input, Modal, Card } from 'bolt';
 For maximum control over bundle size, import components individually:
 
 ```tsx
-import { Button } from 'bolt/button';
-import { Input } from 'bolt/input';
-import { Modal } from 'bolt/modal';
+import { Button } from '@pablohernanaraujo/bolt/button';
+import { Input } from '@pablohernanaraujo/bolt/input';
+import { Modal } from '@pablohernanaraujo/bolt/modal';
 ```
 
 ### 3. Server/Client Component Splitting
@@ -95,13 +95,13 @@ Bolt supports Next.js Server Components with surgical client boundaries:
 
 ```tsx
 // Server Component (default)
-import { Button } from 'bolt/button';
+import { Button } from '@pablohernanaraujo/bolt/button';
 
 // Client Component (when needed)
-import { ButtonClient } from 'bolt/button/client';
+import { ButtonClient } from '@pablohernanaraujo/bolt/button/client';
 
 // Or use the server variant explicitly
-import { ButtonServer } from 'bolt/button/server';
+import { ButtonServer } from '@pablohernanaraujo/bolt/button/server';
 ```
 
 ## Component Categories
@@ -115,7 +115,7 @@ import {
   RadioGroup, 
   Toggle, 
   Link 
-} from 'bolt';
+} from '@pablohernanaraujo/bolt';
 ```
 
 ### Forms
@@ -127,7 +127,7 @@ import {
   PinInput, 
   FileUpload, 
   FormField 
-} from 'bolt';
+} from '@pablohernanaraujo/bolt';
 ```
 
 ### Layout
@@ -140,7 +140,7 @@ import {
   VStack, 
   Center,
   AspectRatio 
-} from 'bolt';
+} from '@pablohernanaraujo/bolt';
 ```
 
 ### Navigation
@@ -150,7 +150,7 @@ import {
   Tabs, 
   Pagination, 
   Accordion 
-} from 'bolt';
+} from '@pablohernanaraujo/bolt';
 ```
 
 ### Overlays
@@ -161,7 +161,7 @@ import {
   Popover, 
   Tooltip, 
   Menu 
-} from 'bolt';
+} from '@pablohernanaraujo/bolt';
 ```
 
 ### Content
@@ -172,7 +172,7 @@ import {
   Code, 
   List, 
   Divider 
-} from 'bolt';
+} from '@pablohernanaraujo/bolt';
 ```
 
 ### Feedback
@@ -182,7 +182,7 @@ import {
   Spinner, 
   Skeleton, 
   Progress 
-} from 'bolt';
+} from '@pablohernanaraujo/bolt';
 ```
 
 ### Typography
@@ -193,7 +193,7 @@ import {
   Subtitle, 
   Caption, 
   Overline 
-} from 'bolt';
+} from '@pablohernanaraujo/bolt';
 ```
 
 ## Next.js Integration
@@ -202,7 +202,7 @@ import {
 
 ```tsx
 // app/layout.tsx
-import { ThemeProvider } from 'bolt';
+import { ThemeProvider } from '@pablohernanaraujo/bolt';
 
 export default function RootLayout({ children }) {
   return (
@@ -221,7 +221,7 @@ export default function RootLayout({ children }) {
 
 ```tsx
 // app/page.tsx (Server Component)
-import { Container, H1, Button } from 'bolt';
+import { Container, H1, Button } from '@pablohernanaraujo/bolt';
 
 export default function HomePage() {
   return (
@@ -241,7 +241,7 @@ export default function HomePage() {
 'use client';
 
 import { useState } from 'react';
-import { Button, Modal } from 'bolt';
+import { Button, Modal } from '@pablohernanaraujo/bolt';
 
 export default function ClientComponent() {
   const [isOpen, setIsOpen] = useState(false);
@@ -266,7 +266,7 @@ export default function ClientComponent() {
 ### Using Built-in Themes
 
 ```tsx
-import { ThemeProvider } from 'bolt';
+import { ThemeProvider } from '@pablohernanaraujo/bolt';
 
 export default function App() {
   return (
@@ -282,7 +282,7 @@ export default function App() {
 ```tsx
 // app/layout.tsx
 import { cookies } from 'next/headers';
-import { ThemeProvider } from 'bolt';
+import { ThemeProvider } from '@pablohernanaraujo/bolt';
 
 export default async function RootLayout({ children }) {
   const cookieStore = await cookies();
@@ -305,7 +305,7 @@ export default async function RootLayout({ children }) {
 Bolt is built with TypeScript and provides complete type definitions:
 
 ```tsx
-import type { ButtonProps, ModalProps } from 'bolt';
+import type { ButtonProps, ModalProps } from '@pablohernanaraujo/bolt';
 
 // All component props are fully typed
 const CustomButton: React.FC<ButtonProps> = (props) => {
@@ -313,7 +313,7 @@ const CustomButton: React.FC<ButtonProps> = (props) => {
 };
 
 // Granular type imports
-import type { ButtonVariant, ButtonSize } from 'bolt/button';
+import type { ButtonVariant, ButtonSize } from '@pablohernanaraujo/bolt/button';
 ```
 
 ## Bundle Size & Performance
@@ -324,13 +324,13 @@ Bolt is designed for optimal tree-shaking:
 
 ```tsx
 // ✅ Good - Only Button code is bundled
-import { Button } from 'bolt';
+import { Button } from '@pablohernanaraujo/bolt';
 
 // ✅ Also good - Explicit import
-import { Button } from 'bolt/button';
+import { Button } from '@pablohernanaraujo/bolt/button';
 
 // ❌ Avoid - Could bundle more than needed
-import * as Bolt from 'bolt';
+import * as Bolt from '@pablohernanaraujo/bolt';
 ```
 
 ### Bundle Size Examples
@@ -363,7 +363,7 @@ import * as Bolt from 'bolt';
 import { Button, Box, Text } from '@chakra-ui/react';
 
 // After (Bolt)
-import { Button, Container, Body1 } from 'bolt';
+import { Button, Container, Body1 } from '@pablohernanaraujo/bolt';
 ```
 
 ### From Material-UI
@@ -373,7 +373,7 @@ import { Button, Container, Body1 } from 'bolt';
 import { Button, Container, Typography } from '@mui/material';
 
 // After (Bolt)
-import { Button, Container, H1 } from 'bolt';
+import { Button, Container, H1 } from '@pablohernanaraujo/bolt';
 ```
 
 ## Contributing
@@ -386,10 +386,10 @@ MIT © [Pablo Araujo](https://github.com/pabloaraujo)
 
 ## Links
 
-- [Documentation](https://bolt-ui.dev)
-- [Storybook](https://bolt-ui.dev/storybook)
-- [GitHub](https://github.com/pabloaraujo/bolt)
-- [npm](https://www.npmjs.com/package/bolt)
+- [Documentation](https://github.com/pablohernanaraujo/bolt#readme)
+- [Storybook](https://github.com/pablohernanaraujo/bolt)
+- [GitHub](https://github.com/pablohernanaraujo/bolt)
+- [npm](https://www.npmjs.com/package/@pablohernanaraujo/bolt)
 
 ---
 

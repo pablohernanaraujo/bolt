@@ -315,6 +315,25 @@
     "./typography": {
       "types": "./dist/ui/typography/index.d.ts",
       "import": "./dist/ui/typography/index.js"
+    },
+    "./theme-provider": {
+      "types": "./dist/ui/theme-provider/index.d.ts",
+      "import": "./dist/ui/theme-provider/index.js"
+    },
+    "./tokens": {
+      "types": "./dist/tokens/index.d.ts",
+      "import": "./dist/tokens/index.js"
+    },
+    "./theme": {
+      "types": "./dist/theme/index.d.ts",
+      "import": "./dist/theme/index.js"
+    },
+    "./icons": {
+      "types": "./dist/icons/index.d.ts",
+      "import": "./dist/icons/index.js"
+    },
+    "./css": {
+      "import": "./dist/index.css"
     }
   }
 }

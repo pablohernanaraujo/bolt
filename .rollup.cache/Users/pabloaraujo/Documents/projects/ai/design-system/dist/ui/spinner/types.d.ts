@@ -8,3 +8,4 @@ export interface SpinnerProps {
     className?: string;
     style?: React.CSSProperties;
 }
+//# sourceMappingURL=types.d.ts.map

@@ -4,3 +4,4 @@ export declare function FormattedNumber({ value, options, useLocalizedNumerals, 
 export declare function FormattedNumberSync({ value, options, useLocalizedNumerals, locale, as: Component, className, fallbackChildren, ...props }: FormattedNumberProps & {
     locale: string;
 }): ReactElement;
+//# sourceMappingURL=formatted-number.d.ts.map

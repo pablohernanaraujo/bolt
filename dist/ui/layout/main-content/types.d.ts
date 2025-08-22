@@ -3,3 +3,4 @@ export interface MainContentProps {
     children: ReactNode;
     className?: string;
 }
+//# sourceMappingURL=types.d.ts.map

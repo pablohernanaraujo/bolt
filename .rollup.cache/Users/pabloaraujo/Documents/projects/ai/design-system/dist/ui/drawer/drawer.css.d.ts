@@ -10,3 +10,4 @@ export declare const drawerBody: string;
 export declare const drawerFooter: string;
 export declare const drawerBodyNoHeader: string;
 export declare const drawerBodyNoFooter: string;
+//# sourceMappingURL=drawer.css.d.ts.map

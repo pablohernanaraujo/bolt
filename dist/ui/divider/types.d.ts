@@ -10,3 +10,4 @@ export interface DividerProps extends ComponentProps<'div'> {
     spacing?: DividerSpacing;
     className?: string;
 }
+//# sourceMappingURL=types.d.ts.map

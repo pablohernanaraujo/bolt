@@ -16,3 +16,4 @@ export declare const objectFit: {
 };
 export declare const fallback: string;
 export declare const responsive: string;
+//# sourceMappingURL=aspect-ratio.css.d.ts.map

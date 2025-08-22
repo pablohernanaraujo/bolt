@@ -20,3 +20,4 @@ export declare function buildTabContentClassName(orientation: 'horizontal' | 've
 }): string;
 export declare const getOrientation: (orientation?: "horizontal" | "vertical") => "horizontal" | "vertical";
 export declare const shouldBeFitted: (isFitted?: boolean) => boolean;
+//# sourceMappingURL=helpers.d.ts.map

@@ -11,3 +11,4 @@ export interface VStackProps extends Omit<HTMLAttributes<HTMLElement>, 'children
     as?: ElementType;
     children: ReactNode;
 }
+//# sourceMappingURL=types.d.ts.map

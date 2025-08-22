@@ -12,3 +12,5 @@ export interface LocaleInfo {
 }
 export declare function detectServerLocale(): Promise<LocaleInfo>;
 export declare function getServerLocaleInfo(): Promise<LocaleInfo>;
+export declare function getStaticLocaleInfo(): LocaleInfo;
+//# sourceMappingURL=server-locale.d.ts.map

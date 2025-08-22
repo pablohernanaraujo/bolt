@@ -8,3 +8,4 @@ interface BuildContentWrapperClassNameProps {
 export declare const getEffectivePadding: (variant?: ContentWrapperVariant, paddingX?: SpaceValue, borderless?: boolean) => SpaceValue;
 export declare const buildContentWrapperClassName: ({ variant, paddingX, borderless, className, }: BuildContentWrapperClassNameProps) => string;
 export {};
+//# sourceMappingURL=helpers.d.ts.map

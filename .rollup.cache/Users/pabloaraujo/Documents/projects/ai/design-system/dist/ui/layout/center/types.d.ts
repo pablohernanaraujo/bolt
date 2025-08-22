@@ -5,3 +5,4 @@ export interface CenterProps<T extends ElementType = 'div'> {
     className?: string;
 }
 export type CenterComponentProps<T extends ElementType = 'div'> = CenterProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof CenterProps<T>>;
+//# sourceMappingURL=types.d.ts.map

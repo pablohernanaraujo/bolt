@@ -8,3 +8,4 @@ export declare const getInputPaddingAdjustments: (size: string, hasLeftElement?:
     paddingLeft?: string;
     paddingRight?: string;
 };
+//# sourceMappingURL=helpers.d.ts.map

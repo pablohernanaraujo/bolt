@@ -8,3 +8,4 @@ export declare const tabTrigger: import("@vanilla-extract/recipes").RuntimeFn<{
 }>;
 export declare const tabContent: string;
 export declare const tabContentVariants: Record<"horizontal" | "vertical", string>;
+//# sourceMappingURL=tabs.css.d.ts.map

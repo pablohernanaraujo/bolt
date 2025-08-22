@@ -31,3 +31,4 @@ export interface GridItemProps extends Omit<HTMLAttributes<HTMLElement>, 'childr
     children?: ReactNode;
     className?: string;
 }
+//# sourceMappingURL=types.d.ts.map

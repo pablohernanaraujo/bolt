@@ -4,3 +4,4 @@ export interface ButtonProps extends AriaButtonProps {
     size?: 'small' | 'medium' | 'large';
     fullWidth?: boolean;
 }
+//# sourceMappingURL=types.d.ts.map

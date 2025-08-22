@@ -9,3 +9,4 @@ export interface InputServerProps extends Omit<InputHTMLAttributes<HTMLInputElem
     fieldName?: string;
 }
 export declare const InputServer: import("react").ForwardRefExoticComponent<InputServerProps & import("react").RefAttributes<HTMLInputElement>>;
+//# sourceMappingURL=input-server.d.ts.map

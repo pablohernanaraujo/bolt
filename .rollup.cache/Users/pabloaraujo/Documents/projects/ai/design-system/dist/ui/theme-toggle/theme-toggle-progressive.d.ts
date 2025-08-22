@@ -6,3 +6,4 @@ interface ThemeToggleProgressiveProps extends Omit<ThemeToggleProps, 'onClick'> 
 }
 export declare const ThemeToggleProgressive: FC<ThemeToggleProgressiveProps>;
 export {};
+//# sourceMappingURL=theme-toggle-progressive.d.ts.map

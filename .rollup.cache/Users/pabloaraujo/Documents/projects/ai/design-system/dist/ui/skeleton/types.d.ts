@@ -29,3 +29,4 @@ export type SkeletonSpeed = 'slow' | 'normal' | 'fast';
 export type SkeletonCircleSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 export type SkeletonBorderRadius = 'none' | 'small' | 'medium' | 'large' | 'full';
 export {};
+//# sourceMappingURL=types.d.ts.map

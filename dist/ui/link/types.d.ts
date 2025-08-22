@@ -16,3 +16,4 @@ export interface LinkProps extends ComponentPropsWithoutRef<'a'>, SharedTypograp
     icon?: any;
     iconPosition?: 'left' | 'right';
 }
+//# sourceMappingURL=types.d.ts.map

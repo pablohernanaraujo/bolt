@@ -52,3 +52,4 @@ export interface MenuCollectionItem {
     shortcut?: string;
     section?: string;
 }
+//# sourceMappingURL=types.d.ts.map

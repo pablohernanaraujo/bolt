@@ -13,3 +13,4 @@ export declare const modalKeyboardHandler: {
     handleEscape: (event: KeyboardEvent, onClose: () => void, isKeyboardDismissDisabled?: boolean) => void;
     getFocusableElements: (container: HTMLElement) => HTMLElement[];
 };
+//# sourceMappingURL=helpers.d.ts.map

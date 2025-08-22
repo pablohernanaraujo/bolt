@@ -6,3 +6,4 @@ export declare const linkIcon: string;
 export declare const externalIcon: string;
 export declare const linkText: string;
 export declare const iconPositionVariants: Record<"left" | "right", string>;
+//# sourceMappingURL=link.css.d.ts.map

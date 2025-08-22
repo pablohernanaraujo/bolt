@@ -9,6 +9,8 @@ export { Toggle } from './ui/toggle/toggle.js';
 import './assets/src/ui/theme-toggle/theme-toggle.css.ts.vanilla-pNKuxznk.css';
 export { ThemeToggle } from './ui/theme-toggle/theme-toggle.js';
 import 'react/jsx-runtime';
+export { ThemeProvider, useCurrentTheme, useTheme, useThemeHydrated, useThemeOptional } from './ui/theme-provider/theme-provider.js';
+export { ThemeScript, generateThemeScript, getThemeScriptForAppRouter } from './ui/theme-provider/theme-script.js';
 import 'lucide-react';
 import 'react';
 export { CheckboxServer as Checkbox } from './ui/checkbox/checkbox-server.js';

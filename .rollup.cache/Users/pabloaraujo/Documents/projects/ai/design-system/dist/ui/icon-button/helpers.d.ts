@@ -6,3 +6,4 @@ export declare const getIconSizeValue: (size: IconSize | number) => number;
 export declare const buildIconButtonClassName: (variant: IconButtonProps["variant"], size: IconButtonProps["size"], className: IconButtonProps["className"], renderProps: ButtonRenderProps & {
     defaultClassName: string;
 }) => string;
+//# sourceMappingURL=helpers.d.ts.map

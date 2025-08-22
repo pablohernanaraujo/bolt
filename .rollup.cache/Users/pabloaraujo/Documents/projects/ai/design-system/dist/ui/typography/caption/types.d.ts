@@ -6,3 +6,4 @@ export interface CaptionProps extends ComponentPropsWithoutRef<'span'>, SharedTy
     className?: string;
     emphasis?: KeyEmphasis;
 }
+//# sourceMappingURL=types.d.ts.map

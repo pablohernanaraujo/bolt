@@ -5,3 +5,4 @@ export interface InputFieldProps extends InputProps {
     isInvalid?: boolean;
 }
 export declare const InputField: import("react").ForwardRefExoticComponent<InputFieldProps & import("react").RefAttributes<HTMLInputElement>>;
+//# sourceMappingURL=input-field.d.ts.map

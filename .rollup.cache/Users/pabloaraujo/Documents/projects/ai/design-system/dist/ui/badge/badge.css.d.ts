@@ -8,3 +8,4 @@ export declare const variants: {
     subtle: Record<string | number, string>;
     outline: Record<string | number, string>;
 };
+//# sourceMappingURL=badge.css.d.ts.map

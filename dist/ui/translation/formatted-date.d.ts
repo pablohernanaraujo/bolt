@@ -4,3 +4,4 @@ export declare function FormattedDate({ value, options, style, relative, relativ
 export declare function FormattedDateSync({ value, options, style, relative, relativeThreshold, locale, as: Component, className, fallbackChildren, ...props }: FormattedDateProps & {
     locale: string;
 }): ReactElement;
+//# sourceMappingURL=formatted-date.d.ts.map

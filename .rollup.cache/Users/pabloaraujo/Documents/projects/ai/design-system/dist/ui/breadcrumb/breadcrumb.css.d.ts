@@ -14,3 +14,4 @@ export declare const breadcrumbIcon: string;
 export declare const breadcrumbEllipsis: string;
 export declare const breadcrumbDropdown: string;
 export declare const breadcrumbResponsive: string;
+//# sourceMappingURL=breadcrumb.css.d.ts.map

@@ -6,3 +6,4 @@ export interface GiantProps extends ComponentPropsWithoutRef<'h1'>, SharedTypogr
     className?: string;
     emphasis?: KeyEmphasis;
 }
+//# sourceMappingURL=types.d.ts.map

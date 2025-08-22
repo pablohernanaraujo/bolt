@@ -23,3 +23,4 @@ export declare const specialized: {
     caption: string;
     giant: string;
 };
+//# sourceMappingURL=typography.css.d.ts.map

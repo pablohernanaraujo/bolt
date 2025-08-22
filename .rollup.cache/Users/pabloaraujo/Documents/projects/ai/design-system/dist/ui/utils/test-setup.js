@@ -9,10 +9,6 @@ afterEach(() => {
     cleanup();
 });
 beforeAll(() => {
-    Object.defineProperty(process.env, 'NODE_ENV', {
-        value: 'test',
-        writable: true,
-    });
     process.env.__NEXT_TEST_MODE = 'true';
     Object.defineProperty(window, 'matchMedia', {
         writable: true,
@@ -36,6 +32,12 @@ beforeAll(() => {
         observe: vi.fn(),
         unobserve: vi.fn(),
         disconnect: vi.fn(),
+    }));
+    global.MutationObserver = vi.fn().mockImplementation(() => ({
+        observe: vi.fn(),
+        unobserve: vi.fn(),
+        disconnect: vi.fn(),
+        takeRecords: vi.fn(),
     }));
     const localStorageMock = {
         getItem: vi.fn(),

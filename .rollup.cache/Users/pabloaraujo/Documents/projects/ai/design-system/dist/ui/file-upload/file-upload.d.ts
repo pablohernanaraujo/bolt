@@ -8,3 +8,4 @@ export declare const FileUpload: {
     Item: React.ForwardRefExoticComponent<FileUploadItemProps & React.RefAttributes<HTMLDivElement>>;
     DeleteTrigger: React.ForwardRefExoticComponent<FileUploadDeleteTriggerProps & React.RefAttributes<HTMLButtonElement>>;
 };
+//# sourceMappingURL=file-upload.d.ts.map

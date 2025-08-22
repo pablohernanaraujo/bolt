@@ -4,3 +4,4 @@ export declare const useModalScrollLock: () => void;
 export declare const ModalScrollLockWrapper: FC<{
     children: React.ReactNode;
 }>;
+//# sourceMappingURL=modal-client.d.ts.map

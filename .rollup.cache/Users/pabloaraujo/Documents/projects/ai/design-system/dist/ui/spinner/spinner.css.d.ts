@@ -5,3 +5,4 @@ export declare const withTrack: string;
 export declare const track: string;
 export declare const spinnerElement: string;
 export declare const visuallyHidden: string;
+//# sourceMappingURL=spinner.css.d.ts.map

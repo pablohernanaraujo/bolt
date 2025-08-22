@@ -5,3 +5,4 @@ export declare function FormattedCurrencySync({ value, currency, options, locale
     locale: string;
     currency: string;
 }): ReactElement;
+//# sourceMappingURL=formatted-currency.d.ts.map

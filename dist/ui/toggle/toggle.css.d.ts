@@ -8,3 +8,4 @@ export declare const thumbCheckedPositions: Record<"small" | "medium" | "large",
 export declare const checkedVariants: Record<string | number, string>;
 export declare const label: string;
 export declare const labelSizes: Record<"small" | "medium" | "large", string>;
+//# sourceMappingURL=toggle.css.d.ts.map

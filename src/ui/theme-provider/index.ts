@@ -10,6 +10,7 @@ export {
   useThemeHydrated,
   useThemeOptional,
 } from './theme-provider';
+export { ThemeProviderServer } from './theme-provider-server';
 export {
   generateThemeScript,
   getThemeScriptForAppRouter,

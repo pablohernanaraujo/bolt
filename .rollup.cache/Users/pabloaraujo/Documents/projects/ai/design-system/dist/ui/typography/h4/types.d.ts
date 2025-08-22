@@ -6,3 +6,4 @@ export interface H4Props extends ComponentPropsWithoutRef<'h4'>, SharedTypograph
     className?: string;
     emphasis?: KeyEmphasis;
 }
+//# sourceMappingURL=types.d.ts.map

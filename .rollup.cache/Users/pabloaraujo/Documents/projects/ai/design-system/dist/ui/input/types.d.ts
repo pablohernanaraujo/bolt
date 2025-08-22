@@ -6,3 +6,4 @@ export interface InputProps extends Omit<AriaInputProps, 'size'> {
     placeholder?: string;
     type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search';
 }
+//# sourceMappingURL=types.d.ts.map

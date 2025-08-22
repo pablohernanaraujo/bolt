@@ -13,3 +13,4 @@ export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
     showStatus?: boolean;
     icon?: React.ComponentType<any> | LucideIcon;
 }
+//# sourceMappingURL=types.d.ts.map

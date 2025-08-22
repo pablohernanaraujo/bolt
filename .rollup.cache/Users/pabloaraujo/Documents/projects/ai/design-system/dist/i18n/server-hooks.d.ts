@@ -39,3 +39,4 @@ export declare function createServerTranslationProvider(): ServerTranslationProv
 export declare function translateConditional(condition: boolean, trueKey: TranslationKey, falseKey: TranslationKey, helper: ServerTranslationHelper, params?: TranslationParams): string;
 export declare function translateDirectional(ltrKey: TranslationKey, rtlKey: TranslationKey, helper: ServerTranslationHelper, params?: TranslationParams): string;
 export declare function translatePlural(key: TranslationKey, count: number, helper: ServerTranslationHelper, params?: TranslationParams): string;
+//# sourceMappingURL=server-hooks.d.ts.map

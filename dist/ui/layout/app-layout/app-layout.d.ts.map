@@ -1,0 +1,1 @@
+{"version":3,"file":"app-layout.d.ts","sourceRoot":"","sources":["../../../../src/ui/layout/app-layout/app-layout.tsx"],"names":[],"mappings":"AAKA,OAAO,EAAE,KAAK,EAAE,EAAqB,KAAK,SAAS,EAAE,MAAM,OAAO,CAAC;AAKnE,UAAU,cAAc;IAEtB,OAAO,EAAE,SAAS,CAAC;IAEnB,QAAQ,EAAE,SAAS,CAAC;IAEpB,SAAS,CAAC,EAAE,MAAM,CAAC;CACpB;AAMD,eAAO,MAAM,SAAS,EAAE,EAAE,CAAC,cAAc,CAuBxC,CAAC"}

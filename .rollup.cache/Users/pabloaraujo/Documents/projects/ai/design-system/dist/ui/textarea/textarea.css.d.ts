@@ -8,3 +8,4 @@ export declare const textareaRecipe: import("@vanilla-extract/recipes").RuntimeF
     size: Record<"small" | "medium" | "large", string>;
     resize: Record<"none" | "both" | "horizontal" | "vertical", string>;
 }>;
+//# sourceMappingURL=textarea.css.d.ts.map

@@ -8,3 +8,4 @@ export interface IconButtonProps extends AriaButtonProps {
     iconSize?: IconSize | number;
     'aria-label': string;
 }
+//# sourceMappingURL=types.d.ts.map

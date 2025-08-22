@@ -57,3 +57,4 @@ export declare function renderStaticOnly(component: ReactElement): {
     }>;
 };
 export declare function mockNextRouter(pathname?: string, query?: Record<string, string>): Router;
+//# sourceMappingURL=ssr-test-utils.d.ts.map

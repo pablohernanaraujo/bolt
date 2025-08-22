@@ -20,3 +20,4 @@ declare global {
     var __RSC_TEST__: boolean;
     var __NEXT_TEST_MODE: string;
 }
+//# sourceMappingURL=test-setup.d.ts.map

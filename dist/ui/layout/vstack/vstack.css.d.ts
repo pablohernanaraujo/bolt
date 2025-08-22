@@ -4,3 +4,4 @@ export declare const align: Record<"center" | "end" | "start" | "baseline" | "st
 export declare const justify: Record<"center" | "end" | "start" | "between" | "around" | "evenly", string>;
 export declare const wrap: string;
 export declare const reversed: string;
+//# sourceMappingURL=vstack.css.d.ts.map

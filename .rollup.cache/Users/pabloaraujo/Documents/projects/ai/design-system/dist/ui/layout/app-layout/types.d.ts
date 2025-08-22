@@ -4,3 +4,4 @@ export interface AppLayoutProps {
     children: ReactNode;
     className?: string;
 }
+//# sourceMappingURL=types.d.ts.map

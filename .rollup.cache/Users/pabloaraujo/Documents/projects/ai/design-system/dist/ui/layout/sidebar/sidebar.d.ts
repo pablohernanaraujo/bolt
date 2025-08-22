@@ -6,3 +6,4 @@ interface SidebarProps {
 }
 export declare const Sidebar: FC<SidebarProps>;
 export {};
+//# sourceMappingURL=sidebar.d.ts.map

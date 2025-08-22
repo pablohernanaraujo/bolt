@@ -4,3 +4,4 @@ export declare const buildTooltipArrowClassName: (variant?: TooltipVariant) => s
 export declare const getAriaPlacement: (placement?: string) => string;
 export declare const getOffsetForSize: (size?: TooltipSize, customOffset?: number) => number;
 export declare const shouldWrapContent: (content: string, maxWidth?: number) => boolean;
+//# sourceMappingURL=helpers.d.ts.map

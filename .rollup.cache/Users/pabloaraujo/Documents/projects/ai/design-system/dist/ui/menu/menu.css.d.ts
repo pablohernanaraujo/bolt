@@ -15,3 +15,4 @@ export declare const menuPopover: string;
 export declare const menuFadeIn: string;
 export declare const menuFadeOut: string;
 export declare const menuTrigger: string;
+//# sourceMappingURL=menu.css.d.ts.map

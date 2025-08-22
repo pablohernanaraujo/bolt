@@ -6,3 +6,4 @@ interface AppLayoutProps {
 }
 export declare const AppLayout: FC<AppLayoutProps>;
 export {};
+//# sourceMappingURL=app-layout.d.ts.map

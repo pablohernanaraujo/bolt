@@ -20,3 +20,4 @@ export interface ProgressSegmentProps {
     isAnimated?: boolean;
     className?: string;
 }
+//# sourceMappingURL=types.d.ts.map

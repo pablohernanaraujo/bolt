@@ -3,3 +3,4 @@ export declare const buildContainerClassName: (labelPosition?: CheckboxProps["la
 export declare const buildCheckboxClassName: (size: CheckboxProps["size"], variant: CheckboxProps["variant"], isSelected: boolean) => string;
 export declare const buildCheckmarkClassName: (size?: CheckboxProps["size"]) => string;
 export declare const buildLabelClassName: (size?: CheckboxProps["size"]) => string;
+//# sourceMappingURL=helpers.d.ts.map

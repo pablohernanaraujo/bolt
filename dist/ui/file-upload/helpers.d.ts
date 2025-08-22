@@ -14,3 +14,4 @@ export declare const buildFileUploadItemClassName: (hasError?: boolean, classNam
 export declare const isImageFile: (file: File) => boolean;
 export declare const getFileTypeIcon: (file: File) => string;
 export declare const buildAcceptString: (acceptedTypes?: string[]) => string | undefined;
+//# sourceMappingURL=helpers.d.ts.map

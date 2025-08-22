@@ -8,3 +8,4 @@ export declare const buildVStackClassName: (props: {
     className?: string;
 }) => string;
 export declare const isValidSpaceValue: (value: unknown) => boolean;
+//# sourceMappingURL=helpers.d.ts.map

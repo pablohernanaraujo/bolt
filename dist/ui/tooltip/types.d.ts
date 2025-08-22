@@ -18,3 +18,4 @@ export interface TooltipProps extends Omit<AriaTooltipProps, 'children'> {
     maxWidth?: number;
     className?: string;
 }
+//# sourceMappingURL=types.d.ts.map

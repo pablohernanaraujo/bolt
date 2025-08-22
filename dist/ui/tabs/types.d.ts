@@ -12,3 +12,4 @@ export interface TabsTriggerProps extends AriaTabProps {
 }
 export interface TabsContentProps extends AriaTabPanelProps {
 }
+//# sourceMappingURL=types.d.ts.map

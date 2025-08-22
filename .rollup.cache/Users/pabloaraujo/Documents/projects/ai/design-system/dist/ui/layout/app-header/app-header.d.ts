@@ -6,3 +6,4 @@ interface AppHeaderProps {
 }
 export declare const AppHeader: FC<AppHeaderProps>;
 export {};
+//# sourceMappingURL=app-header.d.ts.map

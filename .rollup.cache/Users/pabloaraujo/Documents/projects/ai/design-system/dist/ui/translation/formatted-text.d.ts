@@ -4,3 +4,4 @@ export declare function FormattedText({ id: translationKey, values, defaultMessa
 export declare function FormattedTextSync({ id: translationKey, values, defaultMessage, description, locale, fallbackLocale, as: Component, className, fallbackChildren, ...props }: FormattedTextProps & {
     locale: string;
 }): ReactElement;
+//# sourceMappingURL=formatted-text.d.ts.map

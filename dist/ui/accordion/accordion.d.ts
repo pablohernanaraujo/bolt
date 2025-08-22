@@ -8,3 +8,4 @@ export declare const AccordionItem: FC<AccordionItemProps & {
     disableAnimation?: boolean;
 }>;
 export declare const Accordion: FC<AccordionProps>;
+//# sourceMappingURL=accordion.d.ts.map

@@ -4,3 +4,4 @@ export interface SidebarProps {
     isCollapsed?: boolean;
     className?: string;
 }
+//# sourceMappingURL=types.d.ts.map

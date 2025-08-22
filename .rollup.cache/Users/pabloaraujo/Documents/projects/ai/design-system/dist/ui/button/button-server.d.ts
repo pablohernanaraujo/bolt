@@ -6,3 +6,4 @@ export interface ButtonServerProps extends Omit<ButtonHTMLAttributes<HTMLButtonE
     className?: string;
 }
 export declare const ButtonServer: import("react").ForwardRefExoticComponent<ButtonServerProps & import("react").RefAttributes<HTMLButtonElement>>;
+//# sourceMappingURL=button-server.d.ts.map

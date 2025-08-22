@@ -9,3 +9,4 @@ export declare const checkboxCheckmark: string;
 export declare const checkmarkSizes: Record<"small" | "medium" | "large", string>;
 export declare const checkboxLabel: string;
 export declare const labelSizes: Record<"small" | "medium" | "large", string>;
+//# sourceMappingURL=checkbox.css.d.ts.map

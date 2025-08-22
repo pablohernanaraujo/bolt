@@ -10,3 +10,4 @@ export type ContainerProps<T extends ElementType = 'div'> = BaseContainerProps &
 };
 export type SimpleContainerProps = ContainerProps<'div'> | ContainerProps<'main'> | ContainerProps<'section'> | ContainerProps<'article'>;
 export {};
+//# sourceMappingURL=types.d.ts.map

@@ -5,3 +5,4 @@ export declare const Menu: FC<MenuProps>;
 export declare const MenuItem: import("react").ForwardRefExoticComponent<MenuItemProps & import("react").RefAttributes<HTMLDivElement>>;
 export declare const MenuSection: FC<MenuSectionProps>;
 export declare const MenuSeparator: FC<MenuSeparatorProps>;
+//# sourceMappingURL=menu.d.ts.map

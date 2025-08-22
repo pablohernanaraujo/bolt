@@ -28,3 +28,4 @@ export interface ModalFooterProps {
     children: ReactNode;
     className?: string;
 }
+//# sourceMappingURL=types.d.ts.map

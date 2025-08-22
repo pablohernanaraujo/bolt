@@ -98,3 +98,6 @@ export type { ProgressiveEnhancementOptions, VisibilityObserverConfig, } from '.
 export { createVisibilityObserver, enhanceButton, enhanceForm, ENHANCEMENT_CONFIGS, isJavaScriptAvailable, shouldEnhanceComponent, useProgressiveEnhancement, } from './utils/progressive-enhancement';
 export type { DeferredHydrationProps } from './utils/deferred-hydration';
 export { createDeferredComponent, DeferredHydration, useDeferredHydration, withDeferredHydration, } from './utils/deferred-hydration';
+export type { ThemeContextValue, ThemeProviderProps, ThemeScriptProps, } from './theme-provider';
+export { generateThemeScript, getThemeScriptForAppRouter, ThemeProvider, ThemeScript, useCurrentTheme, useTheme, useThemeHydrated, useThemeOptional, } from './theme-provider';
+//# sourceMappingURL=index.d.ts.map

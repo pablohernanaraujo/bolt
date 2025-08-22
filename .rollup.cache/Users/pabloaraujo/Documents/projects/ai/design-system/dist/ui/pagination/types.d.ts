@@ -39,3 +39,4 @@ export interface PaginationConfig {
     lastText: ReactNode;
     pageAriaLabel: (page: number) => string;
 }
+//# sourceMappingURL=types.d.ts.map

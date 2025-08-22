@@ -48,3 +48,4 @@ export { buildProgressClassName, calculateProgressPercentage, formatDataProgress
 export { ChartSkeleton, ChartSkeletonSimple, DeferredChart, DynamicChart, SAMPLE_CHART_DATA, } from './chart';
 export { createVisibilityObserver, enhanceButton, enhanceForm, ENHANCEMENT_CONFIGS, isJavaScriptAvailable, shouldEnhanceComponent, useProgressiveEnhancement, } from './utils/progressive-enhancement';
 export { createDeferredComponent, DeferredHydration, useDeferredHydration, withDeferredHydration, } from './utils/deferred-hydration';
+export { generateThemeScript, getThemeScriptForAppRouter, ThemeProvider, ThemeScript, useCurrentTheme, useTheme, useThemeHydrated, useThemeOptional, } from './theme-provider';

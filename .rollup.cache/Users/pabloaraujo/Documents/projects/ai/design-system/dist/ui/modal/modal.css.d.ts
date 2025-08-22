@@ -9,3 +9,4 @@ export declare const modalFooter: string;
 export declare const modalBodyNoHeader: string;
 export declare const modalBodyNoFooter: string;
 export declare const scrollLock: string;
+//# sourceMappingURL=modal.css.d.ts.map

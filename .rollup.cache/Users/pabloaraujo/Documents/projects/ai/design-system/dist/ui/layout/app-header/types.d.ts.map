@@ -1,0 +1,1 @@
+{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../../src/ui/layout/app-header/types.ts"],"names":[],"mappings":"AAKA,OAAO,EAAE,KAAK,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,MAAM,WAAW,cAAc;IAE7B,KAAK,EAAE,MAAM,CAAC;IAEd,OAAO,CAAC,EAAE,SAAS,CAAC;IAEpB,WAAW,CAAC,EAAE,OAAO,CAAC;CACvB"}

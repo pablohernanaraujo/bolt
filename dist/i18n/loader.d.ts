@@ -49,3 +49,4 @@ export declare class BatchTranslationLoader {
     getLocales(): string[];
 }
 export declare function createBatchLoader(): BatchTranslationLoader;
+//# sourceMappingURL=loader.d.ts.map

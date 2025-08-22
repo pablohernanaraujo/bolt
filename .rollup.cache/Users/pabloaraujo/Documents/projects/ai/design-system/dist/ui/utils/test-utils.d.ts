@@ -63,3 +63,4 @@ export declare const testSuites: {
     runRTLTests: (component: ReactElement, componentName: string) => void;
     runI18nTests: (component: ReactElement, componentName: string) => void;
 };
+//# sourceMappingURL=test-utils.d.ts.map

@@ -8,7 +8,8 @@
 
     // Output configuration
     "outDir": "./dist",
-    "declaration": false,
+    "declaration": true,
+    "declarationMap": true,
     "sourceMap": false,
 
     // Enable emit for library build
@@ -35,20 +36,26 @@
   "include": [
     "src/ui/**/*",
     "src/theme/**/*",
+    "src/tokens/**/*",
     "src/icons/**/*"
   ],
   "exclude": [
     "src/ui/**/*.test.tsx",
     "src/ui/**/*.stories.tsx",
     "src/ui/**/__tests__/**/*",
-    "src/ui/**/*.css.ts",
-    "src/tokens/**/*.css.ts",
-    "src/theme/**/*.css.ts",
+    "src/theme/**/__tests__/**/*",
+    "src/tokens/**/__tests__/**/*",
+    "src/icons/**/__tests__/**/*",
     "**/*.spec.ts",
     "**/*.spec.tsx",
+    "**/__tests__/**/*",
+    "**/*.stories.tsx",
+    "**/*.test.tsx",
+    "**/*.test.ts",
     "node_modules",
     "dist",
     ".next",
-    "storybook-static"
+    "storybook-static",
+    "src/app/**/*"
   ]
 }

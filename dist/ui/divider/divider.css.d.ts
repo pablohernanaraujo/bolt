@@ -7,3 +7,4 @@ export declare const horizontalSizes: Record<"medium" | "thick" | "thin", string
 export declare const verticalSizes: Record<"medium" | "thick" | "thin", string>;
 export declare const horizontalSpacing: Record<"small" | "medium" | "large" | "none", string>;
 export declare const verticalSpacing: Record<"small" | "medium" | "large" | "none", string>;
+//# sourceMappingURL=divider.css.d.ts.map

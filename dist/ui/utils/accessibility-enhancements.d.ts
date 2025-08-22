@@ -21,3 +21,4 @@ export declare function AnnouncementEnhancement({ children, config, fallback, de
 export declare function AccessibilityEnhancement({ children, type, config, fallback, defer, }: AccessibilityEnhancementProps): ReactElement;
 export declare function withAccessibilityEnhancement<P extends object>(Component: ComponentType<P>, enhancementType: AccessibilityEnhancementProps['type'], enhancementConfig?: Record<string, any>): ComponentType<P>;
 export {};
+//# sourceMappingURL=accessibility-enhancements.d.ts.map

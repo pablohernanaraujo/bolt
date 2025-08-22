@@ -6,3 +6,4 @@ export interface EmphasisTypes {
     pure: number;
 }
 export declare const Emphasis: EmphasisTypes;
+//# sourceMappingURL=emphasis.css.d.ts.map

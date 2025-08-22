@@ -6,3 +6,4 @@ interface ThemeToggleServerProps extends Omit<ThemeToggleProps, 'onClick'> {
 }
 export declare const ThemeToggleServer: FC<ThemeToggleServerProps>;
 export {};
+//# sourceMappingURL=theme-toggle-server.d.ts.map

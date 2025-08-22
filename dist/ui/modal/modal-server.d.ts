@@ -6,3 +6,4 @@ export declare const ModalContentServer: FC<ModalContentProps>;
 export declare const ModalHeaderServer: FC<ModalHeaderProps>;
 export declare const ModalBodyServer: FC<ModalBodyProps>;
 export declare const ModalFooterServer: FC<ModalFooterProps>;
+//# sourceMappingURL=modal-server.d.ts.map

@@ -4,3 +4,4 @@ export interface CheckboxProps extends AriaCheckboxProps {
     size?: 'small' | 'medium' | 'large';
     labelPosition?: 'left' | 'right';
 }
+//# sourceMappingURL=types.d.ts.map

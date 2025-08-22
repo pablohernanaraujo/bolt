@@ -6,3 +6,4 @@ export { FormattedText } from './formatted-text';
 export { Text } from './text';
 export { TranslationProvider } from './translation-provider';
 export type { FormattedCurrencyProps, FormattedDateProps, FormattedNumberProps, FormattedRelativeTimeProps, FormattedTextProps, TextProps, TranslationProviderProps, } from './types';
+//# sourceMappingURL=index.d.ts.map

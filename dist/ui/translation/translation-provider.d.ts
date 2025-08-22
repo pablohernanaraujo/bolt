@@ -14,3 +14,4 @@ export declare function TranslationBoundary({ children, fallback, locale, fallba
     locale?: string;
     fallbackLocale?: string;
 }): Promise<ReactElement>;
+//# sourceMappingURL=translation-provider.d.ts.map

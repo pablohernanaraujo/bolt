@@ -7,3 +7,4 @@ export declare const BreadcrumbLink: FC<BreadcrumbLinkProps>;
 export declare const BreadcrumbCurrentLink: FC<BreadcrumbCurrentLinkProps>;
 export declare const BreadcrumbSeparator: FC<BreadcrumbSeparatorProps>;
 export declare const Breadcrumb: FC<BreadcrumbProps>;
+//# sourceMappingURL=breadcrumb.d.ts.map

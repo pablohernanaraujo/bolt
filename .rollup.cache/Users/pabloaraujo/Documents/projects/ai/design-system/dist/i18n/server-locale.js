@@ -144,6 +144,9 @@ export async function detectServerLocale() {
 export async function getServerLocaleInfo() {
     return await detectServerLocale();
 }
+export function getStaticLocaleInfo() {
+    return DEFAULT_LOCALE_INFO;
+}
 function parseAcceptLanguageForLocale(acceptLanguage) {
     const languages = acceptLanguage
         .split(',')

@@ -47,3 +47,4 @@ export interface BreadcrumbProps extends Omit<BreadcrumbRootProps, 'children'> {
     itemsBeforeCollapse?: number;
     itemsAfterCollapse?: number;
 }
+//# sourceMappingURL=types.d.ts.map

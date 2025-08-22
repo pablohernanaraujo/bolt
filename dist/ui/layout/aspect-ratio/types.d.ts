@@ -18,3 +18,4 @@ export interface AspectRatioClassNameProps {
     objectFit?: ObjectFit;
     className?: string;
 }
+//# sourceMappingURL=types.d.ts.map

@@ -13,3 +13,4 @@ export declare const variants: Record<string | number, string>;
 export declare const fullWidth: string;
 export declare const disabled: string;
 export declare const noAnimation: string;
+//# sourceMappingURL=accordion.css.d.ts.map

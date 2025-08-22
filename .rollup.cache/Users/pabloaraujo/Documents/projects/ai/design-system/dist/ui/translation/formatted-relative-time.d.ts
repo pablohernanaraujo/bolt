@@ -4,3 +4,4 @@ export declare function FormattedRelativeTime({ value, baseDate, style, numeric,
 export declare function FormattedRelativeTimeSync({ value, baseDate, style, numeric, locale, as: Component, className, fallbackChildren, ...props }: FormattedRelativeTimeProps & {
     locale: string;
 }): ReactElement;
+//# sourceMappingURL=formatted-relative-time.d.ts.map

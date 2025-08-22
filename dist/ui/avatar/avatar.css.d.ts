@@ -10,3 +10,4 @@ export declare const avatarIconSizes: Record<"xs" | "sm" | "lg" | "xl" | "2xl" |
 export declare const statusIndicator: string;
 export declare const statusIndicatorSizes: Record<"xs" | "sm" | "lg" | "xl" | "2xl" | "md", string>;
 export declare const statusIndicatorVariants: Record<string | number, string>;
+//# sourceMappingURL=avatar.css.d.ts.map

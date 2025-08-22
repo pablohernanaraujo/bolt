@@ -4,3 +4,4 @@ export interface ToggleProps extends AriaSwitchProps {
     size?: 'small' | 'medium' | 'large';
     labelPosition?: 'left' | 'right';
 }
+//# sourceMappingURL=types.d.ts.map

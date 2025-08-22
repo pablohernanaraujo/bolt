@@ -8,3 +8,4 @@ export declare function getThemeScript(): string;
 export type BrandVariant = string;
 export declare function setBrand(brand: BrandVariant, element?: HTMLElement): void;
 export declare function getBrand(element?: HTMLElement): BrandVariant | null;
+//# sourceMappingURL=index.d.ts.map

@@ -6,3 +6,4 @@ export interface Body2Props extends ComponentPropsWithoutRef<'p'>, SharedTypogra
     className?: string;
     emphasis?: KeyEmphasis;
 }
+//# sourceMappingURL=types.d.ts.map

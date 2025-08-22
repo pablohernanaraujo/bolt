@@ -28,10 +28,28 @@ function generateInputs() {
 
   // Process each export entry from package.json
   Object.entries(packageJson.exports).forEach(([key, value]) => {
-    if (key === '.') return; // Skip the main entry point
+    if (key === '.' || key === './css') return; // Skip the main entry point and CSS export
     
     // Extract the component path from the export path
     const componentName = key.substring(2); // Remove './' prefix
+    
+    // Handle special exports
+    if (componentName === 'tokens') {
+      inputs['tokens/index'] = 'src/tokens/index.ts';
+      return;
+    }
+    if (componentName === 'theme') {
+      inputs['theme/index'] = 'src/theme/index.ts';
+      return;
+    }
+    if (componentName === 'icons') {
+      inputs['icons/index'] = 'src/icons/index.tsx';
+      return;
+    }
+    if (componentName === 'theme-provider') {
+      inputs['ui/theme-provider/index'] = 'src/ui/theme-provider/index.ts';
+      return;
+    }
     
     // Map to source file path
     if (componentName.includes('/')) {
@@ -39,15 +57,13 @@ function generateInputs() {
       const [component, variant] = componentName.split('/');
       inputs[`ui/${component}/${component}-${variant}`] = `src/ui/${component}/${component}-${variant}.tsx`;
     } else {
-      // Handle main component exports
-      inputs[`ui/${componentName}/index`] = `src/ui/${componentName}/index.ts`;
+      // Handle main component exports - check if the directory exists
+      const sourceFile = `src/ui/${componentName}/index.ts`;
+      if (fs.existsSync(sourceFile)) {
+        inputs[`ui/${componentName}/index`] = sourceFile;
+      }
     }
   });
-
-  // Add token and theme exports
-  inputs['tokens/index'] = 'src/tokens/index.ts';
-  inputs['theme/index'] = 'src/theme/index.ts';
-  inputs['icons/index'] = 'src/icons/index.tsx';
 
   return inputs;
 }

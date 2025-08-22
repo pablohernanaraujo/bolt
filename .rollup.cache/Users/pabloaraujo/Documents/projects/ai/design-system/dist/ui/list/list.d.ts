@@ -5,3 +5,4 @@ export declare const List: {
     Root: import("react").ForwardRefExoticComponent<ListRootProps & import("react").RefAttributes<HTMLElement>>;
     Item: import("react").ForwardRefExoticComponent<ListItemProps & import("react").RefAttributes<HTMLLIElement>>;
 };
+//# sourceMappingURL=list.d.ts.map

@@ -6,3 +6,4 @@ export interface SubtitleProps extends ComponentPropsWithoutRef<'p'>, SharedTypo
     className?: string;
     emphasis?: KeyEmphasis;
 }
+//# sourceMappingURL=types.d.ts.map

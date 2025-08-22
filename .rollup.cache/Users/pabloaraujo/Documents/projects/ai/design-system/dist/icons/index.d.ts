@@ -18,3 +18,4 @@ export interface GenericIconProps extends IconProps {
     icon: LucideIcon;
 }
 export declare const Icon: import("react").ForwardRefExoticComponent<Omit<GenericIconProps, "ref"> & import("react").RefAttributes<SVGSVGElement>>;
+//# sourceMappingURL=index.d.ts.map

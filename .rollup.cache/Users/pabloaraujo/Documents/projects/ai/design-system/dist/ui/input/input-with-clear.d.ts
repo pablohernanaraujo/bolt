@@ -7,3 +7,4 @@ export interface InputWithClearProps extends Omit<InputProps, 'isClearable'> {
     isDisabled?: boolean;
 }
 export declare const InputWithClear: import("react").ForwardRefExoticComponent<InputWithClearProps & import("react").RefAttributes<HTMLInputElement>>;
+//# sourceMappingURL=input-with-clear.d.ts.map

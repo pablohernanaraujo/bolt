@@ -1,0 +1,88 @@
+# Source files (we only ship dist)
+src/
+*.ts
+*.tsx
+!*.d.ts
+
+# Development files
+.storybook/
+storybook-static/
+.next/
+coverage/
+performance-reports/
+examples/
+scripts/
+eslint-rules/
+
+# Configuration files
+.eslintrc*
+.prettierrc*
+*.config.js
+*.config.mjs
+*.config.ts
+tsconfig.json
+tsconfig.lib.json
+tsconfig.tsbuildinfo
+vitest.config.ts
+rollup.config.mjs
+next.config.ts
+next-env.d.ts
+
+# Documentation source files
+*.stories.tsx
+*.stories.mdx
+*.test.tsx
+*.test.ts
+__tests__/
+
+# Git and CI files
+.git/
+.github/
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs and temp files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Lock files (controversial, but usually excluded)
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Build artifacts not needed
+*.map
+*.tsbuildinfo
+
+# Documentation markdown (keep README)
+CLAUDE.md
+ENHANCEMENTS.md
+NPM_PACKAGE_SUMMARY.md
+PERFORMANCE.md
+RSC_COMPATIBILITY.md
+TREE_SHAKING.md
+performance-budgets.config.js
+
+# Public assets (for Next.js app, not the package)
+public/
+
+# App directory (demo/documentation site)
+src/app/
+
+# Keep only essential files
+!dist/
+!README.md
+!LICENSE
+!CHANGELOG.md
+!package.json

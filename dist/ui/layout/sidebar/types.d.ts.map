@@ -1,0 +1,1 @@
+{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../../src/ui/layout/sidebar/types.ts"],"names":[],"mappings":"AAKA,OAAO,EAAE,KAAK,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,MAAM,WAAW,YAAY;IAE3B,QAAQ,EAAE,SAAS,CAAC;IAEpB,WAAW,CAAC,EAAE,OAAO,CAAC;IAEtB,SAAS,CAAC,EAAE,MAAM,CAAC;CACpB"}

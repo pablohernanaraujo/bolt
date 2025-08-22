@@ -1,0 +1,1 @@
+{"version":3,"file":"shared-types.d.ts","sourceRoot":"","sources":["../../../src/ui/typography/shared-types.ts"],"names":[],"mappings":"AASA,MAAM,WAAW,qBAAqB;IAKpC,IAAI,CAAC,EAAE,OAAO,CAAC;IAOf,WAAW,CAAC,EAAE,OAAO,CAAC;IAMtB,MAAM,CAAC,EAAE,OAAO,CAAC;IAMjB,SAAS,CAAC,EAAE,OAAO,CAAC;IAMpB,aAAa,CAAC,EAAE,OAAO,CAAC;IAOxB,SAAS,CAAC,EAAE,OAAO,CAAC;CACrB"}

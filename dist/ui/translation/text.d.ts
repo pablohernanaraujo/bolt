@@ -4,3 +4,4 @@ export declare function Text({ children: translationKey, params, defaultText, sc
 export declare function TextSync({ children: translationKey, params, defaultText, scope, locale, fallbackLocale, as: Component, className, fallbackChildren, ...props }: TextProps & {
     locale: string;
 }): ReactElement;
+//# sourceMappingURL=text.d.ts.map

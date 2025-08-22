@@ -6,3 +6,4 @@ export declare const themeClasses: {
     readonly light: string;
     readonly dark: string;
 };
+//# sourceMappingURL=index.d.ts.map

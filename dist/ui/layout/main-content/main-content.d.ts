@@ -5,3 +5,4 @@ interface MainContentProps {
 }
 export declare const MainContent: FC<MainContentProps>;
 export {};
+//# sourceMappingURL=main-content.d.ts.map

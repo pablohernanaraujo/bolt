@@ -22,3 +22,4 @@ export type { H4Props } from './h4';
 export type { H5Props } from './h5';
 export type { OverlineProps } from './overline';
 export type { SubtitleProps } from './subtitle';
+//# sourceMappingURL=index.d.ts.map

@@ -36,3 +36,4 @@ export declare const progress: import("@vanilla-extract/recipes").RuntimeFn<{
 }>;
 export declare const progressWithLabel: string;
 export declare const labelRow: string;
+//# sourceMappingURL=progress.css.d.ts.map

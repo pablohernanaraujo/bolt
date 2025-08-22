@@ -2,3 +2,4 @@ import { type DividerOrientation, type DividerSize, type DividerSpacing, type Di
 export declare const buildDividerClassName: (orientation: DividerOrientation, variant: DividerVariant, size: DividerSize, spacing: DividerSpacing, className?: string) => string;
 export declare const getDividerRole: (orientation: DividerOrientation) => string;
 export declare const getDividerAriaOrientation: (orientation: DividerOrientation) => DividerOrientation;
+//# sourceMappingURL=helpers.d.ts.map

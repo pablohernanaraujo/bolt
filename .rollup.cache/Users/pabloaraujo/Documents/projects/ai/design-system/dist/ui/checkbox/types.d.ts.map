@@ -1,0 +1,1 @@
+{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../src/ui/checkbox/types.ts"],"names":[],"mappings":"AAKA,OAAO,EAAE,KAAK,aAAa,IAAI,iBAAiB,EAAE,MAAM,uBAAuB,CAAC;AAMhF,MAAM,WAAW,aAAc,SAAQ,iBAAiB;IAMtD,OAAO,CAAC,EAAE,SAAS,GAAG,WAAW,GAAG,SAAS,GAAG,QAAQ,CAAC;IAOzD,IAAI,CAAC,EAAE,OAAO,GAAG,QAAQ,GAAG,OAAO,CAAC;IAOpC,aAAa,CAAC,EAAE,MAAM,GAAG,OAAO,CAAC;CAClC"}

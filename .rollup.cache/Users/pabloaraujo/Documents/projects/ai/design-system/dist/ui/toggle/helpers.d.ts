@@ -3,3 +3,4 @@ export declare const buildContainerClassName: (labelPosition?: ToggleProps["labe
 export declare const buildTrackClassName: (size: ToggleProps["size"], variant: ToggleProps["variant"], isSelected: boolean) => string;
 export declare const buildThumbClassName: (size: ToggleProps["size"], isSelected: boolean) => string;
 export declare const buildLabelClassName: (size?: ToggleProps["size"]) => string;
+//# sourceMappingURL=helpers.d.ts.map

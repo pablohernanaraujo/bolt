@@ -6,3 +6,4 @@ export interface H5Props extends ComponentPropsWithoutRef<'h5'>, SharedTypograph
     className?: string;
     emphasis?: KeyEmphasis;
 }
+//# sourceMappingURL=types.d.ts.map

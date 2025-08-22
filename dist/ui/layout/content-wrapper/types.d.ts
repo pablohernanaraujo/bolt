@@ -13,3 +13,4 @@ export type ContentWrapperProps<T extends ElementType = 'div'> = BaseContentWrap
 };
 export type SimpleContentWrapperProps = ContentWrapperProps<'div'> | ContentWrapperProps<'section'> | ContentWrapperProps<'header'> | ContentWrapperProps<'footer'> | ContentWrapperProps<'main'> | ContentWrapperProps<'article'>;
 export {};
+//# sourceMappingURL=types.d.ts.map

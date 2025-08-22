@@ -10,3 +10,4 @@ export declare const weight: Record<"bold" | "medium" | "normal" | "semibold", s
 export declare const decoration: Record<"italic" | "line-through" | "underline", string>;
 export declare const size: Record<"xs" | "sm" | "base" | "lg" | "xl", string>;
 export declare const colorScheme: Record<"brand" | "error" | "warning" | "success" | "info" | "default", string>;
+//# sourceMappingURL=list.css.d.ts.map

@@ -24,3 +24,4 @@ export declare const skeletonCircle: import("@vanilla-extract/recipes").RuntimeF
 }>;
 export declare const skeletonText: string;
 export declare const skeletonTextLine: string;
+//# sourceMappingURL=skeleton.css.d.ts.map

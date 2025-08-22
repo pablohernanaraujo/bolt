@@ -8,3 +8,4 @@ export declare const inputRecipe: import("@vanilla-extract/recipes").RuntimeFn<{
 }>;
 export declare const inputWrapper: string;
 export declare const clearButton: string;
+//# sourceMappingURL=input.css.d.ts.map

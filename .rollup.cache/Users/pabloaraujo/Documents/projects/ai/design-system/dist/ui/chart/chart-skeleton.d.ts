@@ -9,3 +9,4 @@ interface ChartSkeletonProps {
 export declare const ChartSkeleton: FC<ChartSkeletonProps>;
 export declare const ChartSkeletonSimple: FC<Pick<ChartSkeletonProps, 'height' | 'className'>>;
 export {};
+//# sourceMappingURL=chart-skeleton.d.ts.map

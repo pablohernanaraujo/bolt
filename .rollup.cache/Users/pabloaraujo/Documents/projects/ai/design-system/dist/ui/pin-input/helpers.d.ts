@@ -17,3 +17,4 @@ export declare const splitValue: (value: string, length: number) => string[];
 export declare const createFieldRefs: (length: number) => (HTMLInputElement | null)[];
 export declare const getDisplayValue: (value: string, masked: boolean, maskChar: string) => string;
 export declare const buildPinInputClassName: (variant: string, size: string, hasError: boolean, disabled: boolean, className?: string) => string;
+//# sourceMappingURL=helpers.d.ts.map

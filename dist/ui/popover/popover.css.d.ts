@@ -16,3 +16,4 @@ export declare const popoverArrowVariants: Record<string | number, string>;
 export declare const enteringAnimation: string;
 export declare const exitingAnimation: string;
 export declare const responsivePopover: string;
+//# sourceMappingURL=popover.css.d.ts.map

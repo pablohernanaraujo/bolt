@@ -9,8 +9,9 @@ import { type FC, type ReactElement, type ReactNode } from 'react';
 
 import { type LocaleInfo } from '@/i18n/server-locale';
 import { type ThemeVariant } from '@/tokens/themes';
-import { AppLayout, LayoutSidebar, MainContent, ThemeProvider } from '@/ui';
-import { ThemeToggleProgressive } from '@/ui/theme-toggle';
+import { AppLayout, LayoutSidebar, MainContent } from '@/ui';
+import { ThemeProviderServer } from '@/ui/theme-provider';
+import { ThemeToggleServer } from '@/ui/theme-toggle/theme-toggle-server';
 
 import { Sidebar } from './components/sidebar';
 import { LayoutHeaderClient } from './layout-header-client';
@@ -92,10 +93,10 @@ export const LayoutServer: FC<LayoutServerProps> = async ({
   // Get page title from server-side headers
   const pageTitle = await getPageTitle();
 
-  // Server-renderable header actions with progressive theme toggle
+  // Server-renderable header actions with server-compatible theme toggle
   const headerActions = (
-    <ThemeToggleProgressive
-      initialTheme={serverTheme}
+    <ThemeToggleServer
+      currentTheme={serverTheme}
       showLabel={true}
       size="small"
       variant="secondary"
@@ -114,7 +115,7 @@ export const LayoutServer: FC<LayoutServerProps> = async ({
   );
 
   return (
-    <ThemeProvider
+    <ThemeProviderServer
       defaultTheme={serverTheme}
       followSystemTheme={false}
       storageKey="theme-preference"
@@ -130,6 +131,6 @@ export const LayoutServer: FC<LayoutServerProps> = async ({
           {children}
         </MainContent>
       </AppLayout>
-    </ThemeProvider>
+    </ThemeProviderServer>
   );
 };

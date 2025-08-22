@@ -28,6 +28,9 @@ export async function getServerTheme() {
         return 'light';
     }
 }
+export function getStaticTheme() {
+    return 'light';
+}
 function getTimeOfDay(headersList) {
     try {
         const timezoneHint = headersList.get('x-timezone') ||

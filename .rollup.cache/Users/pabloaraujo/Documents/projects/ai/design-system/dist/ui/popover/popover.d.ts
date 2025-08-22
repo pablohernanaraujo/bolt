@@ -10,3 +10,4 @@ export declare const PopoverBody: FC<PopoverBodyProps & {
 }>;
 export declare const PopoverFooter: FC<PopoverFooterProps>;
 export declare const PopoverArrow: FC<PopoverArrowProps>;
+//# sourceMappingURL=popover.d.ts.map

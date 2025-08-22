@@ -39,3 +39,4 @@ export declare class TranslationKeyBuilder {
     reset(): this;
 }
 export declare function createKeyBuilder(): TranslationKeyBuilder;
+//# sourceMappingURL=translations.d.ts.map

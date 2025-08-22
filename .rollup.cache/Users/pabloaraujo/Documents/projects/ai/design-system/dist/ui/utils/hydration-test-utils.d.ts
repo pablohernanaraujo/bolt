@@ -78,3 +78,4 @@ export declare function testNetworkAwareHydration(component: ReactElement, condi
 export declare function createHydrationTestWrapper(options?: HydrationTestOptions): React.FC<{
     children: ReactNode;
 }>;
+//# sourceMappingURL=hydration-test-utils.d.ts.map

@@ -22,3 +22,4 @@ export type { MainContentProps } from './main-content';
 export { MainContent } from './main-content';
 export type { SidebarProps } from './sidebar';
 export { Sidebar } from './sidebar';
+//# sourceMappingURL=index.d.ts.map

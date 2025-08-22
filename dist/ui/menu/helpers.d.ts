@@ -15,3 +15,4 @@ export declare const isValidMenuPlacement: (placement: string) => placement is M
 export declare const getTransformOrigin: (placement: MenuPlacement) => string;
 export declare const scrollItemIntoView: (menuElement: HTMLElement, itemElement: HTMLElement) => void;
 export {};
+//# sourceMappingURL=helpers.d.ts.map

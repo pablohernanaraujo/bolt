@@ -7,3 +7,4 @@ export declare const getAriaRole: (variant: ToastVariant) => string;
 export declare const getPositionStyles: (position: ToastPosition) => Record<string, string>;
 export declare const calculateZIndex: (index: number) => number;
 export declare const isTopPosition: (position: ToastPosition) => boolean;
+//# sourceMappingURL=helpers.d.ts.map

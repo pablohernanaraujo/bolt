@@ -18,3 +18,4 @@ export declare const getResponsiveDimensions: (baseWidth: number, baseHeight: nu
     height: string;
 };
 export declare const mergeSkeletonProps: <T extends SkeletonProps | SkeletonCircleProps>(props: T, defaults: Partial<T>) => T;
+//# sourceMappingURL=helpers.d.ts.map

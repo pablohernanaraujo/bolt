@@ -95,3 +95,4 @@ export interface MessageFormatOptions {
     formatters?: Record<string, (value: any, options?: any) => string>;
     escapeValues?: boolean;
 }
+//# sourceMappingURL=types.d.ts.map

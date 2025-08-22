@@ -10,3 +10,4 @@ export interface FlexClassNameProps {
 export declare const buildFlexClassName: ({ direction, wrap, align, justify, gap, className, }: FlexClassNameProps) => string;
 export declare const isColumnDirection: (direction: FlexDirection) => boolean;
 export declare const isReversedDirection: (direction: FlexDirection) => boolean;
+//# sourceMappingURL=helpers.d.ts.map

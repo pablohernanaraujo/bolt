@@ -23,3 +23,4 @@ export declare function getDirectionClassName(direction: TextDirection): string;
 export declare function getDirectionDataAttributes(direction: TextDirection): Record<string, string>;
 export declare function detectRTLSupport(): boolean;
 export declare function createDirectionalStyles(ltrStyles: Record<string, string>, rtlStyles: Record<string, string>): string;
+//# sourceMappingURL=rtl-detection.d.ts.map

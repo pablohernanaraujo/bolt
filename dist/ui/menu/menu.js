@@ -1,6 +1,6 @@
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { forwardRef, useState, useEffect } from 'react';
-import { MenuItem as MenuItem$1, Popover, Menu as Menu$1, Section, Separator, MenuTrigger as MenuTrigger$1 } from 'react-aria-components';
+import { MenuItem as MenuItem$1, Popover, Menu as Menu$1, Section, Header, Separator, MenuTrigger as MenuTrigger$1 } from 'react-aria-components';
 import { darkTheme } from '../../tokens/themes/dark.css.js';
 import { lightTheme } from '../../tokens/themes/light.css.js';
 import { buildMenuItemClassName, shouldShowShortcut, getMenuWidthConstraints, buildMenuClassName, getTransformOrigin, getOffsetForSize, getAriaPlacement, buildMenuSectionClassName, buildMenuSeparatorClassName } from './helpers.js';
@@ -89,7 +89,7 @@ const MenuSection = ({ title, children, className, ...props }) => {
         className: sectionClassName,
         ...props,
     };
-    return (jsxs(Section, { ...sectionProps, children: [title && jsx("div", { className: menuSectionHeader, children: title }), children] }));
+    return (jsxs(Section, { ...sectionProps, children: [title && jsx(Header, { className: menuSectionHeader, children: title }), children] }));
 };
 const MenuSeparator = ({ className, ...props }) => {
     const separatorClassName = buildMenuSeparatorClassName(className);

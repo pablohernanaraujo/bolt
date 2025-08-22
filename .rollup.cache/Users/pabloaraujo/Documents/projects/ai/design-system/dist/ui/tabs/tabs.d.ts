@@ -5,3 +5,4 @@ export declare const Tabs: {
     Trigger: import("react").ForwardRefExoticComponent<TabsTriggerProps & import("react").RefAttributes<HTMLDivElement>>;
     Content: import("react").ForwardRefExoticComponent<TabsContentProps & import("react").RefAttributes<HTMLDivElement>>;
 };
+//# sourceMappingURL=tabs.d.ts.map
