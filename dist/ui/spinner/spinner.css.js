@@ -1,12 +1,12 @@
-import './../../assets/src/ui/spinner/spinner.css.ts.vanilla-DQPINFbC.css';
+import './../../assets/src/ui/spinner/spinner.css.ts.vanilla-CijBBBc-.css';
 
-var colorSchemes = {'default':'_15bxl765',brand:'_15bxl766',success:'_15bxl767',warning:'_15bxl768',error:'_15bxl769',info:'_15bxl76a'};
-var sizes = {small:'_15bxl762',medium:'_15bxl763',large:'_15bxl764'};
-var spinner = '_15bxl761';
-var spinnerElement = '_15bxl76d';
-var track = '_15bxl76c';
-var visuallyHidden = '_15bxl76e';
-var withTrack = '_15bxl76b';
+var colorSchemes = {'default':'_5irkl95',brand:'_5irkl96',success:'_5irkl97',warning:'_5irkl98',error:'_5irkl99',info:'_5irkl9a'};
+var sizes = {small:'_5irkl92',medium:'_5irkl93',large:'_5irkl94'};
+var spinner = '_5irkl91';
+var spinnerElement = '_5irkl9d';
+var track = '_5irkl9c';
+var visuallyHidden = '_5irkl9e';
+var withTrack = '_5irkl9b';
 
 export { colorSchemes, sizes, spinner, spinnerElement, track, visuallyHidden, withTrack };
 //# sourceMappingURL=spinner.css.js.map

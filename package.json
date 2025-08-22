@@ -1,5 +1,5 @@
 {
-  "name": "bolt",
+  "name": "@pablohernanaraujo/bolt",
   "version": "0.1.0",
   "description": "Modern React component library with server-first architecture, built for Next.js and performance",
   "type": "module",
@@ -68,6 +68,7 @@
     "@vanilla-extract/rollup-plugin": "^1.4.1",
     "@vanilla-extract/vite-plugin": "^5.1.1",
     "@vanilla-extract/webpack-plugin": "^2.3.22",
+    "@vitest/coverage-v8": "^3.2.4",
     "@vitest/ui": "^3.2.4",
     "bundlephobia": "^0.1.0",
     "css-loader": "^7.1.2",
@@ -110,14 +111,17 @@
   ],
   "author": "Pablo Araujo",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pabloaraujo/bolt.git"
+    "url": "https://github.com/pablohernanaraujo/bolt.git"
   },
   "bugs": {
-    "url": "https://github.com/pabloaraujo/bolt/issues"
+    "url": "https://github.com/pablohernanaraujo/bolt/issues"
   },
-  "homepage": "https://github.com/pabloaraujo/bolt#readme",
+  "homepage": "https://github.com/pablohernanaraujo/bolt#readme",
   "files": [
     "dist",
     "README.md",

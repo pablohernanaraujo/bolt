@@ -1,0 +1,102 @@
+._14s2wr0 {
+  position: relative;
+  display: inline-block;
+  max-width: 300px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  font-family: var(--_13is7oq0);
+  font-weight: var(--_13is7oqg);
+  line-height: var(--_13is7oql);
+  text-align: left;
+  border-radius: var(--_13is7oq19);
+  box-shadow: var(--bo63tm16);
+  transition: var(--_13is7oq1m);
+  z-index: 1000;
+  outline: none;
+}
+._14s2wr0[data-entering] {
+  opacity: 1;
+  transform: scale(1);
+}
+._14s2wr0[data-exiting] {
+  opacity: 0;
+  transform: scale(0.96);
+}
+._14s2wr1 {
+  padding: var(--_13is7oqu) var(--_13is7oqv);
+  font-size: var(--_13is7oq5);
+  border-radius: var(--_13is7oq18);
+}
+._14s2wr2 {
+  padding: var(--_13is7oqv) var(--_13is7oqw);
+  font-size: var(--_13is7oq7);
+  border-radius: var(--_13is7oq19);
+}
+._14s2wr3 {
+  padding: var(--_13is7oqw) var(--_13is7oqx);
+  font-size: var(--_13is7oq8);
+  border-radius: var(--_13is7oq1a);
+}
+._14s2wr4 {
+  background-color: var(--bo63tm3);
+  color: var(--bo63tm7);
+  border: 1px solid var(--bo63tmn);
+}
+._14s2wr5 {
+  background-color: var(--bo63tm0);
+  color: var(--bo63tm4);
+  border: 1px solid var(--bo63tmm);
+}
+._14s2wr6 {
+  background-color: var(--bo63tm8);
+  color: var(--bo63tm7);
+  border: 1px solid var(--bo63tm8);
+}
+._14s2wr7 {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  border: 1px solid;
+  z-index: -1;
+}
+[data-placement^="top"] ._14s2wr7 {
+  bottom: -5px;
+  left: 50%;
+  margin-left: -4px;
+  border-top: none;
+  border-left: none;
+}
+[data-placement^="bottom"] ._14s2wr7 {
+  top: -5px;
+  left: 50%;
+  margin-left: -4px;
+  border-bottom: none;
+  border-right: none;
+}
+[data-placement^="left"] ._14s2wr7 {
+  right: -5px;
+  top: 50%;
+  margin-top: -4px;
+  border-left: none;
+  border-bottom: none;
+}
+[data-placement^="right"] ._14s2wr7 {
+  left: -5px;
+  top: 50%;
+  margin-top: -4px;
+  border-right: none;
+  border-top: none;
+}
+._14s2wr8 {
+  background-color: var(--bo63tm3);
+  border-color: var(--bo63tmn);
+}
+._14s2wr9 {
+  background-color: var(--bo63tm0);
+  border-color: var(--bo63tmm);
+}
+._14s2wra {
+  background-color: var(--bo63tm8);
+  border-color: var(--bo63tm8);
+}

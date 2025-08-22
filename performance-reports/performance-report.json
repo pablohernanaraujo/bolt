@@ -1,0 +1,558 @@
+{
+  "timestamp": "2025-08-22T15:28:50.879Z",
+  "summary": {
+    "performance": {
+      "score": 50,
+      "grade": "F"
+    },
+    "components": {
+      "total": 52,
+      "passing": 52,
+      "warnings": 0,
+      "errors": 0
+    },
+    "bundles": {
+      "totalSize": 1895886,
+      "jsSize": 1766381,
+      "cssSize": 129505,
+      "dependencies": 8,
+      "duplicates": 0
+    },
+    "issues": {
+      "critical": 0,
+      "warnings": 0,
+      "total": 0
+    }
+  },
+  "details": {
+    "bundleSizes": {
+      "timestamp": "2025-08-22T15:28:27.164Z",
+      "summary": {
+        "total": 52,
+        "passing": 52,
+        "warnings": 0,
+        "errors": 0
+      },
+      "components": [
+        {
+          "component": "button",
+          "actualKB": 0.3,
+          "budgetKB": 2.5,
+          "warningKB": 2,
+          "status": "ok",
+          "utilization": "12.0"
+        },
+        {
+          "component": "badge",
+          "actualKB": 0.17,
+          "budgetKB": 1.5,
+          "warningKB": 1.2,
+          "status": "ok",
+          "utilization": "11.3"
+        },
+        {
+          "component": "avatar",
+          "actualKB": 0.22,
+          "budgetKB": 2,
+          "warningKB": 1.8,
+          "status": "ok",
+          "utilization": "11.0"
+        },
+        {
+          "component": "spinner",
+          "actualKB": 0.21,
+          "budgetKB": 1.5,
+          "warningKB": 1.2,
+          "status": "ok",
+          "utilization": "14.0"
+        },
+        {
+          "component": "skeleton",
+          "actualKB": 0.37,
+          "budgetKB": 2,
+          "warningKB": 1.8,
+          "status": "ok",
+          "utilization": "18.5"
+        },
+        {
+          "component": "divider",
+          "actualKB": 0.25,
+          "budgetKB": 1,
+          "warningKB": 0.8,
+          "status": "ok",
+          "utilization": "25.0"
+        },
+        {
+          "component": "code",
+          "actualKB": 0.16,
+          "budgetKB": 1.5,
+          "warningKB": 1.2,
+          "status": "ok",
+          "utilization": "10.7"
+        },
+        {
+          "component": "link",
+          "actualKB": 0.36,
+          "budgetKB": 1.5,
+          "warningKB": 1.2,
+          "status": "ok",
+          "utilization": "24.0"
+        },
+        {
+          "component": "toggle",
+          "actualKB": 0.17,
+          "budgetKB": 2,
+          "warningKB": 1.8,
+          "status": "ok",
+          "utilization": "8.5"
+        },
+        {
+          "component": "icon-button",
+          "actualKB": 0.2,
+          "budgetKB": 2,
+          "warningKB": 1.8,
+          "status": "ok",
+          "utilization": "10.0"
+        },
+        {
+          "component": "typography",
+          "actualKB": 0.4,
+          "budgetKB": 2,
+          "warningKB": 1.8,
+          "status": "ok",
+          "utilization": "20.0"
+        },
+        {
+          "component": "input",
+          "actualKB": 0.29,
+          "budgetKB": 4,
+          "warningKB": 3.5,
+          "status": "ok",
+          "utilization": "7.2"
+        },
+        {
+          "component": "textarea",
+          "actualKB": 0.23,
+          "budgetKB": 3.5,
+          "warningKB": 3,
+          "status": "ok",
+          "utilization": "6.6"
+        },
+        {
+          "component": "checkbox",
+          "actualKB": 0.27,
+          "budgetKB": 3,
+          "warningKB": 2.5,
+          "status": "ok",
+          "utilization": "9.0"
+        },
+        {
+          "component": "radio",
+          "actualKB": 0.17,
+          "budgetKB": 2.5,
+          "warningKB": 2,
+          "status": "ok",
+          "utilization": "6.8"
+        },
+        {
+          "component": "radio-group",
+          "actualKB": 0.18,
+          "budgetKB": 3.5,
+          "warningKB": 3,
+          "status": "ok",
+          "utilization": "5.1"
+        },
+        {
+          "component": "form-field",
+          "actualKB": 0.22,
+          "budgetKB": 3,
+          "warningKB": 2.5,
+          "status": "ok",
+          "utilization": "7.3"
+        },
+        {
+          "component": "input-group",
+          "actualKB": 0.27,
+          "budgetKB": 4,
+          "warningKB": 3.5,
+          "status": "ok",
+          "utilization": "6.8"
+        },
+        {
+          "component": "password-input",
+          "actualKB": 0.21,
+          "budgetKB": 4.5,
+          "warningKB": 4,
+          "status": "ok",
+          "utilization": "4.7"
+        },
+        {
+          "component": "password-strength-meter",
+          "actualKB": 0.27,
+          "budgetKB": 3.5,
+          "warningKB": 3,
+          "status": "ok",
+          "utilization": "7.7"
+        },
+        {
+          "component": "pin-input",
+          "actualKB": 0.34,
+          "budgetKB": 4,
+          "warningKB": 3.5,
+          "status": "ok",
+          "utilization": "8.5"
+        },
+        {
+          "component": "file-upload",
+          "actualKB": 0.33,
+          "budgetKB": 6,
+          "warningKB": 5,
+          "status": "ok",
+          "utilization": "5.5"
+        },
+        {
+          "component": "layout",
+          "actualKB": 0.52,
+          "budgetKB": 4,
+          "warningKB": 3.5,
+          "status": "ok",
+          "utilization": "13.0"
+        },
+        {
+          "component": "container",
+          "actualKB": 0,
+          "budgetKB": 1.5,
+          "warningKB": 1.2,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "flex",
+          "actualKB": 0,
+          "budgetKB": 1.5,
+          "warningKB": 1.2,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "grid",
+          "actualKB": 0,
+          "budgetKB": 2,
+          "warningKB": 1.8,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "hstack",
+          "actualKB": 0,
+          "budgetKB": 1.5,
+          "warningKB": 1.2,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "vstack",
+          "actualKB": 0,
+          "budgetKB": 1.5,
+          "warningKB": 1.2,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "center",
+          "actualKB": 0,
+          "budgetKB": 1,
+          "warningKB": 0.8,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "aspect-ratio",
+          "actualKB": 0,
+          "budgetKB": 1.5,
+          "warningKB": 1.2,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "app-layout",
+          "actualKB": 0,
+          "budgetKB": 3.5,
+          "warningKB": 3,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "app-header",
+          "actualKB": 0,
+          "budgetKB": 3,
+          "warningKB": 2.5,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "sidebar",
+          "actualKB": 0,
+          "budgetKB": 3,
+          "warningKB": 2.5,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "main-content",
+          "actualKB": 0,
+          "budgetKB": 2,
+          "warningKB": 1.8,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "content-wrapper",
+          "actualKB": 0,
+          "budgetKB": 2,
+          "warningKB": 1.8,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "breadcrumb",
+          "actualKB": 0.25,
+          "budgetKB": 4,
+          "warningKB": 3.5,
+          "status": "ok",
+          "utilization": "6.3"
+        },
+        {
+          "component": "tabs",
+          "actualKB": 0.18,
+          "budgetKB": 5,
+          "warningKB": 4.5,
+          "status": "ok",
+          "utilization": "3.6"
+        },
+        {
+          "component": "pagination",
+          "actualKB": 0.26,
+          "budgetKB": 5,
+          "warningKB": 4.5,
+          "status": "ok",
+          "utilization": "5.2"
+        },
+        {
+          "component": "list",
+          "actualKB": 0.23,
+          "budgetKB": 3,
+          "warningKB": 2.5,
+          "status": "ok",
+          "utilization": "7.7"
+        },
+        {
+          "component": "modal",
+          "actualKB": 0.29,
+          "budgetKB": 7,
+          "warningKB": 6,
+          "status": "ok",
+          "utilization": "4.1"
+        },
+        {
+          "component": "drawer",
+          "actualKB": 0.31,
+          "budgetKB": 6.5,
+          "warningKB": 5.5,
+          "status": "ok",
+          "utilization": "4.8"
+        },
+        {
+          "component": "popover",
+          "actualKB": 0.31,
+          "budgetKB": 6,
+          "warningKB": 5,
+          "status": "ok",
+          "utilization": "5.2"
+        },
+        {
+          "component": "tooltip",
+          "actualKB": 0.27,
+          "budgetKB": 4,
+          "warningKB": 3.5,
+          "status": "ok",
+          "utilization": "6.8"
+        },
+        {
+          "component": "menu",
+          "actualKB": 0.35,
+          "budgetKB": 7,
+          "warningKB": 6,
+          "status": "ok",
+          "utilization": "5.0"
+        },
+        {
+          "component": "accordion",
+          "actualKB": 0.21,
+          "budgetKB": 5,
+          "warningKB": 4.5,
+          "status": "ok",
+          "utilization": "4.2"
+        },
+        {
+          "component": "theme-toggle",
+          "actualKB": 0.26,
+          "budgetKB": 4,
+          "warningKB": 3.5,
+          "status": "ok",
+          "utilization": "6.5"
+        },
+        {
+          "component": "toast",
+          "actualKB": 0.27,
+          "budgetKB": 5,
+          "warningKB": 4.5,
+          "status": "ok",
+          "utilization": "5.4"
+        },
+        {
+          "component": "progress",
+          "actualKB": 0.29,
+          "budgetKB": 3.5,
+          "warningKB": 3,
+          "status": "ok",
+          "utilization": "8.3"
+        },
+        {
+          "component": "chart",
+          "actualKB": 0.27,
+          "budgetKB": 12,
+          "warningKB": 10,
+          "status": "ok",
+          "utilization": "2.3"
+        },
+        {
+          "component": "translation",
+          "actualKB": 0.31,
+          "budgetKB": 2,
+          "warningKB": 1.8,
+          "status": "ok",
+          "utilization": "15.5"
+        },
+        {
+          "component": "progressive-enhancement",
+          "actualKB": 0,
+          "budgetKB": 3,
+          "warningKB": 2.5,
+          "status": "ok",
+          "utilization": "0.0"
+        },
+        {
+          "component": "deferred-hydration",
+          "actualKB": 0,
+          "budgetKB": 2.5,
+          "warningKB": 2,
+          "status": "ok",
+          "utilization": "0.0"
+        }
+      ],
+      "hasErrors": false,
+      "hasWarnings": false
+    },
+    "sideEffects": null,
+    "globalListeners": null,
+    "bundleAnalysis": {
+      "timestamp": "2025-08-22T15:28:40.383Z",
+      "bundles": [],
+      "dependencies": [
+        {
+          "name": "@vanilla-extract/css",
+          "version": "^1.17.4",
+          "size": 0,
+          "type": "dependency"
+        },
+        {
+          "name": "@vanilla-extract/recipes",
+          "version": "^0.5.7",
+          "size": 0,
+          "type": "dependency"
+        },
+        {
+          "name": "clsx",
+          "version": "^2.1.1",
+          "size": 0,
+          "type": "dependency"
+        },
+        {
+          "name": "lucide-react",
+          "version": "^0.539.0",
+          "size": 0,
+          "type": "dependency"
+        },
+        {
+          "name": "next",
+          "version": "15.4.6",
+          "size": 0,
+          "type": "dependency"
+        },
+        {
+          "name": "react",
+          "version": "19.1.0",
+          "size": 0,
+          "type": "dependency"
+        },
+        {
+          "name": "react-aria-components",
+          "version": "^1.11.0",
+          "size": 0,
+          "type": "dependency"
+        },
+        {
+          "name": "react-dom",
+          "version": "19.1.0",
+          "size": 0,
+          "type": "dependency"
+        }
+      ],
+      "duplicates": [],
+      "opportunities": [],
+      "treeshaking": {
+        "optimized": [],
+        "potential": [],
+        "issues": []
+      },
+      "summary": {
+        "totalSize": 1895886,
+        "jsSize": 1766381,
+        "cssSize": 129505
+      }
+    },
+    "criticalCSS": null
+  },
+  "trends": {
+    "bundleSize": {
+      "direction": "stable",
+      "change": 0.39486673247778037
+    },
+    "components": {
+      "direction": "stable",
+      "change": 0
+    },
+    "issues": {
+      "direction": "stable",
+      "change": 0
+    }
+  },
+  "recommendations": [
+    {
+      "type": "info",
+      "category": "overall",
+      "title": "Performance score below target",
+      "description": "Current score: 50/100",
+      "action": "Address high-impact issues first",
+      "impact": "high"
+    }
+  ],
+  "scores": {
+    "bundleSize": 100,
+    "sideEffects": 0,
+    "cleanup": 0,
+    "optimization": 100,
+    "overall": 50
+  }
+}

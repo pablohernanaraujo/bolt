@@ -1,11 +1,11 @@
-import './../assets/src/tokens/tokens.css.ts.vanilla-BxQdvkAx.css';
-import './../assets/src/tokens/radius.css.ts.vanilla-DiICvnrh.css';
+import './../assets/src/tokens/tokens.css.ts.vanilla-B-MfocZu.css';
+import './../assets/src/tokens/radius.css.ts.vanilla-BtJIDFbZ.css';
 
-var radius = {none:'ek5vdz0',sm:'ek5vdz1',base:'ek5vdz2',md:'ek5vdz3',lg:'ek5vdz4',xl:'ek5vdz5','2xl':'ek5vdz6','3xl':'ek5vdz7',full:'ek5vdz8'};
-var radiusBottom = {none:'ek5vdzi',sm:'ek5vdzj',base:'ek5vdzk',md:'ek5vdzl',lg:'ek5vdzm',xl:'ek5vdzn','2xl':'ek5vdzo','3xl':'ek5vdzp',full:'ek5vdzq'};
-var radiusLeft = {none:'ek5vdzr',sm:'ek5vdzs',base:'ek5vdzt',md:'ek5vdzu',lg:'ek5vdzv',xl:'ek5vdzw','2xl':'ek5vdzx','3xl':'ek5vdzy',full:'ek5vdzz'};
-var radiusRight = {none:'ek5vdz10',sm:'ek5vdz11',base:'ek5vdz12',md:'ek5vdz13',lg:'ek5vdz14',xl:'ek5vdz15','2xl':'ek5vdz16','3xl':'ek5vdz17',full:'ek5vdz18'};
-var radiusTop = {none:'ek5vdz9',sm:'ek5vdza',base:'ek5vdzb',md:'ek5vdzc',lg:'ek5vdzd',xl:'ek5vdze','2xl':'ek5vdzf','3xl':'ek5vdzg',full:'ek5vdzh'};
+var radius = {none:'pg2b2m0',sm:'pg2b2m1',base:'pg2b2m2',md:'pg2b2m3',lg:'pg2b2m4',xl:'pg2b2m5','2xl':'pg2b2m6','3xl':'pg2b2m7',full:'pg2b2m8'};
+var radiusBottom = {none:'pg2b2mi',sm:'pg2b2mj',base:'pg2b2mk',md:'pg2b2ml',lg:'pg2b2mm',xl:'pg2b2mn','2xl':'pg2b2mo','3xl':'pg2b2mp',full:'pg2b2mq'};
+var radiusLeft = {none:'pg2b2mr',sm:'pg2b2ms',base:'pg2b2mt',md:'pg2b2mu',lg:'pg2b2mv',xl:'pg2b2mw','2xl':'pg2b2mx','3xl':'pg2b2my',full:'pg2b2mz'};
+var radiusRight = {none:'pg2b2m10',sm:'pg2b2m11',base:'pg2b2m12',md:'pg2b2m13',lg:'pg2b2m14',xl:'pg2b2m15','2xl':'pg2b2m16','3xl':'pg2b2m17',full:'pg2b2m18'};
+var radiusTop = {none:'pg2b2m9',sm:'pg2b2ma',base:'pg2b2mb',md:'pg2b2mc',lg:'pg2b2md',xl:'pg2b2me','2xl':'pg2b2mf','3xl':'pg2b2mg',full:'pg2b2mh'};
 
 export { radius, radiusBottom, radiusLeft, radiusRight, radiusTop };
 //# sourceMappingURL=radius.css.js.map

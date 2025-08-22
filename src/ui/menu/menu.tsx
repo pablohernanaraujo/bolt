@@ -22,6 +22,7 @@ import {
   Popover,
   Section,
   type SectionProps,
+  Header,
   Separator,
   type SeparatorProps,
 } from 'react-aria-components';
@@ -307,7 +308,7 @@ export const MenuSection: FC<MenuSectionProps> = ({
 
   return (
     <Section {...sectionProps}>
-      {title && <div className={styles.menuSectionHeader}>{title}</div>}
+      {title && <Header className={styles.menuSectionHeader}>{title}</Header>}
       {children}
     </Section>
   );

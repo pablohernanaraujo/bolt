@@ -80,6 +80,7 @@ export const COMPONENT_BUDGETS = {
   // Interactive Components (4-6 KB)
   'accordion': { gzip: 5.0, warning: 4.5 },
   'theme-toggle': { gzip: 4.0, warning: 3.5 },
+  'theme-provider': { gzip: 4.0, warning: 3.5 },
 
   // Feedback Components (3-5 KB)
   'toast': { gzip: 5.0, warning: 4.5 },
@@ -159,6 +160,7 @@ export const SIDE_EFFECT_FREE_COMPONENTS = [
  */
 export const CONTROLLED_SIDE_EFFECTS_ALLOWED = [
   'theme-toggle',
+  'theme-provider',
   'modal',
   'drawer',
   'popover',

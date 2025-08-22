@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-20T01:55:22.974Z",
+  "timestamp": "2025-08-22T15:29:20.172Z",
   "bundles": [],
   "dependencies": [
     {
@@ -59,8 +59,8 @@
     "issues": []
   },
   "summary": {
-    "totalSize": 0,
-    "jsSize": 0,
-    "cssSize": 0
+    "totalSize": 1895886,
+    "jsSize": 1766381,
+    "cssSize": 129505
   }
 }

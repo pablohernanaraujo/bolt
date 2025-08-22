@@ -1,0 +1,21 @@
+._1ip19q20 {
+  width: 280px;
+  background-color: var(--bo63tm1);
+  border-right: 1px solid var(--bo63tmm);
+  padding: var(--_13is7oqx);
+  overflow-y: auto;
+}
+@media (max-width: 768px) {
+  ._1ip19q20 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: var(--_13is7oq1i);
+    transform: translateX(0);
+    transition: transform 0.2s ease-in-out;
+  }
+  ._1ip19q21 {
+    transform: translateX(-100%);
+  }
+}

@@ -1,0 +1,119 @@
+.gbtcav0 {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--_13is7oqw);
+  cursor: pointer;
+  user-select: none;
+}
+.gbtcav0[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.gbtcav1 {
+  flex-direction: row-reverse;
+}
+.gbtcav2 {
+  flex-direction: row;
+}
+.gbtcav3 {
+  position: relative;
+  background-color: var(--bo63tm2);
+  border: 2px solid var(--bo63tmm);
+  transition: var(--_13is7oq1m);
+  outline: none;
+}
+.gbtcav3[data-focused] {
+  box-shadow: 0 0 0 3px var(--bo63tm8)33;
+}
+.gbtcav4 {
+  width: 36px;
+  height: 20px;
+  border-radius: var(--_13is7oq1e);
+}
+.gbtcav5 {
+  width: 44px;
+  height: 24px;
+  border-radius: var(--_13is7oq1e);
+}
+.gbtcav6 {
+  width: 52px;
+  height: 28px;
+  border-radius: var(--_13is7oq1e);
+}
+.gbtcav7 {
+  position: absolute;
+  top: 50%;
+  background-color: var(--bo63tm0);
+  border-radius: var(--_13is7oq1e);
+  box-shadow: var(--bo63tm14);
+  transform: translateY(-50%);
+  transition: var(--_13is7oq1m);
+  left: 2px;
+}
+.gbtcav8 {
+  width: 14px;
+  height: 14px;
+}
+.gbtcav9 {
+  width: 18px;
+  height: 18px;
+}
+.gbtcava {
+  width: 22px;
+  height: 22px;
+}
+.gbtcavb {
+  transform: translateY(-50%) translateX(16px);
+}
+.gbtcavc {
+  transform: translateY(-50%) translateX(20px);
+}
+.gbtcavd {
+  transform: translateY(-50%) translateX(24px);
+}
+.gbtcave {
+  background-color: var(--bo63tm8);
+  border-color: var(--bo63tm8);
+}
+.gbtcave:hover:not([data-disabled]) {
+  background-color: var(--bo63tm9);
+  border-color: var(--bo63tm9);
+}
+.gbtcavf {
+  background-color: var(--bo63tm1);
+  border-color: var(--bo63tmn);
+}
+.gbtcavf:hover:not([data-disabled]) {
+  background-color: var(--bo63tm2);
+}
+.gbtcavg {
+  background-color: var(--bo63tmi);
+  border-color: var(--bo63tmi);
+}
+.gbtcavg:hover:not([data-disabled]) {
+  background-color: var(--bo63tmi);
+  opacity: 0.9;
+}
+.gbtcavh {
+  background-color: var(--bo63tme);
+  border-color: var(--bo63tme);
+}
+.gbtcavh:hover:not([data-disabled]) {
+  background-color: var(--bo63tme);
+  opacity: 0.9;
+}
+.gbtcavi {
+  font-family: var(--_13is7oq0);
+  font-weight: var(--_13is7oqg);
+  line-height: var(--_13is7oql);
+  color: var(--bo63tm4);
+}
+.gbtcavj {
+  font-size: var(--_13is7oq7);
+}
+.gbtcavk {
+  font-size: var(--_13is7oq8);
+}
+.gbtcavl {
+  font-size: var(--_13is7oq9);
+}

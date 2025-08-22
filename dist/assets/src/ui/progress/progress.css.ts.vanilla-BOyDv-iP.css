@@ -1,0 +1,122 @@
+@keyframes _154ex0qd {
+  0% {
+    background-position: var(--_13is7oqx) 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+@keyframes _154ex0qf {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+._154ex0q0 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--_13is7oqv);
+  width: 100%;
+}
+._154ex0q1 {
+  position: relative;
+  flex: 1;
+  background-color: var(--bo63tm1);
+  border-radius: var(--_13is7oq1e);
+  overflow: hidden;
+}
+._154ex0q2 {
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.3s ease, background-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+._154ex0q3 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--bo63tm4);
+  white-space: nowrap;
+}
+._154ex0q4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--bo63tm4);
+  min-width: 3rem;
+  text-align: right;
+}
+._154ex0q5 {
+  height: var(--_13is7oqu);
+}
+._154ex0q6 {
+  height: var(--_13is7oqv);
+}
+._154ex0q7 {
+  height: var(--_13is7oqw);
+}
+._154ex0q8 {
+  background-color: var(--bo63tm8);
+}
+._154ex0q9 {
+  background-color: var(--bo63tmi);
+}
+._154ex0qa {
+  background-color: var(--bo63tmg);
+}
+._154ex0qb {
+  background-color: var(--bo63tme);
+}
+._154ex0qc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+   45deg,
+   rgba(255, 255, 255, 0.15) 25%,
+   transparent 25%,
+   transparent 50%,
+   rgba(255, 255, 255, 0.15) 50%,
+   rgba(255, 255, 255, 0.15) 75%,
+   transparent 75%,
+   transparent
+ );
+  background-size: var(--_13is7oqx) var(--_13is7oqx);
+}
+._154ex0qe {
+  animation: _154ex0qd 1s linear infinite;
+}
+._154ex0qg {
+  width: 30%;
+  animation: _154ex0qf 1.5s ease-in-out infinite;
+}
+._154ex0qh {
+  position: relative;
+  overflow: hidden;
+}
+._154ex0qh::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: indeterminate 1.5s ease-in-out infinite;
+}
+._154ex0qw {
+  display: flex;
+  flex-direction: column;
+  gap: var(--_13is7oqu);
+  width: 100%;
+}
+._154ex0qx {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}

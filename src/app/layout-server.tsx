@@ -9,7 +9,7 @@ import { type FC, type ReactElement, type ReactNode } from 'react';
 
 import { type LocaleInfo } from '@/i18n/server-locale';
 import { type ThemeVariant } from '@/tokens/themes';
-import { AppLayout, LayoutSidebar, MainContent } from '@/ui';
+import { AppLayout, LayoutSidebar, MainContent, ThemeProvider } from '@/ui';
 import { ThemeToggleProgressive } from '@/ui/theme-toggle';
 
 import { Sidebar } from './components/sidebar';
@@ -114,15 +114,22 @@ export const LayoutServer: FC<LayoutServerProps> = async ({
   );
 
   return (
-    <AppLayout
-      sidebar={sidebarContent}
-      data-direction={localeInfo.direction}
-      data-locale={localeInfo.locale}
+    <ThemeProvider
+      defaultTheme={serverTheme}
+      followSystemTheme={false}
+      storageKey="theme-preference"
+      disableTransitions={true}
     >
-      <LayoutHeaderClient title={pageTitle} actions={headerActions} />
-      <MainContent data-direction={localeInfo.direction}>
-        {children}
-      </MainContent>
-    </AppLayout>
+      <AppLayout
+        sidebar={sidebarContent}
+        data-direction={localeInfo.direction}
+        data-locale={localeInfo.locale}
+      >
+        <LayoutHeaderClient title={pageTitle} actions={headerActions} />
+        <MainContent data-direction={localeInfo.direction}>
+          {children}
+        </MainContent>
+      </AppLayout>
+    </ThemeProvider>
   );
 };

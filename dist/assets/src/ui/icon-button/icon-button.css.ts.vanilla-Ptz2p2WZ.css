@@ -1,0 +1,95 @@
+.knnodh0 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--_13is7oq0);
+  font-weight: var(--_13is7oqh);
+  line-height: var(--_13is7oql);
+  cursor: pointer;
+  user-select: none;
+  transition: var(--_13is7oq1m);
+  outline: none;
+  aspect-ratio: 1;
+}
+.knnodh0[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.knnodh1 {
+  width: var(--_13is7oq10);
+  height: var(--_13is7oq10);
+  padding: var(--_13is7oqv);
+  border-radius: var(--_13is7oq18);
+}
+.knnodh2 {
+  width: var(--_13is7oq11);
+  height: var(--_13is7oq11);
+  padding: var(--_13is7oqw);
+  border-radius: var(--_13is7oq19);
+}
+.knnodh3 {
+  width: var(--_13is7oq12);
+  height: var(--_13is7oq12);
+  padding: var(--_13is7oqx);
+  border-radius: var(--_13is7oq1a);
+}
+.knnodh4 {
+  background-color: var(--bo63tm8);
+  color: var(--bo63tm7);
+  border: 1px solid transparent;
+}
+.knnodh4:hover:not([disabled]) {
+  background-color: var(--bo63tm9);
+}
+.knnodh4:active:not([disabled]) {
+  background-color: var(--bo63tma);
+}
+.knnodh4[data-focused] {
+  box-shadow: 0 0 0 3px var(--bo63tm8)33;
+}
+.knnodh5 {
+  background-color: transparent;
+  color: var(--bo63tm8);
+  border: 1px solid var(--bo63tmm);
+}
+.knnodh5:hover:not([disabled]) {
+  background-color: var(--bo63tm1);
+}
+.knnodh5:active:not([disabled]) {
+  background-color: var(--bo63tm2);
+}
+.knnodh5[data-focused] {
+  border-color: var(--bo63tm8);
+  box-shadow: 0 0 0 3px var(--bo63tm8)33;
+}
+.knnodh6 {
+  background-color: transparent;
+  color: var(--bo63tm4);
+  border: 1px solid transparent;
+}
+.knnodh6:hover:not([disabled]) {
+  background-color: var(--bo63tm1);
+}
+.knnodh6:active:not([disabled]) {
+  background-color: var(--bo63tm2);
+}
+.knnodh6[data-focused] {
+  box-shadow: 0 0 0 3px var(--bo63tm8)33;
+}
+.knnodh7 {
+  background-color: var(--bo63tme);
+  color: var(--bo63tm7);
+  border: 1px solid transparent;
+}
+.knnodh7:hover:not([disabled]) {
+  background-color: var(--bo63tme);
+  opacity: 0.9;
+}
+.knnodh7:active:not([disabled]) {
+  background-color: var(--bo63tme);
+  opacity: 0.8;
+}
+.knnodh7[data-focused] {
+  box-shadow: 0 0 0 3px var(--bo63tme)33;
+}

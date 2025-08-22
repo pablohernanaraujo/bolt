@@ -479,3 +479,20 @@ export {
   useDeferredHydration,
   withDeferredHydration,
 } from './utils/deferred-hydration';
+
+// Theme Provider components and utilities
+export type {
+  ThemeContextValue,
+  ThemeProviderProps,
+  ThemeScriptProps,
+} from './theme-provider';
+export {
+  generateThemeScript,
+  getThemeScriptForAppRouter,
+  ThemeProvider,
+  ThemeScript,
+  useCurrentTheme,
+  useTheme,
+  useThemeHydrated,
+  useThemeOptional,
+} from './theme-provider';

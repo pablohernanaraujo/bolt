@@ -1,0 +1,75 @@
+._156eqix0 {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+._156eqix1 {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--aspect-ratio);
+}
+._156eqix2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+._156eqix3 {
+  aspect-ratio: 1 / 1;
+}
+._156eqix4 {
+  aspect-ratio: 16 / 9;
+}
+._156eqix5 {
+  aspect-ratio: 4 / 3;
+}
+._156eqix6 {
+  aspect-ratio: 3 / 2;
+}
+._156eqix7 {
+  aspect-ratio: 21 / 9;
+}
+._156eqix8 {
+  aspect-ratio: 3 / 4;
+}
+._156eqix9 {
+  aspect-ratio: 1.618 / 1;
+}
+._156eqixa > * {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+._156eqixb > * {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+._156eqixc > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+._156eqixd > * {
+  object-fit: none;
+}
+._156eqixe > * {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
+@supports not (aspect-ratio: 1) {
+  ._156eqixf {
+    padding-bottom: var(--fallback-padding);
+    height: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  ._156eqixg {
+    max-width: 100%;
+  }
+}

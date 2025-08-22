@@ -12,6 +12,8 @@ import { type ThemeVariant } from '@/tokens/themes';
  * Server-side theme detection with enhanced preference detection
  * Reads theme preference from multiple sources with proper fallbacks
  * Provides robust SSR compatibility and user preference respect
+ *
+ * NOTE: This function prevents static generation. Use getStaticTheme() for static pages.
  */
 export async function getServerTheme(): Promise<ThemeVariant> {
   try {
@@ -60,6 +62,15 @@ export async function getServerTheme(): Promise<ThemeVariant> {
     );
     return 'light';
   }
+}
+
+/**
+ * Static-compatible theme detection that defaults to light
+ * Use this for static generation (documentation, design system demos)
+ * Theme will be corrected on client-side hydration
+ */
+export function getStaticTheme(): ThemeVariant {
+  return 'light';
 }
 
 /**

@@ -1,0 +1,31 @@
+._4db0kz0 {
+  font-weight: 700;
+}
+._4db0kz1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+._4db0kz2 {
+  font-style: italic;
+}
+._4db0kz3 {
+  text-decoration: underline;
+  text-decoration-line: underline;
+}
+._4db0kz4 {
+  text-decoration: line-through;
+  text-decoration-line: line-through;
+}
+._4db0kz5 {
+  background-color: var(--bo63tm8);
+  opacity: 0.15;
+  padding-inline: 0.125em;
+  border-radius: 0.125em;
+  display: inline;
+}
+._4db0kz6 {
+  text-decoration: underline line-through;
+  text-decoration-line: underline line-through;
+}

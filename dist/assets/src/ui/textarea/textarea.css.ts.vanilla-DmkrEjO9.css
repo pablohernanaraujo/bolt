@@ -1,0 +1,113 @@
+._1h68chr0 {
+  appearance: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 80px;
+  font-family: var(--_13is7oq0);
+  font-weight: var(--_13is7oqg);
+  line-height: var(--_13is7oqm);
+  color: var(--bo63tm4);
+  transition: var(--_13is7oq1m);
+}
+._1h68chr0::placeholder {
+  color: var(--bo63tm5);
+  opacity: 1;
+}
+._1h68chr0::-webkit-input-placeholder {
+  color: var(--bo63tm5);
+}
+._1h68chr0::-moz-placeholder {
+  color: var(--bo63tm5);
+  opacity: 1;
+}
+._1h68chr0:-ms-input-placeholder {
+  color: var(--bo63tm5);
+}
+._1h68chr1 {
+  background-color: var(--bo63tm0);
+  border: 1px solid var(--bo63tmm);
+}
+._1h68chr1:hover {
+  border-color: var(--bo63tmn);
+}
+._1h68chr1:focus-within {
+  border-color: var(--bo63tm8);
+  box-shadow: 0 0 0 3px var(--bo63tm8)33;
+}
+._1h68chr1[data-disabled] {
+  background-color: var(--bo63tm1);
+  border-color: var(--bo63tmn);
+  cursor: not-allowed;
+}
+._1h68chr1[data-invalid] {
+  border-color: var(--bo63tme);
+}
+._1h68chr1[data-invalid]:focus-within {
+  border-color: var(--bo63tme);
+  box-shadow: 0 0 0 3px var(--bo63tme)33;
+}
+._1h68chr2 {
+  background-color: var(--bo63tm1);
+  border: 1px solid transparent;
+}
+._1h68chr2:hover {
+  background-color: var(--bo63tm2);
+}
+._1h68chr2:focus-within {
+  background-color: var(--bo63tm0);
+  border-color: var(--bo63tm8);
+  box-shadow: 0 0 0 3px var(--bo63tm8)33;
+}
+._1h68chr2[data-disabled] {
+  background-color: var(--bo63tm1);
+  cursor: not-allowed;
+}
+._1h68chr2[data-invalid] {
+  border-color: var(--bo63tme);
+  background-color: var(--bo63tm0);
+}
+._1h68chr2[data-invalid]:focus-within {
+  border-color: var(--bo63tme);
+  box-shadow: 0 0 0 3px var(--bo63tme)33;
+}
+._1h68chr3 {
+  min-height: 60px;
+  padding: var(--_13is7oqw);
+  font-size: var(--_13is7oq7);
+  border-radius: var(--_13is7oq18);
+}
+._1h68chr4 {
+  min-height: 80px;
+  padding: var(--_13is7oqx);
+  font-size: var(--_13is7oq8);
+  border-radius: var(--_13is7oq19);
+}
+._1h68chr5 {
+  min-height: 100px;
+  padding: var(--_13is7oqy);
+  font-size: var(--_13is7oq9);
+  border-radius: var(--_13is7oq1a);
+}
+._1h68chr6 {
+  resize: none;
+}
+._1h68chr7 {
+  resize: vertical;
+}
+._1h68chr8 {
+  resize: horizontal;
+}
+._1h68chr9 {
+  resize: both;
+}
+._1h68chra[data-disabled] {
+  color: var(--bo63tm6);
+  cursor: not-allowed;
+}
+._1h68chra[data-disabled]::placeholder {
+  color: var(--bo63tm6);
+}

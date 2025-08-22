@@ -1,0 +1,162 @@
+._1jd7acu0 {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bo63tm1);
+  border: 2px solid var(--bo63tm0);
+  overflow: hidden;
+  flex-shrink: 0;
+  user-select: none;
+}
+._1jd7acu1 {
+  width: 24px;
+  height: 24px;
+}
+._1jd7acu2 {
+  width: 32px;
+  height: 32px;
+}
+._1jd7acu3 {
+  width: 40px;
+  height: 40px;
+}
+._1jd7acu4 {
+  width: 48px;
+  height: 48px;
+}
+._1jd7acu5 {
+  width: 64px;
+  height: 64px;
+}
+._1jd7acu6 {
+  width: 80px;
+  height: 80px;
+}
+._1jd7acu7 {
+  border-radius: 50%;
+}
+._1jd7acu8 {
+  border-radius: var(--_13is7oq19);
+}
+._1jd7acu9 {
+  border-radius: var(--_13is7oq17);
+}
+._1jd7acua {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+._1jd7acub {
+  border-radius: 50%;
+}
+._1jd7acuc {
+  border-radius: calc(var(--_13is7oq19) - 2px);
+}
+._1jd7acud {
+  border-radius: calc(var(--_13is7oq17) - 2px);
+}
+._1jd7acue {
+  color: var(--bo63tm4);
+  font-family: var(--_13is7oq0);
+  font-weight: var(--_13is7oqh);
+  line-height: 1;
+  text-align: center;
+}
+._1jd7acuf {
+  font-size: 8px;
+}
+._1jd7acug {
+  font-size: 10px;
+}
+._1jd7acuh {
+  font-size: 14px;
+}
+._1jd7acui {
+  font-size: 16px;
+}
+._1jd7acuj {
+  font-size: 20px;
+}
+._1jd7acuk {
+  font-size: 24px;
+}
+._1jd7acul {
+  color: var(--bo63tm5);
+  flex-shrink: 0;
+}
+._1jd7acum {
+  width: 12px;
+  height: 12px;
+}
+._1jd7acun {
+  width: 14px;
+  height: 14px;
+}
+._1jd7acuo {
+  width: 18px;
+  height: 18px;
+}
+._1jd7acup {
+  width: 22px;
+  height: 22px;
+}
+._1jd7acuq {
+  width: 28px;
+  height: 28px;
+}
+._1jd7acur {
+  width: 36px;
+  height: 36px;
+}
+._1jd7acus {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid var(--bo63tm0);
+  bottom: 0;
+  right: 0;
+  transform: translate(25%, 25%);
+}
+._1jd7acut {
+  width: 8px;
+  height: 8px;
+  border-width: 1px;
+}
+._1jd7acuu {
+  width: 10px;
+  height: 10px;
+  border-width: 1px;
+}
+._1jd7acuv {
+  width: 12px;
+  height: 12px;
+  border-width: 2px;
+}
+._1jd7acuw {
+  width: 14px;
+  height: 14px;
+  border-width: 2px;
+}
+._1jd7acux {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+}
+._1jd7acuy {
+  width: 22px;
+  height: 22px;
+  border-width: 2px;
+}
+._1jd7acuz {
+  background-color: var(--bo63tmi);
+}
+._1jd7acu10 {
+  background-color: var(--bo63tm6);
+}
+._1jd7acu11 {
+  background-color: var(--bo63tmg);
+}
+._1jd7acu12 {
+  background-color: var(--bo63tme);
+}

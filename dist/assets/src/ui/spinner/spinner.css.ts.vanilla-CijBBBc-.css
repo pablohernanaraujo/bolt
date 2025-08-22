@@ -1,0 +1,75 @@
+@keyframes _5irkl90 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+._5irkl91 {
+  display: inline-block;
+  animation: _5irkl90 0.75s linear infinite;
+  flex-shrink: 0;
+}
+._5irkl92 {
+  width: 16px;
+  height: 16px;
+}
+._5irkl93 {
+  width: 24px;
+  height: 24px;
+}
+._5irkl94 {
+  width: 32px;
+  height: 32px;
+}
+._5irkl95 {
+  color: var(--bo63tm5);
+}
+._5irkl96 {
+  color: var(--bo63tm8);
+}
+._5irkl97 {
+  color: var(--bo63tmi);
+}
+._5irkl98 {
+  color: var(--bo63tmg);
+}
+._5irkl99 {
+  color: var(--bo63tme);
+}
+._5irkl9a {
+  color: var(--bo63tmk);
+}
+._5irkl9b {
+  position: relative;
+}
+._5irkl9b::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px solid;
+  border-color: currentColor;
+  opacity: 0.2;
+}
+._5irkl9c {
+  opacity: 0.2;
+}
+._5irkl9d {
+  stroke-linecap: round;
+}
+._5irkl9e {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

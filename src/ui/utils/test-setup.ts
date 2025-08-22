@@ -29,11 +29,11 @@ afterEach(() => {
 // Global test environment setup
 beforeAll(() => {
   // Setup SSR/RSC environment variables
-  Object.defineProperty(process.env, 'NODE_ENV', {
-    value: 'test',
-    writable: true,
-  });
+  // Set test mode flag for Next.js
   process.env.__NEXT_TEST_MODE = 'true';
+
+  // Note: NODE_ENV is typically set by Vitest automatically
+  // If needed in components, use: import.meta.env.NODE_ENV or process.env.NODE_ENV
 
   // Mock window.matchMedia
   Object.defineProperty(window, 'matchMedia', {
@@ -62,6 +62,14 @@ beforeAll(() => {
     observe: vi.fn(),
     unobserve: vi.fn(),
     disconnect: vi.fn(),
+  }));
+
+  // Mock MutationObserver for theme detection
+  global.MutationObserver = vi.fn().mockImplementation(() => ({
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+    takeRecords: vi.fn(),
   }));
 
   // Mock localStorage

@@ -5,8 +5,9 @@
 
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
 
-import { Button } from '@/ui/button';
+import { ButtonClient as Button } from '@/ui/button';
 
 import { ReactElement } from 'react';
 import {
@@ -18,8 +19,8 @@ import {
 } from '../menu';
 
 // Helper to render basic menu
-const renderBasicMenu = (): { onAction: jest.Mock } => {
-  const onAction = jest.fn();
+const renderBasicMenu = (): { onAction: ReturnType<typeof vi.fn> } => {
+  const onAction = vi.fn();
 
   render(
     <MenuTrigger>
@@ -200,7 +201,7 @@ describe('MenuItem', () => {
 
   it('should be disabled when isDisabled is true', async () => {
     const user = userEvent.setup();
-    const onAction = jest.fn();
+    const onAction = vi.fn();
 
     render(
       <MenuTrigger>
@@ -339,8 +340,13 @@ describe('Menu Accessibility', () => {
     await user.click(trigger);
 
     await waitFor(() => {
-      // Focus should move to first menu item
-      expect(screen.getByRole('menuitem', { name: 'Cut' })).toHaveFocus();
+      // Focus should move to menu container (proper ARIA behavior)
+      const menu = screen.getByRole('menu');
+      expect(menu).toHaveFocus();
     });
+
+    // Navigate with arrow keys to focus items
+    await user.keyboard('{ArrowDown}');
+    expect(screen.getByRole('menuitem', { name: 'Cut' })).toHaveFocus();
   });
 });

@@ -227,9 +227,20 @@ export async function detectServerLocale(): Promise<LocaleInfo> {
 /**
  * Get complete server locale information
  * Combines locale detection with text direction and formatting preferences
+ *
+ * NOTE: This function prevents static generation. Use getStaticLocaleInfo() for static pages.
  */
 export async function getServerLocaleInfo(): Promise<LocaleInfo> {
   return await detectServerLocale();
+}
+
+/**
+ * Static-compatible locale information that defaults to en-US
+ * Use this for static generation (documentation, design system demos)
+ * Locale will be corrected on client-side hydration
+ */
+export function getStaticLocaleInfo(): LocaleInfo {
+  return DEFAULT_LOCALE_INFO;
 }
 
 /**

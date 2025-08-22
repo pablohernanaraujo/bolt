@@ -1,0 +1,132 @@
+._1or94xi0 {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+._1or94xi1 {
+  list-style: disc;
+  padding-left: var(--_13is7oqz);
+}
+._1or94xi2 {
+  list-style: decimal;
+  padding-left: var(--_13is7oqz);
+}
+._1or94xi3 {
+  list-style: none;
+  padding-left: 0;
+}
+._1or94xi4 > li {
+  margin-bottom: var(--_13is7oqv);
+}
+._1or94xi4 > li:last-child {
+  margin-bottom: 0;
+}
+._1or94xi5 > li {
+  margin-bottom: var(--_13is7oqw);
+}
+._1or94xi5 > li:last-child {
+  margin-bottom: 0;
+}
+._1or94xi6 > li {
+  margin-bottom: var(--_13is7oqx);
+}
+._1or94xi6 > li:last-child {
+  margin-bottom: 0;
+}
+._1or94xi7 {
+  font-size: var(--_13is7oq8);
+  line-height: var(--_13is7oql);
+  color: var(--colors-text-primary);
+}
+._1or94xi7::marker {
+  color: var(--colors-text-secondary);
+}
+._1or94xi8 {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--_13is7oqv);
+  padding-left: 0;
+  position: relative;
+  list-style: none;
+}
+._1or94xi8::marker {
+  content: none;
+}
+._1or94xi9 {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--colors-text-secondary);
+  margin-top: var(--_13is7oqu);
+}
+._1or94xia {
+  flex: 1;
+  min-width: 0;
+}
+._1or94xib {
+  opacity: var(--_13is7oq1p);
+}
+._1or94xic {
+  opacity: var(--_13is7oq1q);
+}
+._1or94xid {
+  opacity: var(--_13is7oq1r);
+}
+._1or94xie {
+  opacity: var(--_13is7oq1s);
+}
+._1or94xif {
+  font-weight: var(--_13is7oqg);
+}
+._1or94xig {
+  font-weight: var(--_13is7oqh);
+}
+._1or94xih {
+  font-weight: var(--_13is7oqi);
+}
+._1or94xii {
+  font-weight: var(--_13is7oqj);
+}
+._1or94xij {
+  font-style: italic;
+}
+._1or94xik {
+  text-decoration: underline;
+}
+._1or94xil {
+  text-decoration: line-through;
+}
+._1or94xim {
+  font-size: var(--_13is7oq5);
+}
+._1or94xin {
+  font-size: var(--_13is7oq7);
+}
+._1or94xio {
+  font-size: var(--_13is7oq8);
+}
+._1or94xip {
+  font-size: var(--_13is7oq9);
+}
+._1or94xiq {
+  font-size: var(--_13is7oqa);
+}
+._1or94xir {
+  color: var(--colors-text-primary);
+}
+._1or94xis {
+  color: var(--colors-accent-brand);
+}
+._1or94xit {
+  color: var(--colors-accent-success);
+}
+._1or94xiu {
+  color: var(--colors-accent-warning);
+}
+._1or94xiv {
+  color: var(--colors-accent-error);
+}
+._1or94xiw {
+  color: var(--colors-accent-info);
+}

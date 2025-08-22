@@ -1,19 +1,19 @@
 {
-  "timestamp": "2025-08-20T01:44:10.458Z",
+  "timestamp": "2025-08-22T15:29:19.855Z",
   "summary": {
-    "total": 52,
-    "passing": 52,
+    "total": 53,
+    "passing": 53,
     "warnings": 0,
     "errors": 0
   },
   "components": [
     {
       "component": "button",
-      "actualKB": 0.31,
+      "actualKB": 0.3,
       "budgetKB": 2.5,
       "warningKB": 2,
       "status": "ok",
-      "utilization": "12.4"
+      "utilization": "12.0"
     },
     {
       "component": "badge",
@@ -25,11 +25,11 @@
     },
     {
       "component": "avatar",
-      "actualKB": 0.21,
+      "actualKB": 0.22,
       "budgetKB": 2,
       "warningKB": 1.8,
       "status": "ok",
-      "utilization": "10.5"
+      "utilization": "11.0"
     },
     {
       "component": "spinner",
@@ -129,11 +129,11 @@
     },
     {
       "component": "radio-group",
-      "actualKB": 0.17,
+      "actualKB": 0.18,
       "budgetKB": 3.5,
       "warningKB": 3,
       "status": "ok",
-      "utilization": "4.9"
+      "utilization": "5.1"
     },
     {
       "component": "form-field",
@@ -305,11 +305,11 @@
     },
     {
       "component": "pagination",
-      "actualKB": 0.25,
+      "actualKB": 0.26,
       "budgetKB": 5,
       "warningKB": 4.5,
       "status": "ok",
-      "utilization": "5.0"
+      "utilization": "5.2"
     },
     {
       "component": "list",
@@ -369,11 +369,19 @@
     },
     {
       "component": "theme-toggle",
-      "actualKB": 0.24,
+      "actualKB": 0.26,
       "budgetKB": 4,
       "warningKB": 3.5,
       "status": "ok",
-      "utilization": "6.0"
+      "utilization": "6.5"
+    },
+    {
+      "component": "theme-provider",
+      "actualKB": 0.27,
+      "budgetKB": 4,
+      "warningKB": 3.5,
+      "status": "ok",
+      "utilization": "6.8"
     },
     {
       "component": "toast",

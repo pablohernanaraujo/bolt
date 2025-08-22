@@ -1,8 +1,8 @@
-import './../../../assets/src/tokens/tokens.css.ts.vanilla-BxQdvkAx.css';
-import './../../../assets/src/ui/layout/sidebar/sidebar.css.ts.vanilla-BmLYg0SU.css';
+import './../../../assets/src/tokens/tokens.css.ts.vanilla-B-MfocZu.css';
+import './../../../assets/src/ui/layout/sidebar/sidebar.css.ts.vanilla-BseTA9Mz.css';
 
-var sidebar = 'noqsdn0';
-var sidebarCollapsed = 'noqsdn1';
+var sidebar = '_1ip19q20';
+var sidebarCollapsed = '_1ip19q21';
 
 export { sidebar, sidebarCollapsed };
 //# sourceMappingURL=sidebar.css.js.map

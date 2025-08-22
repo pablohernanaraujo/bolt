@@ -3,8 +3,8 @@ import { Settings } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { Icon } from '../../icons/index.js';
 import { ButtonServer } from '../button/button-server.js';
-import './../../assets/src/tokens/tokens.css.ts.vanilla-BxQdvkAx.css';
-import './../../assets/src/ui/button/button.css.ts.vanilla-DKj1N9w3.css';
+import './../../assets/src/tokens/tokens.css.ts.vanilla-B-MfocZu.css';
+import './../../assets/src/ui/button/button.css.ts.vanilla-CdKkMGyE.css';
 import { buildThemeToggleClassName } from './helpers.js';
 
 const ThemeToggleProgressive = ({ initialTheme, showLabel = true, size = 'small', variant = 'secondary', className, ...props }) => {

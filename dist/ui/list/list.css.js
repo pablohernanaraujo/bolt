@@ -1,18 +1,18 @@
-import './../../assets/src/tokens/tokens.css.ts.vanilla-BxQdvkAx.css';
-import './../../assets/src/ui/list/list.css.ts.vanilla-Cn9XJwQP.css';
+import './../../assets/src/tokens/tokens.css.ts.vanilla-B-MfocZu.css';
+import './../../assets/src/ui/list/list.css.ts.vanilla-D9UDx86i.css';
 
-var colorScheme = {'default':'dki2s0r',brand:'dki2s0s',success:'dki2s0t',warning:'dki2s0u',error:'dki2s0v',info:'dki2s0w'};
-var decoration = {italic:'dki2s0j',underline:'dki2s0k','line-through':'dki2s0l'};
-var emphasis = {high:'dki2s0b',medium:'dki2s0c',low:'dki2s0d',pure:'dki2s0e'};
-var listItem = 'dki2s07';
-var listItemContent = 'dki2s0a';
-var listItemIcon = 'dki2s09';
-var listItemWithIcon = 'dki2s08';
-var listRoot = 'dki2s00';
-var size = {xs:'dki2s0m',sm:'dki2s0n',base:'dki2s0o',lg:'dki2s0p',xl:'dki2s0q'};
-var spacing = {sm:'dki2s04',md:'dki2s05',lg:'dki2s06'};
-var variants = {unordered:'dki2s01',ordered:'dki2s02',basic:'dki2s03'};
-var weight = {normal:'dki2s0f',medium:'dki2s0g',semibold:'dki2s0h',bold:'dki2s0i'};
+var colorScheme = {'default':'_1or94xir',brand:'_1or94xis',success:'_1or94xit',warning:'_1or94xiu',error:'_1or94xiv',info:'_1or94xiw'};
+var decoration = {italic:'_1or94xij',underline:'_1or94xik','line-through':'_1or94xil'};
+var emphasis = {high:'_1or94xib',medium:'_1or94xic',low:'_1or94xid',pure:'_1or94xie'};
+var listItem = '_1or94xi7';
+var listItemContent = '_1or94xia';
+var listItemIcon = '_1or94xi9';
+var listItemWithIcon = '_1or94xi8';
+var listRoot = '_1or94xi0';
+var size = {xs:'_1or94xim',sm:'_1or94xin',base:'_1or94xio',lg:'_1or94xip',xl:'_1or94xiq'};
+var spacing = {sm:'_1or94xi4',md:'_1or94xi5',lg:'_1or94xi6'};
+var variants = {unordered:'_1or94xi1',ordered:'_1or94xi2',basic:'_1or94xi3'};
+var weight = {normal:'_1or94xif',medium:'_1or94xig',semibold:'_1or94xih',bold:'_1or94xii'};
 
 export { colorScheme, decoration, emphasis, listItem, listItemContent, listItemIcon, listItemWithIcon, listRoot, size, spacing, variants, weight };
 //# sourceMappingURL=list.css.js.map

@@ -1,18 +1,18 @@
-import './../../assets/src/tokens/tokens.css.ts.vanilla-BxQdvkAx.css';
-import './../../assets/src/ui/avatar/avatar.css.ts.vanilla-7VtnYu7K.css';
+import './../../assets/src/tokens/tokens.css.ts.vanilla-B-MfocZu.css';
+import './../../assets/src/ui/avatar/avatar.css.ts.vanilla-C3kfhkh3.css';
 
-var avatarContainer = 'c0sb1i0';
-var avatarIcon = 'c0sb1il';
-var avatarIconSizes = {xs:'c0sb1im',sm:'c0sb1in',md:'c0sb1io',lg:'c0sb1ip',xl:'c0sb1iq','2xl':'c0sb1ir'};
-var avatarImage = 'c0sb1ia';
-var avatarImageVariants = {circle:'c0sb1ib',rounded:'c0sb1ic',square:'c0sb1id'};
-var avatarInitials = 'c0sb1ie';
-var avatarInitialsSizes = {xs:'c0sb1if',sm:'c0sb1ig',md:'c0sb1ih',lg:'c0sb1ii',xl:'c0sb1ij','2xl':'c0sb1ik'};
-var avatarSizes = {xs:'c0sb1i1',sm:'c0sb1i2',md:'c0sb1i3',lg:'c0sb1i4',xl:'c0sb1i5','2xl':'c0sb1i6'};
-var avatarVariants = {circle:'c0sb1i7',rounded:'c0sb1i8',square:'c0sb1i9'};
-var statusIndicator = 'c0sb1is';
-var statusIndicatorSizes = {xs:'c0sb1it',sm:'c0sb1iu',md:'c0sb1iv',lg:'c0sb1iw',xl:'c0sb1ix','2xl':'c0sb1iy'};
-var statusIndicatorVariants = {online:'c0sb1iz',offline:'c0sb1i10',away:'c0sb1i11',busy:'c0sb1i12'};
+var avatarContainer = '_1jd7acu0';
+var avatarIcon = '_1jd7acul';
+var avatarIconSizes = {xs:'_1jd7acum',sm:'_1jd7acun',md:'_1jd7acuo',lg:'_1jd7acup',xl:'_1jd7acuq','2xl':'_1jd7acur'};
+var avatarImage = '_1jd7acua';
+var avatarImageVariants = {circle:'_1jd7acub',rounded:'_1jd7acuc',square:'_1jd7acud'};
+var avatarInitials = '_1jd7acue';
+var avatarInitialsSizes = {xs:'_1jd7acuf',sm:'_1jd7acug',md:'_1jd7acuh',lg:'_1jd7acui',xl:'_1jd7acuj','2xl':'_1jd7acuk'};
+var avatarSizes = {xs:'_1jd7acu1',sm:'_1jd7acu2',md:'_1jd7acu3',lg:'_1jd7acu4',xl:'_1jd7acu5','2xl':'_1jd7acu6'};
+var avatarVariants = {circle:'_1jd7acu7',rounded:'_1jd7acu8',square:'_1jd7acu9'};
+var statusIndicator = '_1jd7acus';
+var statusIndicatorSizes = {xs:'_1jd7acut',sm:'_1jd7acuu',md:'_1jd7acuv',lg:'_1jd7acuw',xl:'_1jd7acux','2xl':'_1jd7acuy'};
+var statusIndicatorVariants = {online:'_1jd7acuz',offline:'_1jd7acu10',away:'_1jd7acu11',busy:'_1jd7acu12'};
 
 export { avatarContainer, avatarIcon, avatarIconSizes, avatarImage, avatarImageVariants, avatarInitials, avatarInitialsSizes, avatarSizes, avatarVariants, statusIndicator, statusIndicatorSizes, statusIndicatorVariants };
 //# sourceMappingURL=avatar.css.js.map
